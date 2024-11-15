@@ -58,9 +58,7 @@ const Stories = () => {
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
   return (
     <Box className={classes.main} ta="center" py={60}>
-      <Title c="#1D3557" fz={rem(48)}>
-        Our Success Stories
-      </Title>
+      <Title className={classes.title}>Our Success Stories</Title>
       <Text maw={418} m="20px auto" c="#6D758F">
         Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
         phasellus mollis sit aliquam sit nullam.
@@ -70,7 +68,10 @@ const Stories = () => {
           slideSize={{ base: "100%", sm: "50%" }}
           slideGap={{ base: rem(2), sm: "xl" }}
           align="start"
-          slidesToScroll={mobile ? 1 : 1}
+          controlsOffset="xs"
+          classNames={{ root: classes.carousel__root }}
+          slidesToScroll={1}
+          loop
         >
           {storiesData.map((el, index: number) => (
             <Carousel.Slide key={index} className={classes.box}>

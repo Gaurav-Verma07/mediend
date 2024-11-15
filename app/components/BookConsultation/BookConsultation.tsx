@@ -16,6 +16,7 @@ import { useMediaQuery } from "@mantine/hooks";
 import { useState } from "react";
 const BookConsultation = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const mobile = useMediaQuery(`(min-width: 1100px)`);
   const form_id =
     "https://docs.google.com/forms/d/e/1FAIpQLSekTysZ6I9sbWaekYeC51YBC7GgRqjSpYJxZjITP_NyP_Ha1A/formResponse?&submit=Submit";
@@ -33,6 +34,7 @@ const BookConsultation = () => {
   const submitHandler = async () => {
     try {
       setIsLoading(true);
+      setIsSubmitted(false);
       const formData = new FormData();
       formData.append("entry.1997493604", form.values.name); // Replace with your field's entry ID
       formData.append("entry.2079655747", form.values.phone);
@@ -47,6 +49,7 @@ const BookConsultation = () => {
       console.log(error.message);
     } finally {
       setIsLoading(false);
+      setIsSubmitted(true);
     }
   };
   return (
@@ -117,12 +120,19 @@ const BookConsultation = () => {
               loading={isLoading}
               type="submit"
               radius="md"
-              my={20}
+              mt={20}
+              mb={10}
               bg="#FF990C"
               fullWidth
             >
               Book
             </Button>
+            {isSubmitted && (
+              <Text c="dimmed" fz={12}>
+                {" "}
+                Thank You! We&apos;ll reach out to you
+              </Text>
+            )}
           </form>
         </Box>
       </Box>

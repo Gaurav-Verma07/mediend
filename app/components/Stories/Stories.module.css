@@ -5,7 +5,13 @@
 }
 .carousel_main {
   margin: 0 auto;
-  max-width: 970px;
+  max-width: 324px;
+  @media (min-width: 800px) {
+    max-width: 970px;
+  }
+}
+.carousel__root {
+  margin: 0 10px;
 }
 .box {
   max-width: 324px;
@@ -24,5 +30,13 @@
   @media (min-width: 900px) {
     width: 460px;
     max-width: 460px;
+  }
+}
+
+.title {
+  color: #1d3557;
+  font-size: 32px;
+  @media (min-width: 900px) {
+    font-size: 48px;
   }
 }

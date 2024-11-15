@@ -65,39 +65,40 @@ const OurDoctors = () => {
         Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
         phasellus mollis sit aliquam sit nullam.
       </Text>
-      <Carousel
-        slideSize={{ base: "100%", sm: "fit-content" }}
-        slideGap={{ base: "xl", sm: 2 }}
-        align="start"
-        slidesToScroll={mobile ? 1 : 1}
-        loop
-        classNames={{ root: classes.carousel__root }}
-      >
-        {doctorsData.map(
-          (
-            el: {
-              img: string;
-              name: string;
-              domain: string;
-              experience: number;
-            },
-            index: number
-          ) => (
-            <Carousel.Slide key={index} className={classes.box}>
-              <Image src={el.img} height={236} fit="contain" alt={el.name} />
-              <Box my={20}>
-                <Text c="#023E8A" fz={rem(20)}>
-                  {el.name}
-                </Text>
-                <Text c="#999999" my={10} className={classes.domain}>
-                  {el.domain}
-                </Text>
-                <Text c="#999999">{el.experience}+ Years experience</Text>
-              </Box>
-            </Carousel.Slide>
-          )
-        )}
-      </Carousel>
+      <Box className={classes.carousel_main}>
+        <Carousel
+          slideSize={{ base: "100%", sm: "fit-content" }}
+          slideGap={{ base: "xl", sm: 2 }}
+          align="start"
+          slidesToScroll={mobile ? 1 : 1}
+          classNames={{ root: classes.carousel__root }}
+        >
+          {doctorsData.map(
+            (
+              el: {
+                img: string;
+                name: string;
+                domain: string;
+                experience: number;
+              },
+              index: number
+            ) => (
+              <Carousel.Slide key={index} className={classes.box}>
+                <Image src={el.img} height={236} fit="contain" alt={el.name} />
+                <Box my={20}>
+                  <Text c="#023E8A" fz={rem(20)}>
+                    {el.name}
+                  </Text>
+                  <Text c="#999999" my={10} className={classes.domain}>
+                    {el.domain}
+                  </Text>
+                  <Text c="#999999">{el.experience}+ Years experience</Text>
+                </Box>
+              </Carousel.Slide>
+            )
+          )}
+        </Carousel>
+      </Box>
     </Box>
   );
 };
