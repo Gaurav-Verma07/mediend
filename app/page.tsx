@@ -32,6 +32,9 @@ export default function HomePage() {
       <Stories />
       <div style={{ maxWidth: "1300px", margin: "0 auto" }}>
         <Blogs />
+      </div>
+
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <FAQs />
         <BookConsultation />
       </div>

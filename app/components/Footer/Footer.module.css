@@ -14,6 +14,11 @@
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
+  flex-direction: column;
+  align-items: center;
+  @media (min-width: 700px) {
+    flex-direction: row;
+  }
 }
 
 .order__btn {
@@ -35,6 +40,12 @@
   justify-content: space-between;
   font-size: 14px;
   color: #a9b1bc;
+  flex-direction: column;
+  align-items: normal;
+  @media (min-width: 700px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
 }
 
 .middle__box_upper {
@@ -43,14 +54,21 @@
   margin-bottom: 10px;
 }
 .contact {
-  max-width: 260px;
-  text-align: right;
+  max-width: fit-content;
+  text-align: left;
   color: #fff;
+  @media (min-width: 700px) {
+    max-width: 260px;
+    text-align: right;
+  }
 }
 .dates {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  @media (min-width: 700px) {
+    justify-content: flex-end;
+  }
 }
 .divider {
   display: inline-block;
@@ -62,9 +80,25 @@
 
 .box__bottom {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   color: #a9b1bc;
   font-size: 12px;
   margin: 20px 10px;
+  @media (min-width: 700px) {
+    flex-direction: row;
+  }
+}
+
+.mobile__links {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
+.mobile__links_inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

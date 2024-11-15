@@ -16,8 +16,9 @@ import {
   Button,
   Input,
   Box,
+  Drawer,
 } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import {
   IconLogout,
   IconHeart,
@@ -33,6 +34,11 @@ import {
 import classes from "./Header.module.css";
 import { tabs } from "./headerData";
 import HoverCards from "./HoverCards";
+import {
+  LinksGroup,
+  LinksGroupProps,
+  NavbarLinksGroup,
+} from "./NavbarLinksGroup";
 
 const user = {
   name: "Jane Spoonfighter",
@@ -43,8 +49,9 @@ const user = {
 
 const Header = () => {
   const theme = useMantineTheme();
-  const [opened, { toggle }] = useDisclosure(false);
+  const [opened, { toggle, close }] = useDisclosure(false);
   const [userMenuOpened, setUserMenuOpened] = useState(false);
+  const mobile = useMediaQuery(`(min-width: 1100px)`);
 
   return (
     <div className={classes.header}>
@@ -52,24 +59,36 @@ const Header = () => {
         <Group justify="space-between">
           <Image src={"/logo.png"} alt="logo" />
 
-          <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
-          <Input
-            radius="xl"
-            leftSection={<IconSearch />}
-            placeholder="Search ..."
-          />
-          <Button radius="xl" bg="#4A3AFF">
-            Schedule Call
-          </Button>
+          {mobile && (
+            <>
+              <Input
+                radius="md"
+                classNames={{ input: classes.input }}
+                leftSection={<IconSearch />}
+                placeholder="Search ..."
+              />
+              <Button radius="xl" bg="#4A3AFF">
+                Schedule Call
+              </Button>
+            </>
+          )}
+          <Burger opened={opened} onClick={toggle} hiddenFrom="lg" size="sm" />
         </Group>
       </Container>
-      <Container size="xl" className={classes.subHeader} mb={5}>
-        <Box>
-          {tabs.map((el: any, index: number) => (
-            <HoverCards key={index} data={el} />
-          ))}
-        </Box>
-      </Container>
+      {mobile && (
+        <Container size="xl" className={classes.subHeader} mb={5}>
+          <Box>
+            {tabs.map((el: any, index: number) => (
+              <HoverCards key={index} data={el} />
+            ))}
+          </Box>
+        </Container>
+      )}
+      <Drawer opened={opened} onClose={close}>
+        {tabs.map((el, index: number) => (
+          <LinksGroup {...el} key={index} />
+        ))}
+      </Drawer>
     </div>
   );
 };

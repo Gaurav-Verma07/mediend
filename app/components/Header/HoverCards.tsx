@@ -17,29 +17,28 @@ import { theme } from "../../../theme";
 import classes from "./Header.module.css";
 import { tabs } from "./headerData";
 const HoverCards = ({ data }: any) => {
+  console.log({ data });
   return (
     <HoverCard position="bottom" radius="md" shadow="md" withinPortal>
       <HoverCard.Target>
         <a href="#" className={classes.link}>
           <Center inline>
             <Box component="span" mx={3} c="dimmed">
-              {data.title}
+              {data.label}
             </Box>
-            <IconChevronDown
-              style={{ width: rem(16), height: rem(16) }}
-              color={"grey"}
-            />
           </Center>
         </a>
       </HoverCard.Target>
 
       <HoverCard.Dropdown style={{ overflow: "hidden" }}>
         <Stack>
-          {data.values.map((el: string, index: number) => (
-            <a key={index} style={{ display: "inline" }}>
-              {el}
-            </a>
-          ))}
+          {data.links.map(
+            (el: { label: string; link: string }, index: number) => (
+              <a key={index} style={{ display: "inline" }}>
+                {el.label}
+              </a>
+            )
+          )}
         </Stack>
       </HoverCard.Dropdown>
     </HoverCard>

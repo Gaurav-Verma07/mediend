@@ -31,7 +31,13 @@ const FAQs = () => {
           variant="separated"
           value={activeItem}
           onChange={setActiveItem}
-          chevron={<Image src="assets/blog_chevron.png" alt="chevron" />}
+          chevron={
+            <Image
+              src="assets/blog_chevron.png"
+              className={classes.chevron__icon}
+              alt="chevron"
+            />
+          }
           classNames={{ item: classes.item, chevron: classes.chevron }}
         >
           {faqs.map((el, index: number) => (

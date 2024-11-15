@@ -39,7 +39,7 @@ const Specialities = () => {
   const mobile = useMediaQuery(`(min-width: 800px)`);
 
   return (
-    <Box my={20} mx={10}>
+    <Box my={50} mx={10}>
       <Title ta="center" my={20} className={classes.main__title}>
         Our Specialities
       </Title>

@@ -4,19 +4,33 @@
   background-position: bottom;
   background-repeat: no-repeat;
   background-color: #f8faff;
-  margin: 60px 0;
-  padding: 100px 50px;
+  margin: 60px auto;
+  padding: 50px 50px 0 50px;
+  max-width: fit-content;
   border-radius: 10px;
   border: 1px solid #d4d8e2;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media (min-width: 800px) {
+    max-width: inherit;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 60px auto;
+    align-items: flex-start;
+    padding: 100px 50px;
+  }
 }
 
 .bg {
-  position: absolute;
   bottom: 0;
   left: 0;
   z-index: 0;
+  order: 3;
+  @media (min-width: 800px) {
+    position: absolute;
+  }
 }
 
 .info {
@@ -24,12 +38,18 @@
 }
 
 .form {
-  width: 400px;
   max-width: 400px;
   border: 1px solid #d7dedd;
   border-radius: 16px;
   background-color: #fff;
+  margin: 20px 10px;
+  box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.04),
+    0px 4px 3.25px rgba(0, 0, 0, 0.02);
   padding: 30px 20px;
+  @media (min-width: 800px) {
+    margin: 0;
+    width: 400px;
+  }
 }
 
 .input__root {
