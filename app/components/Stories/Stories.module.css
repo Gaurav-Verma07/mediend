@@ -8,8 +8,7 @@
   max-width: 970px;
 }
 .box {
-  width: 460px;
-  max-width: 460px;
+  max-width: 324px;
   min-height: 350px;
   border: 1px solid #e1e4ed;
   border-radius: 8px;
@@ -22,4 +21,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  @media (min-width: 900px) {
+    width: 460px;
+    max-width: 460px;
+  }
 }

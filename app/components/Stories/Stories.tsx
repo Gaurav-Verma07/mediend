@@ -71,7 +71,6 @@ const Stories = () => {
           slideGap={{ base: rem(2), sm: "xl" }}
           align="start"
           slidesToScroll={mobile ? 1 : 1}
-          loop
         >
           {storiesData.map((el, index: number) => (
             <Carousel.Slide key={index} className={classes.box}>

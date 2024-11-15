@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, Image, rem, Text, Title } from "@mantine/core";
+import { Anchor, Box, Button, Image, rem, Text, Title } from "@mantine/core";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 import classes from "./Blogs.module.css";
 const blogsData = [
@@ -9,18 +9,21 @@ const blogsData = [
       "Gynecomastia Surgery: Causes, Symptoms, and Treatment Optimal to use for good ",
     info: "Lorem ipsum dolor sit amet conse ctetur adip iscing elit justo quis odio sit sit ac port titor sit males dolor sit.",
     date: "Jan 24, 2024",
+    link: "https://mediend.com/blogs-wp/gynecomastia-causes-symptoms-treatment-and-cost/",
   },
   {
     img: "/assets/blogs.png",
     title: "What is Lasik Eye Surgery? Treatment and Benefits",
     info: "Lorem ipsum dolor sit amet conse ctetur adip iscing elit justo quis odio sit sit ac port titor sit males dolor sit.",
     date: "Jan 24, 2024",
+    link: "https://mediend.com/blogs-wp/what-is-lasik-surgery-treatment-and-benefits/",
   },
   {
     img: "/assets/blogs.png",
     title: "Lipoma Causes, Symptoms, And Effective Prevention Methods",
     info: "Lorem ipsum dolor sit amet conse ctetur adip iscing elit justo quis odio sit sit ac port titor sit males dolor sit.",
     date: "Jan 24, 2024",
+    link: "https://mediend.com/blogs-wp/lipoma-causes-symptoms-and-treatment/",
   },
 ];
 const Blogs = () => {
@@ -42,9 +45,9 @@ const Blogs = () => {
                 <Text c="#6D758F" fw={600}>
                   {el.date}
                 </Text>
-                <Button color="#023E8A" p={8}>
-                  <IconArrowNarrowRight />
-                </Button>
+                <Anchor href={el.link} className={classes.btn} p={8}>
+                  <IconArrowNarrowRight color="#fff" />
+                </Anchor>
               </Box>
             </Box>
           </Box>

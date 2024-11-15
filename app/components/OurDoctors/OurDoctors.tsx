@@ -71,6 +71,7 @@ const OurDoctors = () => {
         align="start"
         slidesToScroll={mobile ? 1 : 1}
         loop
+        classNames={{ root: classes.carousel__root }}
       >
         {doctorsData.map(
           (
