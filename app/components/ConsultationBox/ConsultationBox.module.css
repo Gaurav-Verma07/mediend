@@ -1,0 +1,41 @@
+.box {
+  background-image: url("/assets/overlay.png");
+  background-color: #f8faff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid #d4d8e2;
+  border-radius: 8px;
+  margin: 60px auto;
+  padding: 40px 20px 0 20px;
+  max-width: fit-content;
+  @media (min-width: 1000px) {
+    flex-direction: row;
+    padding: 0 20px;
+  }
+}
+.img {
+  width: 261px;
+  height: 250px;
+  gap: 0px;
+  opacity: 0px;
+  order: 3;
+  @media (min-width: 1000px) {
+    order: 0;
+  }
+}
+
+.infoBox {
+  max-width: 421px;
+  text-align: center;
+  padding: 60px 0;
+  @media (min-width: 1000px) {
+    padding: 20px;
+  }
+}
+
+.btnBox {
+  display: flex;
+  flex-direction: column;
+}

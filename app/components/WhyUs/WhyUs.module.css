@@ -1,0 +1,56 @@
+.main {
+  background-image: url("/assets/overlay.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-color: #f8faff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid #d4d8e2;
+  border-radius: 8px;
+  margin: 60px 0;
+  padding: 50px 0;
+  @media (min-width: 1100px) {
+    padding: 50px 20px;
+  }
+}
+
+.data__box {
+  max-width: 428px;
+  margin: 40px 20px 80px 20px;
+  text-align: center;
+  @media (min-width: 1100px) {
+    margin: 20px;
+    text-align: left;
+  }
+}
+
+.info__box {
+  position: relative;
+  max-width: 260px;
+  background-color: #fff;
+  border: 1px solid #e1e4ed;
+  border-radius: 8px;
+  text-align: center;
+  padding: 20px;
+  margin: 10px;
+  z-index: 10;
+}
+
+.main__title {
+  font-size: 32px;
+  @media (min-width: 800px) {
+    font-size: 48px;
+  }
+}
+
+.info__index {
+  position: absolute;
+  color: #d9dbe9;
+  font-size: 60px;
+  font-weight: 600;
+  left: -27px;
+  top: -59px;
+  z-index: 0;
+}

@@ -1,0 +1,35 @@
+.box {
+  border: 1px solid #e1e4ed;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  max-width: 327px;
+  margin: 0 auto;
+  @media (min-width: 800px) {
+    max-width: max-content;
+  }
+}
+
+.main__title {
+  font-size: 32px;
+  color: #1d3557;
+  @media (min-width: 800px) {
+    font-size: 48px;
+  }
+}
+
+.box__info {
+  font-size: 14px;
+  @media (min-width: 800px) {
+    font-size: 16px;
+  }
+}
+.textbox {
+  margin: 0 20px;
+}
+
+.btnBox {
+  display: flex;
+  justify-content: end;
+}

@@ -1,0 +1,25 @@
+.main {
+  background-image: url("/assets/stories_overlay.png");
+  background-color: #f8faff;
+  border: 1px solid #d4d8e2;
+}
+.carousel_main {
+  margin: 0 auto;
+  max-width: 970px;
+}
+.box {
+  width: 460px;
+  max-width: 460px;
+  min-height: 350px;
+  border: 1px solid #e1e4ed;
+  border-radius: 8px;
+  background-color: #fff;
+  margin: 20px;
+  text-align: center;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}

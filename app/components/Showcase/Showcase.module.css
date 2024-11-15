@@ -1,0 +1,31 @@
+.main {
+  text-align: center;
+}
+
+.heading {
+  color: #1d3557;
+  margin: 30px 0;
+  font-size: 24px;
+  @media (min-width: 700px) {
+    font-size: 32px;
+  }
+  @media (min-width: 1100px) {
+    font-size: 48px;
+  }
+}
+
+.mainBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.box {
+  width: 260px;
+  max-width: 260px;
+  border: 1px solid #e1e4ed;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  margin: 20px;
+}
