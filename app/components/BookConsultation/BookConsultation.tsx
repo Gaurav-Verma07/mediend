@@ -13,25 +13,42 @@ import {
 import { useForm } from "@mantine/form";
 import classes from "./BookConsultation.module.css";
 import { useMediaQuery } from "@mantine/hooks";
+import { useState } from "react";
 const BookConsultation = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const mobile = useMediaQuery(`(min-width: 1100px)`);
-
+  const form_id =
+    "https://docs.google.com/forms/d/e/1FAIpQLSekTysZ6I9sbWaekYeC51YBC7GgRqjSpYJxZjITP_NyP_Ha1A/formResponse?&submit=Submit";
   const form = useForm({
     initialValues: {
       name: "",
       phone: "",
       disease: "",
     },
-
     validate: {
-      name: (val: string) => (val.length !== 0 ? null : "Invalid email"),
-      phone: (val: string) =>
-        val.length === 10
-          ? "Password should include at least 6 characters"
-          : null,
+      name: (val: string) => (val.length !== 0 ? null : "Invalid name"),
       disease: (val: string) => (val.length !== 0 ? null : "Select a disease"),
     },
   });
+  const submitHandler = async () => {
+    try {
+      setIsLoading(true);
+      const formData = new FormData();
+      formData.append("entry.1997493604", form.values.name); // Replace with your field's entry ID
+      formData.append("entry.2079655747", form.values.phone);
+      formData.append("entry.1453746306", form.values.disease);
+
+      const response = await fetch(form_id, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors",
+      });
+    } catch (error: any) {
+      console.log(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <Box className={classes.main}>
       <Box className={classes.bg}>
@@ -57,10 +74,12 @@ const BookConsultation = () => {
             Book Free Consultation
           </Text>
           <Divider c="#D7DEDD" my={15} />
-          <form>
+          <form onSubmit={form.onSubmit(submitHandler)}>
             <TextInput
               label="Name"
               placeholder="Your name"
+              key={form.key("name")}
+              {...form.getInputProps("name")}
               value={form.values.name}
               classNames={{ label: classes.label, input: classes.input__root }}
               onChange={(event) =>
@@ -73,6 +92,8 @@ const BookConsultation = () => {
               classNames={{ label: classes.label, input: classes.input__root }}
               label="Phone No."
               placeholder="+91 111222333"
+              key={form.key("phone")}
+              {...form.getInputProps("phone")}
               value={form.values.phone}
               onChange={(event) =>
                 form.setFieldValue("phone", event.currentTarget.value)
@@ -84,9 +105,22 @@ const BookConsultation = () => {
               classNames={{ label: classes.label, input: classes.input__root }}
               label="Select Disease"
               placeholder="Select"
+              key={form.key("disease")}
+              {...form.getInputProps("disease")}
+              value={form.values.disease}
+              onChange={(value) =>
+                form.setFieldValue("disease", value || "Disease")
+              }
               data={["React", "Angular", "Vue", "Svelte"]}
             />
-            <Button radius="md" my={20} bg="#FF990C" fullWidth>
+            <Button
+              loading={isLoading}
+              type="submit"
+              radius="md"
+              my={20}
+              bg="#FF990C"
+              fullWidth
+            >
               Book
             </Button>
           </form>
