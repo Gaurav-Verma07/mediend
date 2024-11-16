@@ -16,8 +16,11 @@ import { IconPhonePlus } from "@tabler/icons-react";
 import { useMediaQuery } from "@mantine/hooks";
 const Appointment = () => {
   const [active, setActive] = useState(4);
-  const mobile = useMediaQuery(`(min-width: 1000px)`);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const mobile = useMediaQuery(`(min-width: 1000px)`);
+  console.log(process.env.NEXT_PUBLIC_APPOINTMENT_SHEET_ID);
   const form = useForm({
     initialValues: {
       name: "",
@@ -31,8 +34,43 @@ const Appointment = () => {
       city: (val: string) => (val.length !== 0 ? null : "Select a city"),
     },
   });
+  const form_id = `https://docs.google.com/forms/d/e/${process.env.NEXT_PUBLIC_APPOINTMENT_SHEET_ID}/formResponse?&submit=Submit`;
 
-  const submitHandler = () => {};
+  const submitHandler = async () => {
+    try {
+      setIsLoading(true);
+      setIsSubmitted(false);
+      const formData = new FormData();
+      formData.append(
+        `entry.${process.env.NEXT_PUBLIC_APPOINTMENT_SHEET_ENTRY_1}`,
+        form.values.name
+      ); // Replace with your field's entry ID
+      formData.append(
+        `entry.${process.env.NEXT_PUBLIC_APPOINTMENT_SHEET_ENTRY_2}`,
+        form.values.phone
+      );
+      formData.append(
+        `entry.${process.env.NEXT_PUBLIC_APPOINTMENT_SHEET_ENTRY_3}`,
+        form.values.city
+      );
+      formData.append(
+        `entry.${process.env.NEXT_PUBLIC_APPOINTMENT_SHEET_ENTRY_4}`,
+        form.values.disease
+      );
+
+      const response = await fetch(form_id, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors",
+      });
+    } catch (error: any) {
+      console.log(error.message);
+    } finally {
+      setIsLoading(false);
+      setIsSubmitted(true);
+    }
+  };
+
   return (
     <Box className={classes.main}>
       {mobile && (
@@ -183,6 +221,12 @@ const Appointment = () => {
           >
             Book
           </Button>
+          {isSubmitted && (
+            <Text c="dimmed" fz={12}>
+              {" "}
+              Thank You! We&apos;ll reach out to you
+            </Text>
+          )}
         </form>
       </Box>
     </Box>

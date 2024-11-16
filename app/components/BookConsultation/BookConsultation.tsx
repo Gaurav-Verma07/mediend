@@ -1,5 +1,6 @@
 "use client";
 import {
+  Autocomplete,
   Box,
   Button,
   Divider,
@@ -14,12 +15,12 @@ import { useForm } from "@mantine/form";
 import classes from "./BookConsultation.module.css";
 import { useMediaQuery } from "@mantine/hooks";
 import { useState } from "react";
+import { diseasesList } from "../Appointment/diseaseList";
 const BookConsultation = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const mobile = useMediaQuery(`(min-width: 1100px)`);
-  const form_id =
-    "https://docs.google.com/forms/d/e/1FAIpQLSekTysZ6I9sbWaekYeC51YBC7GgRqjSpYJxZjITP_NyP_Ha1A/formResponse?&submit=Submit";
+  const form_id = `https://docs.google.com/forms/d/e/${process.env.NEXT_PUBLIC_CONSULTATION_SHEET_ID}/formResponse?&submit=Submit`;
   const form = useForm({
     initialValues: {
       name: "",
@@ -36,9 +37,18 @@ const BookConsultation = () => {
       setIsLoading(true);
       setIsSubmitted(false);
       const formData = new FormData();
-      formData.append("entry.1997493604", form.values.name); // Replace with your field's entry ID
-      formData.append("entry.2079655747", form.values.phone);
-      formData.append("entry.1453746306", form.values.disease);
+      formData.append(
+        `entry.${process.env.NEXT_PUBLIC_CONSULTATION_SHEET_ENTRY_1}`,
+        form.values.name
+      ); // Replace with your field's entry ID
+      formData.append(
+        `entry.${process.env.NEXT_PUBLIC_CONSULTATION_SHEET_ENTRY_2}`,
+        form.values.phone
+      );
+      formData.append(
+        `entry.${process.env.NEXT_PUBLIC_CONSULTATION_SHEET_ENTRY_3}`,
+        form.values.disease
+      );
 
       const response = await fetch(form_id, {
         method: "POST",
@@ -104,17 +114,16 @@ const BookConsultation = () => {
               radius="md"
               my={20}
             />
-            <Select
+            <Autocomplete
               classNames={{ label: classes.label, input: classes.input__root }}
               label="Select Disease"
               placeholder="Select"
               key={form.key("disease")}
               {...form.getInputProps("disease")}
               value={form.values.disease}
-              onChange={(value) =>
-                form.setFieldValue("disease", value || "Disease")
-              }
-              data={["React", "Angular", "Vue", "Svelte"]}
+              onChange={(value) => form.setFieldValue("disease", value)}
+              data={diseasesList}
+              maxDropdownHeight={200}
             />
             <Button
               loading={isLoading}

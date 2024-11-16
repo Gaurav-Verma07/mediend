@@ -17,14 +17,14 @@ import { theme } from "../../../theme";
 import classes from "./Header.module.css";
 import { tabs } from "./headerData";
 const HoverCards = ({ data }: any) => {
-  console.log({ data });
   return (
     <HoverCard position="bottom" radius="md" shadow="md" withinPortal>
       <HoverCard.Target>
         <a href="#" className={classes.link}>
           <Center inline>
-            <Box component="span" mx={3}>
-              {data.label}
+            <Box component="span" mx={3} className={classes.hover_box}>
+              <Text mr={2}> {data.label}</Text>
+              <IconChevronDown size="0.9rem" stroke={1.5} />
             </Box>
           </Center>
         </a>
