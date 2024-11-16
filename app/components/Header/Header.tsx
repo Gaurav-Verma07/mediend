@@ -42,7 +42,7 @@ const Header = () => {
   const [modalOpened, { open: modalOpen, close: modalClose }] =
     useDisclosure(false);
   const [opened, { toggle, close }] = useDisclosure(false);
-  const mobile = useMediaQuery(`(min-width: 1100px)`);
+  const mobile = useMediaQuery(`(min-width: 1200px)`);
 
   return (
     <>

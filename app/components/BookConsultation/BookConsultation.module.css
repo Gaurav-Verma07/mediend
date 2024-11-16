@@ -5,7 +5,7 @@
   background-repeat: no-repeat;
   background-color: #f8faff;
   margin: 60px auto;
-  padding: 50px 50px 0 50px;
+  padding: 50px 10px 0 10px;
   max-width: fit-content;
   border-radius: 10px;
   border: 1px solid #d4d8e2;
@@ -13,6 +13,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (min-width: 600px) {
+    padding: 50px 50px 0 50px;
+  }
   @media (min-width: 800px) {
     max-width: inherit;
     justify-content: space-between;
@@ -34,7 +37,10 @@
 }
 
 .info {
-  max-width: 333px;
+  max-width: 260px;
+  @media (min-width: 400px) {
+    max-width: 333px;
+  }
 }
 
 .form {

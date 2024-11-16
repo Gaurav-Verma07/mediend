@@ -46,6 +46,10 @@
   border: none;
   background-color: #fff;
 }
+.stepIcon:where([data-completed]) {
+  border: none !important;
+  background-color: #fff !important;
+}
 
 .stepCompletedIcon {
   color: #000;
