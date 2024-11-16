@@ -23,7 +23,7 @@ const HoverCards = ({ data }: any) => {
       <HoverCard.Target>
         <a href="#" className={classes.link}>
           <Center inline>
-            <Box component="span" mx={3} c="dimmed">
+            <Box component="span" mx={3}>
               {data.label}
             </Box>
           </Center>
