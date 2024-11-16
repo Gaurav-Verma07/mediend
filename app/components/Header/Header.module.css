@@ -6,10 +6,7 @@
   border-bottom: rem(1px) solid
     light-dark(var(--mantine-color-gray-2), transparent);
   /* margin-bottom: rem(120px); */
-}
-
-.mainSection {
-  /* padding-bottom: v  ar(--mantine-spacing-sm); */
+  position: relative;
 }
 
 .user {
@@ -91,4 +88,33 @@
 
 .input {
   background-color: #f2f2f2 !important;
+}
+
+.modal__content {
+  width: min(80vw, 1000px) !important;
+  flex: none !important;
+  /* zoom: 80%; */
+}
+.modal__header {
+  padding: 20px !important;
+  background-color: #3d7cc9 !important;
+  position: relative !important;
+}
+
+.modal__title {
+  color: #fff !important;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+.modal__close {
+  color: #fff !important;
+  width: 50px !important;
+  height: 50px !important;
+}
+
+.modal__close:hover {
+  background-color: transparent !important;
 }

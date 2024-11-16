@@ -17,21 +17,10 @@ import {
   Input,
   Box,
   Drawer,
+  Modal,
 } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
-import {
-  IconLogout,
-  IconHeart,
-  IconStar,
-  IconMessage,
-  IconSettings,
-  IconPlayerPause,
-  IconTrash,
-  IconSwitchHorizontal,
-  IconChevronDown,
-  IconSearch,
-} from "@tabler/icons-react";
-import classes from "./Header.module.css";
+import { IconSearch } from "@tabler/icons-react";
 import { tabs } from "./headerData";
 import HoverCards from "./HoverCards";
 import {
@@ -39,6 +28,8 @@ import {
   LinksGroupProps,
   NavbarLinksGroup,
 } from "./NavbarLinksGroup";
+import Appointment from "../Appointment/Appointment";
+import classes from "./Header.module.css";
 
 const user = {
   name: "Jane Spoonfighter",
@@ -48,48 +39,69 @@ const user = {
 };
 
 const Header = () => {
-  const theme = useMantineTheme();
+  const [modalOpened, { open: modalOpen, close: modalClose }] =
+    useDisclosure(false);
   const [opened, { toggle, close }] = useDisclosure(false);
-  const [userMenuOpened, setUserMenuOpened] = useState(false);
   const mobile = useMediaQuery(`(min-width: 1100px)`);
 
   return (
-    <div className={classes.header}>
-      <Container className={classes.mainSection} size="xl">
-        <Group justify="space-between">
-          <Image src={"/logo.png"} alt="logo" />
+    <>
+      <div className={classes.header}>
+        <Container className={classes.mainSection} size="xl">
+          <Group justify="space-between">
+            <Image src={"/logo.png"} alt="logo" height={80} />
 
-          {mobile && (
-            <>
-              <Input
-                radius="md"
-                classNames={{ input: classes.input }}
-                leftSection={<IconSearch />}
-                placeholder="Search ..."
-              />
-              <Button radius="xl" bg="#4A3AFF">
-                Schedule Call
-              </Button>
-            </>
-          )}
-          <Burger opened={opened} onClick={toggle} hiddenFrom="lg" size="sm" />
-        </Group>
-      </Container>
-      {mobile && (
-        <Container size="xl" className={classes.subHeader} mb={5}>
-          <Box>
-            {tabs.map((el: any, index: number) => (
-              <HoverCards key={index} data={el} />
-            ))}
-          </Box>
+            {mobile && (
+              <>
+                <Input
+                  radius="md"
+                  classNames={{ input: classes.input }}
+                  leftSection={<IconSearch />}
+                  placeholder="Search ..."
+                />
+                <Button onClick={modalOpen} radius="xl" bg="#4A3AFF">
+                  Schedule Call
+                </Button>
+              </>
+            )}
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              hiddenFrom="lg"
+              size="sm"
+            />
+          </Group>
         </Container>
-      )}
-      <Drawer opened={opened} onClose={close}>
-        {tabs.map((el, index: number) => (
-          <LinksGroup {...el} key={index} />
-        ))}
-      </Drawer>
-    </div>
+        {mobile && (
+          <Container size="xl" className={classes.subHeader} mb={5}>
+            <Box>
+              {tabs.map((el: any, index: number) => (
+                <HoverCards key={index} data={el} />
+              ))}
+            </Box>
+          </Container>
+        )}
+        <Drawer opened={opened} onClose={close}>
+          {tabs.map((el, index: number) => (
+            <LinksGroup {...el} key={index} />
+          ))}
+        </Drawer>
+      </div>
+      <Modal
+        opened={modalOpened}
+        onClose={modalClose}
+        radius="lg"
+        classNames={{
+          content: classes.modal__content,
+          header: classes.modal__header,
+          title: classes.modal__title,
+          close: classes.modal__close,
+        }}
+        title="Book Your FREE Consultation Now"
+      >
+        <Appointment />
+      </Modal>
+    </>
   );
 };
 

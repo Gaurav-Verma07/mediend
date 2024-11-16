@@ -70,3 +70,42 @@
     display: block;
   }
 }
+
+.modal__content {
+  flex: none;
+  width: inherit;
+  /* zoom: 80%; */
+  @media (min-width: 800px) {
+    width: min(80vw, 1000px);
+  }
+}
+.modal__header {
+  padding: 20px;
+  background-color: #3d7cc9;
+  position: relative;
+}
+
+.modal__title {
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  @media (min-width: 800px) {
+    font-size: 18px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.modal__close {
+  color: #fff;
+  width: 25px;
+  height: 25px;
+  @media (min-width: 800px) {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.modal__close:hover {
+  background-color: transparent;
+}

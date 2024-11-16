@@ -1,0 +1,61 @@
+.main {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.divider {
+  width: 1px;
+  border: 1px dotted #6c7d88;
+  opacity: 1;
+  margin: 0 10px;
+  /* height: 100%; */
+}
+.main__content {
+  width: 45%;
+}
+
+.main__form {
+  margin: auto;
+  flex: 1;
+  @media (min-width: 1000px) {
+    width: 45%;
+  }
+}
+
+.stats__main {
+  text-align: center;
+  background-color: #eff6ff;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.input__input {
+  padding: 20px 10px;
+  border-radius: 10px;
+}
+
+.label {
+  color: #333333;
+  font-size: 10px;
+}
+
+.stepIcon {
+  border: none;
+  background-color: #fff;
+}
+
+.stepCompletedIcon {
+  color: #000;
+}
+
+.verticalSeparator {
+  border: 1px dotted #000;
+}
+
+.stepper_completed_icon {
+  width: 30px;
+  height: 30px;
+}
