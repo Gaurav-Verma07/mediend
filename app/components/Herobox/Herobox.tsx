@@ -52,19 +52,6 @@ function Card({ image, title, category, info }: CardProps) {
           {info}
         </Text>
       </Box>
-      <Box className={classes.btn__book}>
-        <Button
-          variant="outline"
-          radius="xl"
-          size="xl"
-          fz={14}
-          rightSection={<IconArrowRight />}
-          className={classes.btn}
-          onClick={open}
-        >
-          Book Free Consulatation
-        </Button>
-      </Box>
       <Modal
         opened={opened}
         onClose={close}
@@ -86,7 +73,7 @@ function Card({ image, title, category, info }: CardProps) {
 
 const Herobox = () => {
   const theme = useMantineTheme();
-  const mobile = useMediaQuery(`(min-width: 1100px)`);
+  const mobile = useMediaQuery(`(min-width: 700px)`);
   const slides = data.map((item) => (
     <Carousel.Slide key={item.title}>
       <Card {...item} />
@@ -94,19 +81,34 @@ const Herobox = () => {
   ));
 
   return (
-    <Carousel
-      //   slideSize={{ base: "100%", sm: "50%" }}
-      //   slideGap={{ base: rem(2), sm: "xl" }}
-      align="start"
-      slidesToScroll={1}
-      //   speed={5}
-      controlsOffset="xl"
-      controlSize={40}
-      loop
-      withControls
-    >
-      {slides}
-    </Carousel>
+    <Box className={classes.main}>
+      <Carousel
+        //   slideSize={{ base: "100%", sm: "50%" }}
+        //   slideGap={{ base: rem(2), sm: "xl" }}
+        align="start"
+        slidesToScroll={1}
+        //   speed={5}
+        controlsOffset={mobile ? "xl" : "xs"}
+        controlSize={mobile ? 40 : 20}
+        loop
+        withControls
+      >
+        {slides}
+      </Carousel>
+      <Box className={classes.btn__book}>
+        <Button
+          variant="outline"
+          radius="xl"
+          size="xl"
+          fz={14}
+          rightSection={<IconArrowRight />}
+          className={classes.btn}
+          // onClick={open}
+        >
+          Book Free Consulatation
+        </Button>
+      </Box>
+    </Box>
   );
 };
 
