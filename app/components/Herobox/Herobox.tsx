@@ -103,8 +103,7 @@ const Herobox = () => {
       controlsOffset="xl"
       controlSize={40}
       loop
-      withControls={!mobile ? false : true}
-      withIndicators={mobile ? false : true}
+      withControls
     >
       {slides}
     </Carousel>
