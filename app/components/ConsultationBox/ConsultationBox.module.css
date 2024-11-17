@@ -24,7 +24,6 @@
   width: 261px;
   height: 250px;
   gap: 0px;
-  opacity: 0px;
   order: 3;
   @media (min-width: 1000px) {
     order: 0;
