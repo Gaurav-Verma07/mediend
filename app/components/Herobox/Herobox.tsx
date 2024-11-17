@@ -25,9 +25,6 @@ interface CardProps {
 }
 
 function Card({ image, title, category, info }: CardProps) {
-  const [opened, { open, close }] = useDisclosure(false);
-  const isMobile8 = useMediaQuery(`(min-width: 800px)`);
-
   return (
     <Paper
       shadow="md"
@@ -52,26 +49,14 @@ function Card({ image, title, category, info }: CardProps) {
           {info}
         </Text>
       </Box>
-      <Modal
-        opened={opened}
-        onClose={close}
-        fullScreen={isMobile8 ? false : true}
-        radius={isMobile8 ? "lg" : 0}
-        classNames={{
-          content: classes.modal__content,
-          header: classes.modal__header,
-          title: classes.modal__title,
-          close: classes.modal__close,
-        }}
-        title="Book Your FREE Consultation Now"
-      >
-        <Appointment />
-      </Modal>
     </Paper>
   );
 }
 
 const Herobox = () => {
+  const [opened, { open, close }] = useDisclosure(false);
+  const isMobile8 = useMediaQuery(`(min-width: 800px)`);
+
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(min-width: 700px)`);
   const slides = data.map((item) => (
@@ -103,11 +88,26 @@ const Herobox = () => {
           fz={14}
           rightSection={<IconArrowRight />}
           className={classes.btn}
-          // onClick={open}
+          onClick={open}
         >
           Book Free Consulatation
         </Button>
       </Box>
+      <Modal
+        opened={opened}
+        onClose={close}
+        fullScreen={isMobile8 ? false : true}
+        radius={isMobile8 ? "lg" : 0}
+        classNames={{
+          content: classes.modal__content,
+          header: classes.modal__header,
+          title: classes.modal__title,
+          close: classes.modal__close,
+        }}
+        title="Book Your FREE Consultation Now"
+      >
+        <Appointment />
+      </Modal>
     </Box>
   );
 };
