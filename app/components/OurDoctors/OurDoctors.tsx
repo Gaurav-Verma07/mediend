@@ -5,52 +5,28 @@ import { useMediaQuery } from "@mantine/hooks";
 import classes from "./OurDoctors.module.css";
 const doctorsData = [
   {
-    img: "/assets/doctor.png",
+    img: "/assets/doctors/doctor_1.png",
     name: "Dr. Prof. A Murali ",
     domain: "MBBS, MD-General Medicine Gastroenterologist ",
     experience: 41,
   },
   {
-    img: "/assets/doctor.png",
+    img: "/assets/doctors/doctor_2.png",
     name: "Dr. R. Deepak",
     domain: "MBBS, MS - General Surgery Urologist",
     experience: 16,
   },
   {
-    img: "/assets/doctor.png",
-    name: "Dr. Prof. A Murali ",
-    domain: "MBBS, MD-General Medicine Gastroenterologist ",
-    experience: 41,
+    img: "/assets/doctors/doctor_3.png",
+    name: "Dr. Ramesh Benguluri",
+    domain: "MS- Orthopaedics Orthopedic surgeon",
+    experience: 11,
   },
   {
-    img: "/assets/doctor.png",
-    name: "Dr. Prof. A Murali ",
-    domain: "MBBS, MD-General Medicine Gastroenterologist ",
-    experience: 41,
-  },
-  {
-    img: "/assets/doctor.png",
-    name: "Dr. Prof. A Murali ",
-    domain: "MBBS, MD-General Medicine Gastroenterologist ",
-    experience: 41,
-  },
-  {
-    img: "/assets/doctor.png",
-    name: "Dr. Prof. A Murali ",
-    domain: "MBBS, MD-General Medicine Gastroenterologist ",
-    experience: 41,
-  },
-  {
-    img: "/assets/doctor.png",
-    name: "Dr. Prof. A Murali ",
-    domain: "MBBS, MD-General Medicine Gastroenterologist ",
-    experience: 41,
-  },
-  {
-    img: "/assets/doctor.png",
-    name: "Dr. Prof. A Murali ",
-    domain: "MBBS, MD-General Medicine Gastroenterologist ",
-    experience: 41,
+    img: "/assets/doctors/doctor_4.png",
+    name: "Dr. Murali Krishna Menon",
+    domain: "MBBS, MD - General Medicine Neurologist",
+    experience: 31,
   },
 ];
 const OurDoctors = () => {
@@ -72,6 +48,7 @@ const OurDoctors = () => {
           align="start"
           slidesToScroll={mobile ? 1 : 1}
           classNames={{ root: classes.carousel__root }}
+          loop
         >
           {doctorsData.map(
             (
@@ -86,13 +63,15 @@ const OurDoctors = () => {
               <Carousel.Slide key={index} className={classes.box}>
                 <Image src={el.img} height={236} fit="contain" alt={el.name} />
                 <Box my={20}>
-                  <Text c="#023E8A" fz={rem(20)}>
+                  <Text c="#023E8A" px={10} fz={rem(20)}>
                     {el.name}
                   </Text>
-                  <Text c="#999999" my={10} className={classes.domain}>
+                  <Text c="#999999" my={10} px={10} className={classes.domain}>
                     {el.domain}
                   </Text>
-                  <Text c="#999999">{el.experience}+ Years experience</Text>
+                  <Text c="#999999" px={10}>
+                    {el.experience}+ Years experience
+                  </Text>
                 </Box>
               </Carousel.Slide>
             )

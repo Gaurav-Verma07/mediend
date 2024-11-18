@@ -14,7 +14,7 @@ const DiseaseList = () => {
     <Box className={classes.main}>
       <Grid>
         {(!isShow
-          ? newDiseaseList.slice(0, mobile ? 8 : 4)
+          ? newDiseaseList.slice(0, mobile ? 8 : 6)
           : newDiseaseList
         ).map((el, index) => (
           <Grid.Col
