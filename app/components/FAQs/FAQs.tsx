@@ -2,24 +2,8 @@
 import { Accordion, Box, Image, rem, Title } from "@mantine/core";
 import classes from "./FAQs.module.css";
 import { useState } from "react";
-const faqs = [
-  {
-    que: "What does MediEND do?",
-    ans: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    que: "What services does MediEND offer?",
-    ans: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    que: "What makes MediEND different from other healthcare providers?",
-    ans: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    que: "What are the qualifications of MediEND surgeons?",
-    ans: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-];
+import { faqs } from "./faqs";
+
 const FAQs = () => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
   console.log(activeItem);
