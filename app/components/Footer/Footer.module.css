@@ -2,6 +2,8 @@
   background-color: #15191e;
   color: #fff;
   padding: 40px 30px;
+  border-radius: 20px;
+  margin: 10px;
 }
 
 .main__box {
@@ -89,6 +91,10 @@
   @media (min-width: 700px) {
     flex-direction: row;
   }
+}
+
+.footer__bottom {
+  margin: 20px 0;
 }
 
 .mobile__links {
