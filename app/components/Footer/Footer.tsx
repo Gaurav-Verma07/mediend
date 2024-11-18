@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, Divider, rem, Text } from "@mantine/core";
+import { Box, Button, Divider, Image, rem, Text } from "@mantine/core";
 import {
   IconBrandTelegram,
   IconBrandWhatsapp,
@@ -8,6 +8,36 @@ import {
 } from "@tabler/icons-react";
 import classes from "./Footer.module.css";
 import { useMediaQuery } from "@mantine/hooks";
+import Link from "next/link";
+
+const surgeryItems = [
+  "Gynecomastia",
+  "Lipoma",
+  "Lasik ",
+  "Cataract",
+  "Vericose veins",
+  "Piles",
+  "Fissure",
+  "Fistula",
+  "Gallstone",
+  "Circumcision",
+  "Cyst",
+  "Kidney stone",
+  "Knee replacement",
+  "Liposuction",
+];
+
+const quickLinks = [
+  { label: "About Us", link: "" },
+  { label: "Our Experts", link: "" },
+  { label: "Blogs", link: "" },
+  { label: "Careers", link: "" },
+  { label: "Contact Us", link: "" },
+  { label: "Privacy & Policy", link: "" },
+  { label: "Terms & Conditions", link: "" },
+  { label: "Disclaimer", link: "" },
+  { label: "Autism", link: "" },
+];
 const Footer = () => {
   const mobile = useMediaQuery(`(min-width: 700px)`);
   return (
@@ -23,11 +53,75 @@ const Footer = () => {
             </Button>
           </Box>
           <Box my={10}>
-            <Button className={classes.social} mr={10}>
-              <IconBrandTelegram />
+            <Button
+              component={Link}
+              href="https://twitter.com/medi_end_"
+              className={classes.social}
+              mr={10}
+            >
+              <Image
+                src="/assets/social/twitter.png"
+                fit="contain"
+                alt="twitter"
+                width={40}
+                height={40}
+              />
             </Button>
-            <Button className={classes.social}>
-              <IconBrandWhatsapp />
+            <Button
+              component={Link}
+              href="https://www.facebook.com/mediend.official"
+              className={classes.social}
+              mr={10}
+            >
+              <Image
+                src="/assets/social/facebook.png"
+                fit="contain"
+                alt="facebook"
+                width={40}
+                height={40}
+              />
+            </Button>
+            <Button
+              component={Link}
+              href="https://www.linkedin.com/company/medi-end/"
+              className={classes.social}
+              mr={10}
+            >
+              <Image
+                src="/assets/social/linkedin.png"
+                fit="contain"
+                alt="linkedin"
+                width={40}
+                height={40}
+              />
+            </Button>{" "}
+            <Button
+              component={Link}
+              href="https://www.instagram.com/mediend_officials/"
+              className={classes.social}
+              mr={10}
+            >
+              <Image
+                src="/assets/social/instagram.png"
+                fit="contain"
+                alt="instagram"
+                width={40}
+                height={40}
+              />
+            </Button>{" "}
+            <Button
+              component={Link}
+              href="https://www.youtube.com/@mediEND"
+              className={classes.social}
+              mr={10}
+            >
+              <Image
+                src="/assets/social/youtube.png"
+                fit="contain"
+                alt="youtube"
+                width={40}
+                height={40}
+              />
             </Button>
           </Box>
         </Box>
@@ -54,14 +148,30 @@ const Footer = () => {
                     Surgery
                   </Text>
                 </Box>
-                <Text mb={8}>Laser Surgery</Text>
-                <Text mb={8}>Laparoscopy Surgery</Text>
-                <Text mb={8}>Cosmetic Surgery</Text>
-                <Text mb={8}>Ear Surgery</Text>
-                <Text mb={8}>Plastic Surgery</Text>
-                <Text mb={8}>Orthopedics Surgery</Text>
-                <Text mb={8}>Veins Surgery</Text>
-                <Text mb={8}>Eye Surgery</Text>
+                {surgeryItems.map((el: string, index: number) => (
+                  <Text key={index}>{el}</Text>
+                ))}
+              </Box>
+              <Box className={classes.box__surgery}>
+                <Box className={classes.middle__box_upper}>
+                  <IconCircle size="15px" color="#FF990C" />
+                  <Text tt="uppercase" c="#fff" ml={4} fz={10}>
+                    {" "}
+                    Quick Links
+                  </Text>
+                </Box>
+                {quickLinks.map(
+                  (el: { label: string; link: string }, index: number) => (
+                    <Text
+                      component={Link}
+                      href={el.link}
+                      style={{ display: "block" }}
+                      key={index}
+                    >
+                      {el.label}
+                    </Text>
+                  )
+                )}
               </Box>
               <Box className={classes.patients}>
                 <Box className={classes.middle__box_upper}>
@@ -80,28 +190,26 @@ const Footer = () => {
             <>
               <Box className={classes.mobile__links}>
                 <Box className={classes.mobile__links_inner}>
-                  <Box className={classes.box_company}>
-                    <Box className={classes.middle__box_upper}>
-                      <IconCircle size="15px" color="#FF990C" />{" "}
-                      <Text tt="uppercase" c="#fff" ml={4} fz={10}>
-                        Our Company
-                      </Text>
-                    </Box>
-                    <Text>History</Text>
-                    <Text>Partnership</Text>
-                    <Text>News</Text>
-                    <Text>Contact</Text>
-                  </Box>
-                  <Box className={classes.patients}>
+                  <Box className={classes.box__surgery}>
                     <Box className={classes.middle__box_upper}>
                       <IconCircle size="15px" color="#FF990C" />
                       <Text tt="uppercase" c="#fff" ml={4} fz={10}>
                         {" "}
-                        For Patients
+                        Quick Links
                       </Text>
                     </Box>
-                    <Text>Certificates</Text>
-                    <Text>Testimonials</Text>
+                    {quickLinks.map(
+                      (el: { label: string; link: string }, index: number) => (
+                        <Text
+                          component={Link}
+                          href={el.link}
+                          style={{ display: "block" }}
+                          key={index}
+                        >
+                          {el.label}
+                        </Text>
+                      )
+                    )}
                   </Box>
                 </Box>
                 <Box className={classes.box__surgery}>
@@ -112,18 +220,40 @@ const Footer = () => {
                       Surgery
                     </Text>
                   </Box>
-                  <Text mb={8}>Laser Surgery</Text>
-                  <Text mb={8}>Laparoscopy Surgery</Text>
-                  <Text mb={8}>Cosmetic Surgery</Text>
-                  <Text mb={8}>Ear Surgery</Text>
-                  <Text mb={8}>Plastic Surgery</Text>
-                  <Text mb={8}>Orthopedics Surgery</Text>
-                  <Text mb={8}>Veins Surgery</Text>
-                  <Text mb={8}>Eye Surgery</Text>
+                  {surgeryItems.map((el: string, index: number) => (
+                    <Text key={index}>{el}</Text>
+                  ))}
                 </Box>
               </Box>
             </>
           )}
+          <Box style={{ display: "flex", justifyContent: "space-between" }}>
+            <Box className={classes.box_company}>
+              <Box className={classes.middle__box_upper}>
+                <IconCircle size="15px" color="#FF990C" />{" "}
+                <Text tt="uppercase" c="#fff" ml={4} fz={10}>
+                  Our Company
+                </Text>
+              </Box>
+              <Text>History</Text>
+              <Text>Partnership</Text>
+              <Text>News</Text>
+              <Text>Contact</Text>
+            </Box>
+            {!mobile && (
+              <Box className={classes.patients} style={{ textAlign: "left" }}>
+                <Box className={classes.middle__box_upper}>
+                  <IconCircle size="15px" color="#FF990C" />
+                  <Text tt="uppercase" c="#fff" ml={4} fz={10}>
+                    {" "}
+                    For Patients
+                  </Text>
+                </Box>
+                <Text>Certificates</Text>
+                <Text>Testimonials</Text>
+              </Box>
+            )}
+          </Box>
           <Box className={classes.contact}>
             <Box my={10}>
               <Text fz="20px">+1 891 989-11-91</Text>

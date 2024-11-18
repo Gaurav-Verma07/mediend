@@ -1,121 +1,121 @@
 .main {
-  position: relative;
+  position: relative !important;
 }
 
 .card {
-  position: relative;
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  align-items: flex-start;
-  background-size: cover;
-  background-position: center;
-  box-shadow: inset 0px -146px 179px 32px rgba(0, 0, 0, 1);
-  padding: 50px 20px;
-  border-radius: 0;
-  padding-bottom: 150px;
+  position: relative !important;
+  height: 90vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: end !important;
+  align-items: flex-start !important;
+  background-size: cover !important;
+  background-position: center !important;
+  box-shadow: inset 0px -146px 179px 32px rgba(0, 0, 0, 1) !important;
+  padding: 50px 20px !important;
+  border-radius: 0 !important;
+  padding-bottom: 150px !important;
   /* @media (min-width: 700px) {
-    padding: 50px 100px;
+    padding: 50px 100px !important;
   } */
   @media (min-width: 1000px) {
-    justify-content: flex-end;
-    padding: 100px 200px;
+    justify-content: flex-end !important;
+    padding: 100px 200px !important;
   }
 }
 
 .title {
-  font-family: Greycliff CF, sans-serif;
-  font-weight: 900;
-  color: var(--mantine-color-white);
-  line-height: 1.2;
-  font-size: rem(30px);
-  margin-top: var(--mantine-spacing-xs);
+  font-family: Greycliff CF, sans-serif !important;
+  font-weight: 900 !important;
+  color: var(--mantine-color-white) !important;
+  line-height: 1.2 !important;
+  font-size: rem(30px) !important;
+  margin-top: var(--mantine-spacing-xs) !important;
   @media (min-width: 1000px) {
-    font-size: rem(64px);
+    font-size: rem(64px) !important;
   }
 }
 
 .box__top {
-  display: flex;
-  max-width: 324px;
-  align-items: center;
+  display: flex !important;
+  max-width: 324px !important;
+  align-items: center !important;
 }
 
 .category {
-  color: #fff;
-  font-weight: 700;
-  font-size: 20px;
-  margin-left: 10px;
+  color: #fff !important;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+  margin-left: 10px !important;
   @media (min-width: 1000px) {
-    font-size: 24px;
+    font-size: 24px !important;
   }
 }
 
 .cardData {
-  max-width: 574px;
-  margin: 40px 0;
+  max-width: 574px !important;
+  margin: 40px 0 !important;
 }
 
 .btn {
-  color: #fff;
-  border-color: #fff;
+  color: #fff !important;
+  border-color: #fff !important;
 }
 .btn__book {
-  align-self: center;
-  position: absolute;
-  z-index: 100;
-  left: 5%;
-  bottom: 10%;
+  align-self: center !important;
+  position: absolute !important;
+  z-index: 100 !important;
+  left: 5% !important;
+  bottom: 10% !important;
   @media (min-width: 1000px) {
-    left: auto;
-    bottom: 20%;
-    right: 10%;
+    left: auto !important;
+    bottom: 20% !important;
+    right: 10% !important;
   }
 }
 
 .info {
-  display: none;
+  display: none !important;
   @media (min-width: 700px) {
-    display: block;
+    display: block !important;
   }
 }
 
 .modal__content {
-  flex: none;
-  width: inherit;
-  /* zoom: 80%; */
+  flex: none !important;
+  width: inherit !important;
+  /* zoom: 80% !important; */
   @media (min-width: 800px) {
-    width: min(80vw, 1000px);
+    width: min(80vw, 1000px) !important;
   }
 }
 .modal__header {
-  padding: 20px;
-  background-color: #3d7cc9;
-  position: relative;
+  padding: 20px !important;
+  background-color: #3d7cc9 !important;
+  position: relative !important;
 }
 
 .modal__title {
-  color: #fff;
-  font-weight: 700;
-  font-size: 15px;
+  color: #fff !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
   @media (min-width: 800px) {
-    font-size: 18px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    font-size: 18px !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
   }
 }
 .modal__close {
-  color: #fff;
-  width: 25px;
-  height: 25px;
+  color: #fff !important;
+  width: 25px !important;
+  height: 25px !important;
   @media (min-width: 800px) {
-    width: 50px;
-    height: 50px;
+    width: 50px !important;
+    height: 50px !important;
   }
 }
 
 .modal__close:hover {
-  background-color: transparent;
+  background-color: transparent !important;
 }
