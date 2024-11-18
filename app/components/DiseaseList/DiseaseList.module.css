@@ -1,32 +1,32 @@
 .main {
-  margin: 30px 10px;
+  margin: 30px 10px !important;
   @media (min-width: 450px) {
-    margin: 30px;
+    margin: 30px !important;
   }
 }
 
 .grid {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: flex !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
   @media (min-width: 1100px) {
-    justify-content: space-evenly;
+    justify-content: space-evenly !important;
   }
 }
 .box {
-  width: 80px;
-  text-align: center;
-  color: #312419;
+  width: 80px !important;
+  text-align: center !important;
+  color: #312419 !important;
 }
 
 .buttonBox {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 20px !important;
 }
 .btn {
-  border-color: #d4d8e2;
+  border-color: #d4d8e2 !important;
 }
 .btn:hover {
-  background-color: none;
+  background-color: none !important;
 }

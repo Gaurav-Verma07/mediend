@@ -76,22 +76,22 @@
 }
 
 .subHeader {
-  display: flex;
-  justify-content: center;
+  display: flex !important;
+  justify-content: center !important;
 }
 
 .link {
-  display: inline;
-  margin: 0 5px;
-  color: #000;
-  cursor: pointer;
+  display: inline !important;
+  margin: 0 5px !important;
+  color: #000 !important;
+  cursor: pointer !important;
 }
 
 .innerLink {
-  display: inline;
-  cursor: pointer;
-  color: #000;
-  text-decoration: none;
+  display: inline !important;
+  cursor: pointer !important;
+  color: #000 !important;
+  text-decoration: none !important;
 }
 
 .input {
@@ -128,12 +128,12 @@
 }
 
 .hover_box {
-  display: flex;
-  align-items: center;
-  padding: 2px;
-  border-radius: 5px;
+  display: flex !important;
+  align-items: center !important;
+  padding: 2px !important;
+  border-radius: 5px !important;
 }
 
 .hover_box:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1) !important;
 }

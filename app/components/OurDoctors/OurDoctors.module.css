@@ -1,23 +1,23 @@
 .box {
-  max-width: 308px;
-  background-color: #f1f3f7;
-  margin: 20px 10px;
-  border: 1px solid #b4b9c9;
-  border-radius: 8px;
-  padding: 20px 30px;
+  max-width: 308px !important;
+  background-color: #f1f3f7 !important;
+  margin: 20px 10px !important;
+  border: 1px solid #b4b9c9 !important;
+  border-radius: 8px !important;
+  padding: 20px 30px !important;
 }
 
 .domain {
 }
 
 .carousel__root {
-  margin: 0 20px;
+  margin: 0 20px !important;
 }
 
 .carousel_main {
-  margin: 0 auto;
-  max-width: 350px;
+  margin: 0 auto !important;
+  max-width: 350px !important;
   @media (min-width: 800px) {
-    max-width: 1300px;
+    max-width: 1300px !important;
   }
 }
