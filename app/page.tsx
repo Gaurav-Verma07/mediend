@@ -18,7 +18,11 @@ export default function HomePage() {
       <Herobox />
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <ConsultationBox />
+      </div>
+      <div style={{ maxWidth: "1300px", margin: "0 auto" }}>
         <DiseaseList />
+      </div>
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <Showcase />
       </div>
       <WhyUs />

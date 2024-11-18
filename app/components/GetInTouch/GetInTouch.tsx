@@ -72,7 +72,7 @@ const GetInTouch = () => {
             </Box>
           </Box>
         </Box>
-        <Box className={classes.card_1}>
+        <Box className={`${classes.card_1} ${classes.card_4}`}>
           <Text className={classes.card_1_text}>
             mediEND Surgery Care may mend the wounds of today, but it is our
             vision for a better tomorrow that fuels our resilience. As we

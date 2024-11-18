@@ -13,21 +13,10 @@
     justify-content: space-evenly;
   }
 }
-.cardBox {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
 .box {
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 24px;
-  border: 1px solid #e1e4ed;
-  box-shadow: 0px 1px 4px rgba(25, 33, 61, 0.08);
-  border-radius: 10px;
-  margin: 10px;
+  width: 80px;
+  text-align: center;
+  color: #312419;
 }
 
 .buttonBox {

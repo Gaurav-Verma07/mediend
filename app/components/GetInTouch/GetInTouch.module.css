@@ -61,6 +61,10 @@
     padding: 80px;
   }
 }
+
+.card_4 {
+  background-image: url("/assets/getintouch_2.jpg");
+}
 .text_box_2 {
   font-size: 32px;
   font-weight: 600;

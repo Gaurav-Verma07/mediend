@@ -1,44 +1,40 @@
 "use client";
-import { Box, Button, Image, SimpleGrid, Text } from "@mantine/core";
+import { Box, Button, Grid, Image, SimpleGrid, Text } from "@mantine/core";
 import { useState } from "react";
 import classes from "./DiseaseList.module.css";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import { useMediaQuery } from "@mantine/hooks";
-const data = [
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-  { title: "Piles", img: "/assets/piles.png" },
-];
+import { newDiseaseList } from "./diseaseListData";
+
 const DiseaseList = () => {
   const mobile = useMediaQuery(`(min-width: 1100px)`);
+  const smallmobile = useMediaQuery(`(min-width: 600px)`);
   const [isShow, setIsShow] = useState(false);
   return (
     <Box className={classes.main}>
-      <Box className={classes.grid}>
-        {(!isShow ? data.slice(0, mobile ? 8 : 4) : data).map((el, index) => (
-          <Box className={classes.box} key={index}>
-            <Image src={el.img} alt={el.title} height={70} width={70} />
-            <Text mt={20}>{el.title}</Text>
-          </Box>
+      <Grid>
+        {(!isShow
+          ? newDiseaseList.slice(0, mobile ? 8 : 4)
+          : newDiseaseList
+        ).map((el, index) => (
+          <Grid.Col
+            span={!smallmobile ? 6 : mobile ? 1.5 : 3}
+            className={classes.box}
+            key={index}
+          >
+            <Image
+              src={el.img}
+              alt={el.title}
+              height={70}
+              width={70}
+              fit="contain"
+            />
+            <Text fz={14} my={20}>
+              {el.title}
+            </Text>
+          </Grid.Col>
         ))}
-      </Box>
+      </Grid>
       <Box className={classes.buttonBox}>
         <Button
           variant="outline"
