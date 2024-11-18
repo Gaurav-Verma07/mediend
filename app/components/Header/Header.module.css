@@ -84,6 +84,14 @@
   display: inline;
   margin: 0 5px;
   color: #000;
+  cursor: pointer;
+}
+
+.innerLink {
+  display: inline;
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
 }
 
 .input {

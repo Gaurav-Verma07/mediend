@@ -20,7 +20,7 @@ const HoverCards = ({ data }: any) => {
   return (
     <HoverCard position="bottom" radius="md" shadow="md" withinPortal>
       <HoverCard.Target>
-        <a href="#" className={classes.link}>
+        <a className={classes.link}>
           <Center inline>
             <Box component="span" mx={3} className={classes.hover_box}>
               <Text mr={2}> {data.label}</Text>
@@ -30,11 +30,11 @@ const HoverCards = ({ data }: any) => {
         </a>
       </HoverCard.Target>
 
-      <HoverCard.Dropdown style={{ overflow: "hidden" }}>
+      <HoverCard.Dropdown>
         <Stack>
           {data.links.map(
             (el: { label: string; link: string }, index: number) => (
-              <a key={index} style={{ display: "inline" }}>
+              <a className={classes.innerLink} key={index} href={el.link}>
                 {el.label}
               </a>
             )
