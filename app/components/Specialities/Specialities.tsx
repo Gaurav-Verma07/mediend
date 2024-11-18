@@ -3,38 +3,7 @@ import { Box, Button, Image, SimpleGrid, Text, Title } from "@mantine/core";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 import classes from "./Specialities.module.css";
 import { useMediaQuery } from "@mantine/hooks";
-const data = [
-  {
-    img: "/assets/laproscopic.png",
-    title: "Proctoloy",
-    info: "Lorem ipsum dolor sit amet consectetur adipiscing elit. ",
-  },
-  {
-    img: "/assets/laproscopic.png",
-    title: "Laparoscopic",
-    info: "Lorem ipsum dolor sit amet consectetur adipiscing elit. ",
-  },
-  {
-    img: "/assets/laproscopic.png",
-    title: "Gynaecology",
-    info: "Lorem ipsum dolor sit amet consectetur adipiscing elit. ",
-  },
-  {
-    img: "/assets/laproscopic.png",
-    title: "Proctoloy",
-    info: "Lorem ipsum dolor sit amet consectetur adipiscing elit. ",
-  },
-  {
-    img: "/assets/laproscopic.png",
-    title: "Proctoloy",
-    info: "Lorem ipsum dolor sit amet consectetur adipiscing elit. ",
-  },
-  {
-    img: "/assets/laproscopic.png",
-    title: "Proctoloy",
-    info: "Lorem ipsum dolor sit amet consectetur adipiscing elit. ",
-  },
-];
+import { specialitiesData } from "./specialitiesData";
 const Specialities = () => {
   const mobile = useMediaQuery(`(min-width: 800px)`);
 
@@ -48,12 +17,12 @@ const Specialities = () => {
         spacing={{ base: 10, sm: "xl" }}
         verticalSpacing={{ base: "md", sm: "xl" }}
       >
-        {data.map((el, index: number) => (
+        {specialitiesData.map((el, index: number) => (
           <Box key={index} className={classes.box}>
             <Image
               src={el.img}
-              width={mobile ? 155 : 130}
-              height={mobile ? 155 : 130}
+              width={mobile ? 100 : 130}
+              height={mobile ? 100 : 130}
               bg="#D5E9FF"
               fit="contain"
               style={{ borderRadius: 8 }}
@@ -67,7 +36,7 @@ const Specialities = () => {
                 {el.info}
               </Text>
               <Box className={classes.btnBox}>
-                <Button mt={10} p={0} w={40} bg="#023E8A">
+                <Button mt={5} p={0} w={40} bg="#023E8A">
                   <IconArrowNarrowRight />
                 </Button>
               </Box>
