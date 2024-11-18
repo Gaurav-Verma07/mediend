@@ -8,6 +8,7 @@ export const metadata = {
   title: "MediEnd",
   description: "I am using Mantine with Next.js!",
 };
+import "./global.css";
 
 export default function RootLayout({ children }: { children: any }) {
   return (
