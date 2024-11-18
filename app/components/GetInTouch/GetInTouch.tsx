@@ -1,10 +1,13 @@
 "use client";
-import { Box, Button, rem, Text } from "@mantine/core";
+import { Box, Button, Modal, rem, Text } from "@mantine/core";
 import classes from "./GetInTouch.module.css";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
-import { useMediaQuery } from "@mantine/hooks";
+import { useDisclosure, useMediaQuery } from "@mantine/hooks";
+import Appointment from "../Appointment/Appointment";
 const GetInTouch = () => {
   const mobile = useMediaQuery(`(min-width: 1100px)`);
+  const [modalOpened, { open: modalOpen, close: modalClose }] =
+    useDisclosure(false);
 
   return (
     <Box>
@@ -37,6 +40,7 @@ const GetInTouch = () => {
                 size={mobile ? "xl" : "md"}
                 variant="outline"
                 c="#fff"
+                onClick={modalOpen}
                 style={{ borderColor: "#fff" }}
               >
                 Learn More
@@ -66,6 +70,7 @@ const GetInTouch = () => {
                 variant="outline"
                 c="#fff"
                 style={{ borderColor: "#fff" }}
+                onClick={modalOpen}
               >
                 Learn More
               </Button>
@@ -81,6 +86,20 @@ const GetInTouch = () => {
           </Text>
         </Box>
       </Box>
+      <Modal
+        opened={modalOpened}
+        onClose={modalClose}
+        radius="lg"
+        classNames={{
+          content: classes.modal__content,
+          header: classes.modal__header,
+          title: classes.modal__title,
+          close: classes.modal__close,
+        }}
+        title="Book Your FREE Consultation Now"
+      >
+        <Appointment />
+      </Modal>
     </Box>
   );
 };
