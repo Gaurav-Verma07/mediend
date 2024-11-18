@@ -11,6 +11,7 @@ import {
   Box,
   Image,
   Modal,
+  Drawer,
 } from "@mantine/core";
 import classes from "./Herobox.module.css";
 import { data } from "./data";
@@ -93,10 +94,11 @@ const Herobox = () => {
           Book Free Consulatation
         </Button>
       </Box>
-      <Modal
+      <Drawer
         opened={opened}
         onClose={close}
-        fullScreen={isMobile8 ? false : true}
+        position="right"
+        // fullScreen={isMobile8 ? false : true}
         radius={isMobile8 ? "lg" : 0}
         classNames={{
           content: classes.modal__content,
@@ -107,7 +109,7 @@ const Herobox = () => {
         title="Book Your FREE Consultation Now"
       >
         <Appointment />
-      </Modal>
+      </Drawer>
     </Box>
   );
 };

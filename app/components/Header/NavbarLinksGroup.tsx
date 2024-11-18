@@ -20,13 +20,15 @@ export interface LinksGroupProps {
 export function LinksGroup({ label, initiallyOpened, links }: LinksGroupProps) {
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(initiallyOpened || false);
+  const redirectHandler = (link: string) => {
+    if (link !== "") window.location.href = link;
+  };
   const items = (hasLinks ? links : []).map((link, index: number) => (
     <Text<"a">
       component="a"
       className={classes.link}
-      href={link.link}
+      onClick={() => redirectHandler(link.link)}
       key={index}
-      onClick={(event) => event.preventDefault()}
     >
       {link.label}
     </Text>
