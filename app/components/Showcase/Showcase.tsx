@@ -2,22 +2,22 @@ import { Box, Image, rem, Text, Title } from "@mantine/core";
 import classes from "./Showcase.module.css";
 const data = [
   {
-    img: "/assets/heart.png",
+    img: "/assets/showcase/heart.png",
     value: 5000,
     name: "Successful Surgeries",
   },
   {
-    img: "/assets/heart.png",
+    img: "/assets/showcase/families.png",
     value: 10000,
     name: "Families Healed",
   },
   {
-    img: "/assets/heart.png",
+    img: "/assets/showcase/experts.png",
     value: 200,
     name: "Medical Experts",
   },
   {
-    img: "/assets/heart.png",
+    img: "/assets/showcase/awards.png",
     value: 10,
     name: "Awards & Accreditations",
   },
