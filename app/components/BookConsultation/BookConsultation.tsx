@@ -15,7 +15,7 @@ import { useForm } from "@mantine/form";
 import classes from "./BookConsultation.module.css";
 import { useMediaQuery } from "@mantine/hooks";
 import { useState } from "react";
-import { diseasesList } from "../Appointment/diseaseList";
+import { diseases } from "./consultList";
 const BookConsultation = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -122,7 +122,7 @@ const BookConsultation = () => {
               {...form.getInputProps("disease")}
               value={form.values.disease}
               onChange={(value) => form.setFieldValue("disease", value)}
-              data={diseasesList}
+              data={diseases}
               maxDropdownHeight={200}
             />
             <Button
