@@ -43,10 +43,10 @@ function Card({ image, title, category, info }: CardProps) {
           />
           <Text className={classes.category}>{category}</Text>
         </Box>
-        <Title order={3} className={classes.title}>
+        <Title order={3} className={classes.title} data-aos="fade-right">
           {title}
         </Title>
-        <Text c="white" fz={16} className={classes.info}>
+        <Text c="white" fz={16} className={classes.info} data-aos="fade-right">
           {info}
         </Text>
       </Box>

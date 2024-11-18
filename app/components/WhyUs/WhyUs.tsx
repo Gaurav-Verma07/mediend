@@ -25,7 +25,7 @@ const WhyUs = () => {
 
   return (
     <Box className={classes.main}>
-      <Box className={classes.data__box}>
+      <Box className={classes.data__box} data-aos="fade-right">
         <Title c="#1D3557" fz={rem(48)} className={classes.main__title}>
           Why mediEND Surgery care
         </Title>
@@ -38,7 +38,9 @@ const WhyUs = () => {
       <SimpleGrid cols={mobile ? 2 : 1} spacing="xl">
         {data.map((el: { title: string; info: string }, index: number) => (
           <Box key={index} className={classes.info__box}>
-            <Text className={classes.info__index}>{index + 1}</Text>
+            <Text className={classes.info__index} data-aos="zoom-in">
+              {index + 1}
+            </Text>
             <Text fz={rem(20)} c="#1D3557" fw={600} my={20}>
               {el.title}
             </Text>

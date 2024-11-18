@@ -81,7 +81,7 @@ const BookConsultation = () => {
           treatment option for you.
         </Text>
       </Box>
-      <Box className={classes.form}>
+      <Box className={classes.form} data-aos="zoom-in">
         <Box>
           <Text fz={24} fw={600}>
             Book Free Consultation

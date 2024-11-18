@@ -59,6 +59,7 @@ const Footer = () => {
                 href="https://twitter.com/medi_end_"
                 className={classes.social}
                 mr={10}
+                data-aos="zoom-in"
               >
                 <Image
                   src="/assets/social/twitter.png"
@@ -73,6 +74,7 @@ const Footer = () => {
                 href="https://www.facebook.com/mediend.official"
                 className={classes.social}
                 mr={10}
+                data-aos="zoom-out"
               >
                 <Image
                   src="/assets/social/facebook.png"
@@ -87,6 +89,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/company/medi-end/"
                 className={classes.social}
                 mr={10}
+                data-aos="zoom-in"
               >
                 <Image
                   src="/assets/social/linkedin.png"
@@ -101,6 +104,7 @@ const Footer = () => {
                 href="https://www.instagram.com/mediend_officials/"
                 className={classes.social}
                 mr={10}
+                data-aos="zoom-out"
               >
                 <Image
                   src="/assets/social/instagram.png"
@@ -115,6 +119,7 @@ const Footer = () => {
                 href="https://www.youtube.com/@mediEND"
                 className={classes.social}
                 mr={10}
+                data-aos="zoom-in"
               >
                 <Image
                   src="/assets/social/youtube.png"

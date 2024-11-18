@@ -16,7 +16,7 @@ export default function HomePage() {
   return (
     <div>
       <Herobox />
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+      <div data-aos="zoom-in" style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <ConsultationBox />
       </div>
       <div style={{ maxWidth: "1300px", margin: "0 auto" }}>

@@ -28,6 +28,7 @@ const DiseaseList = () => {
               height={70}
               width={70}
               fit="contain"
+              data-aos="zoom-in"
             />
             <Text fz={14} my={20}>
               {el.title}

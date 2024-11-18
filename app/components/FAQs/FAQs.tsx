@@ -31,6 +31,7 @@ const FAQs = () => {
                 activeItem === el.que ? classes.activeItem : ""
               }`}
               value={el.que}
+              data-aos={index % 2 ? "fade-right" : "fade-left"}
             >
               <Accordion.Control c="#170F49">{el.que}</Accordion.Control>
               <Accordion.Panel c="#6F6C90">{el.ans}</Accordion.Panel>

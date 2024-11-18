@@ -37,6 +37,7 @@ const Showcase = () => {
               height={77}
               width={77}
               alt="image"
+              data-aos="zoom-out"
             />
             <Text c="#1D3557" fz={32} fw={600} my={10}>
               {el.value} +

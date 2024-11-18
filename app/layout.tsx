@@ -9,6 +9,7 @@ export const metadata = {
   description: "I am using Mantine with Next.js!",
 };
 import "./global.css";
+import AOSContainer from "./components/AOS/AOS";
 
 export default function RootLayout({ children }: { children: any }) {
   return (
@@ -21,10 +22,12 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body>
-        <MantineProvider defaultColorScheme="light" theme={theme}>
-          <Header />
-          {children}
-        </MantineProvider>
+        <AOSContainer>
+          <MantineProvider defaultColorScheme="light" theme={theme}>
+            <Header />
+            {children}
+          </MantineProvider>
+        </AOSContainer>
       </body>
     </html>
   );

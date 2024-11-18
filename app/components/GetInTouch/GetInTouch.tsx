@@ -33,6 +33,7 @@ const GetInTouch = () => {
                 bg="#fff"
                 c="#023E8A"
                 mr="20"
+                data-aos="fade-right"
               >
                 Get in touch
               </Button>
@@ -42,6 +43,7 @@ const GetInTouch = () => {
                 c="#fff"
                 onClick={modalOpen}
                 style={{ borderColor: "#fff" }}
+                data-aos="fade-left"
               >
                 Learn More
               </Button>

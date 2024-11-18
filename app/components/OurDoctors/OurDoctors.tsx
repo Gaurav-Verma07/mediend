@@ -61,7 +61,13 @@ const OurDoctors = () => {
               index: number
             ) => (
               <Carousel.Slide key={index} className={classes.box}>
-                <Image src={el.img} height={236} fit="contain" alt={el.name} />
+                <Image
+                  src={el.img}
+                  height={236}
+                  fit="contain"
+                  alt={el.name}
+                  data-aos={index % 2 ? "zoom-in-up" : "zoom-in-down"}
+                />
                 <Box my={20}>
                   <Text c="#023E8A" px={10} fz={rem(20)}>
                     {el.name}

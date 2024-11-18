@@ -27,6 +27,7 @@ const Specialities = () => {
               fit="contain"
               style={{ borderRadius: 8 }}
               alt={el.title}
+              data-aos="flip-right"
             />
             <Box className={classes.textbox}>
               <Text fw={700} c="#6D758F">
