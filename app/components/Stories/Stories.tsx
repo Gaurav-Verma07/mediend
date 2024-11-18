@@ -5,49 +5,13 @@ import { useMediaQuery } from "@mantine/hooks";
 import { Carousel } from "@mantine/carousel";
 const storiesData = [
   {
-    img: "/assets/stories_1.png",
+    img: "/assets/stories/stories_1.png",
     quote: "“Strength to embrace my son and life again”",
     info: "We feel like we can finally live a normal life!” I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!",
     name: "Vanamala Ramesh",
   },
   {
-    img: "/assets/stories_1.png",
-    quote: "“We feel like we can finally live a normal life!”",
-    info: "I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!.",
-    name: "Stephanie Powell",
-  },
-  {
-    img: "/assets/stories_1.png",
-    quote: "“Strength to embrace my son and life again”",
-    info: "We feel like we can finally live a normal life!” I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!",
-    name: "Vanamala Ramesh",
-  },
-  {
-    img: "/assets/stories_1.png",
-    quote: "“We feel like we can finally live a normal life!”",
-    info: "I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!.",
-    name: "Stephanie Powell",
-  },
-  {
-    img: "/assets/stories_1.png",
-    quote: "“Strength to embrace my son and life again”",
-    info: "We feel like we can finally live a normal life!” I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!",
-    name: "Vanamala Ramesh",
-  },
-  {
-    img: "/assets/stories_1.png",
-    quote: "“We feel like we can finally live a normal life!”",
-    info: "I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!.",
-    name: "Stephanie Powell",
-  },
-  {
-    img: "/assets/stories_1.png",
-    quote: "“Strength to embrace my son and life again”",
-    info: "We feel like we can finally live a normal life!” I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!",
-    name: "Vanamala Ramesh",
-  },
-  {
-    img: "/assets/stories_1.png",
+    img: "/assets/stories/stories_2.png",
     quote: "“We feel like we can finally live a normal life!”",
     info: "I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!.",
     name: "Stephanie Powell",
