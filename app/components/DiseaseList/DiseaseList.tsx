@@ -18,7 +18,7 @@ const DiseaseList = () => {
           : newDiseaseList
         ).map((el, index) => (
           <Grid.Col
-            span={!smallmobile ? 6 : mobile ? 1.5 : 3}
+            span={!smallmobile ? 4 : mobile ? 1.5 : 3}
             className={classes.box}
             key={index}
           >
