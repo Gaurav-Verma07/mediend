@@ -12,7 +12,6 @@ const AOSContainer = ({ children }: any) => {
       easing: "ease-in-sine",
       delay: 100,
       once: true,
-      disable: "mobile",
     });
   }, []);
 
