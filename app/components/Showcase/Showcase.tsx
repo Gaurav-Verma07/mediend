@@ -25,7 +25,7 @@ const data = [
 const Showcase = () => {
   return (
     <Box my={80} className={classes.main}>
-      <Title className={classes.heading}>
+      <Title className={classes.heading} data-aos="zoom-in-up">
         Numbers that showcase our success
       </Title>
       <Box className={classes.mainBox}>

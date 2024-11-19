@@ -29,7 +29,9 @@ const blogsData = [
 const Blogs = () => {
   return (
     <Box my={60}>
-      <Title className={classes.main__title}>Latest Blogs</Title>
+      <Title className={classes.main__title} data-aos="zoom-in-up">
+        Latest Blogs
+      </Title>
       <Box className={classes.main__box}>
         {blogsData.map((el, index: number) => (
           <Box key={index} maw={353} className={classes.box}>

@@ -8,8 +8,10 @@ const FAQs = () => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
   console.log(activeItem);
   return (
-    <Box my={100}>
-      <Title className={classes.main__title}>Frequently Asked Questions</Title>
+    <Box my={100} data-aos="zoom-in">
+      <Title className={classes.main__title} data-aos="zoom-in-up">
+        Frequently Asked Questions
+      </Title>
       <Box className={classes.accordion__main}>
         <Accordion
           variant="separated"
@@ -31,7 +33,6 @@ const FAQs = () => {
                 activeItem === el.que ? classes.activeItem : ""
               }`}
               value={el.que}
-              data-aos={index % 2 ? "fade-right" : "fade-left"}
             >
               <Accordion.Control c="#170F49">{el.que}</Accordion.Control>
               <Accordion.Panel c="#6F6C90">{el.ans}</Accordion.Panel>

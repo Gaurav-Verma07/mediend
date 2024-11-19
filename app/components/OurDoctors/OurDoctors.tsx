@@ -34,7 +34,7 @@ const OurDoctors = () => {
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
   return (
     <Box my={50}>
-      <Title ta="center" c="#1D3557" fz={rem(48)}>
+      <Title ta="center" c="#1D3557" fz={rem(48)} data-aos="zoom-in-up">
         Meet Our Talented Doctors
       </Title>
       <Text ta="center" c="#6D758F" maw={400} m="20px auto">

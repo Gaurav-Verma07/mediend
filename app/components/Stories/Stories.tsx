@@ -22,7 +22,9 @@ const Stories = () => {
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
   return (
     <Box className={classes.main} ta="center" py={60}>
-      <Title className={classes.title}>Our Success Stories</Title>
+      <Title className={classes.title} data-aos="zoom-in-up">
+        Our Success Stories
+      </Title>
       <Text maw={418} m="20px auto" c="#6D758F">
         Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
         phasellus mollis sit aliquam sit nullam.

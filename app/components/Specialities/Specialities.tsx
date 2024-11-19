@@ -9,7 +9,12 @@ const Specialities = () => {
 
   return (
     <Box my={50} mx={10}>
-      <Title ta="center" my={20} className={classes.main__title}>
+      <Title
+        ta="center"
+        my={20}
+        className={classes.main__title}
+        data-aos="zoom-in-up"
+      >
         Our Specialities
       </Title>
       <SimpleGrid

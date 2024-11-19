@@ -32,7 +32,7 @@ function Card({ image, title, category, info }: CardProps) {
       style={{ backgroundImage: `url(${image})` }}
       className={classes.card}
     >
-      <Box className={classes.cardData}>
+      <Box className={classes.cardData} data-aos="fade-right">
         <Box className={classes.box__top}>
           <Image
             src="assets/hero_icon.png"
@@ -43,10 +43,10 @@ function Card({ image, title, category, info }: CardProps) {
           />
           <Text className={classes.category}>{category}</Text>
         </Box>
-        <Title order={3} className={classes.title} data-aos="fade-right">
+        <Title order={3} className={classes.title}>
           {title}
         </Title>
-        <Text c="white" fz={16} className={classes.info} data-aos="fade-right">
+        <Text c="white" fz={16} className={classes.info}>
           {info}
         </Text>
       </Box>
