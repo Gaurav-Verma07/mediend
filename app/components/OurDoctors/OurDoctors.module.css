@@ -12,12 +12,18 @@
 
 .carousel__root {
   margin: 0 20px !important;
+
+  display: flex;
+  overflow: hidden; /* Ensures items don't overflow */
+  position: relative;
 }
 
 .carousel_main {
   margin: 0 auto !important;
   max-width: 350px !important;
+  width: 100%;
+  overflow: hidden;
   @media (min-width: 800px) {
-    max-width: 1300px !important;
+    max-width: 1350px !important;
   }
 }

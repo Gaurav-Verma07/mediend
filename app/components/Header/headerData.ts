@@ -6,7 +6,7 @@ export const tabs = [
       { label: "Fistula Treatment", link: "" },
       { label: "Fissure Treatment", link: "" },
       { label: "Pilonidal Sinus Treatment", link: "" },
-      { label: "Rectaol Prolapse", link: "" },
+      { label: "Rectal Prolapse", link: "" },
       { label: "Proctology", link: "" },
     ],
   },
@@ -23,7 +23,6 @@ export const tabs = [
   {
     label: "Gynaecology",
     links: [
-      { label: "Surgical Abortion", link: "" },
       { label: "MTP", link: "" },
       { label: "Uterus Removal", link: "" },
     ],

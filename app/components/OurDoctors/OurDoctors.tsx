@@ -46,9 +46,9 @@ const OurDoctors = () => {
           slideSize={{ base: "100%", sm: "fit-content" }}
           slideGap={{ base: "xl", sm: 2 }}
           align="start"
-          slidesToScroll={mobile ? 1 : 1}
+          slidesToScroll={1}
+          loop={true}
           classNames={{ root: classes.carousel__root }}
-          loop
         >
           {doctorsData.map(
             (

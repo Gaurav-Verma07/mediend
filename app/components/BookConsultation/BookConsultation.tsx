@@ -63,7 +63,7 @@ const BookConsultation = () => {
     }
   };
   return (
-    <Box className={classes.main}>
+    <Box id="bookfreeconsultation" className={classes.main}>
       <Box className={classes.bg}>
         <Image
           src="/assets/consult_bg.png"

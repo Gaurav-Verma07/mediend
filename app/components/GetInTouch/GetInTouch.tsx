@@ -34,16 +34,18 @@ const GetInTouch = () => {
                 c="#023E8A"
                 mr="20"
                 data-aos="fade-right"
+                onClick={modalOpen}
               >
                 Get in touch
               </Button>
               <Button
+                component="a"
                 size={mobile ? "xl" : "md"}
                 variant="outline"
                 c="#fff"
-                onClick={modalOpen}
                 style={{ borderColor: "#fff" }}
                 data-aos="fade-left"
+                href="#bookfreeconsultation"
               >
                 Learn More
               </Button>
@@ -63,16 +65,18 @@ const GetInTouch = () => {
                 size={mobile ? "xl" : "md"}
                 bg="#fff"
                 c="#023E8A"
+                onClick={modalOpen}
                 mr="20"
               >
                 Get in touch
               </Button>
               <Button
+                component="a"
                 size={mobile ? "xl" : "md"}
                 variant="outline"
                 c="#fff"
                 style={{ borderColor: "#fff" }}
-                onClick={modalOpen}
+                href="#bookfreeconsultation"
               >
                 Learn More
               </Button>

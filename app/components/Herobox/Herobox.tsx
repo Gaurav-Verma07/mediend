@@ -69,15 +69,16 @@ const Herobox = () => {
   return (
     <Box className={classes.main}>
       <Carousel
-        //   slideSize={{ base: "100%", sm: "50%" }}
-        //   slideGap={{ base: rem(2), sm: "xl" }}
         align="start"
         slidesToScroll={1}
-        //   speed={5}
         controlsOffset={mobile ? "xl" : "xs"}
-        controlSize={mobile ? 40 : 20}
+        // controlSize={mobile ? 40 : 20}
         loop
         withControls
+        classNames={{
+          controls: classes.carousel__control_container,
+          control: classes.carousel__control,
+        }}
       >
         {slides}
       </Carousel>

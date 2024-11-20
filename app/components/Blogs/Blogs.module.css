@@ -50,4 +50,7 @@
   background-color: #023e8a !important;
   border-radius: 8px !important;
   padding: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }

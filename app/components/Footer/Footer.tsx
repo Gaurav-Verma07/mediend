@@ -28,15 +28,18 @@ const surgeryItems = [
 ];
 
 const quickLinks = [
-  { label: "About Us", link: "" },
-  { label: "Our Experts", link: "" },
-  { label: "Blogs", link: "" },
-  { label: "Careers", link: "" },
-  { label: "Contact Us", link: "" },
-  { label: "Privacy & Policy", link: "" },
-  { label: "Terms & Conditions", link: "" },
-  { label: "Disclaimer", link: "" },
-  { label: "Autism", link: "" },
+  { label: "About Us", link: "https://mediend.com/about-us.php" },
+  { label: "Our Experts", link: "https://mediend.com/our-expert.php" },
+  { label: "Blogs", link: "https://mediend.com/blogs-wp/" },
+  { label: "Careers", link: "https://mediend.com/career.php" },
+  { label: "Contact Us", link: "https://mediend.com/contact.php" },
+  { label: "Privacy & Policy", link: "https://mediend.com/privacy-policy.php" },
+  {
+    label: "Terms & Conditions",
+    link: "https://mediend.com/terms-condition.php",
+  },
+  { label: "Disclaimer", link: "https://mediend.com/disclaimer.php" },
+  { label: "Autism", link: "https://mediend.com/medicine.php" },
 ];
 const Footer = () => {
   const mobile = useMediaQuery(`(min-width: 700px)`);
@@ -294,13 +297,18 @@ const Footer = () => {
         </Box>
         <Box className={classes.box__bottom}>
           <Box style={{ display: "flex", alignItems: "center" }}>
-            <IconCopyright /> 2023 - Copyright
+            <IconCopyright /> 2023 - Copyright. All Rights Reserved.
           </Box>
           <Text></Text>
         </Box>
       </Box>
       <Box className={classes.footer__bottom}>
-        <Image src="/assets/footer_logo.png" height={100} fit="contain" />
+        <Image
+          src="/assets/footer_logo.png"
+          height={100}
+          fit="contain"
+          alt="logo"
+        />
       </Box>
     </Box>
   );

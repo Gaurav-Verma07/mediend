@@ -13,11 +13,11 @@ const data = [
   },
   {
     title: "Wallet-Friendly Cost",
-    info: "All the treatment procedures offered at mediEND Healthcare are US-FDA approved.",
+    info: "We provide cost-effective treatment options without compromising on quality.",
   },
   {
     title: "24/7 Discharge",
-    info: "To ensure a smooth recovery, we offer free follow-up consultations and instructions to",
+    info: "Experience a smooth and efficient discharge process with support available round the clock.",
   },
 ];
 const WhyUs = () => {

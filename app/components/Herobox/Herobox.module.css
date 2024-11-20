@@ -119,3 +119,18 @@
 .modal__close:hover {
   background-color: transparent !important;
 }
+
+/* ---------------- */
+
+.carousel__control_container {
+}
+.carousel__control {
+  color: #000;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  @media (min-width: 900px) {
+    width: 40px;
+    height: 40px;
+  }
+}
