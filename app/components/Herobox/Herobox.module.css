@@ -132,5 +132,6 @@
   @media (min-width: 900px) {
     width: 40px !important;
     height: 40px !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
   }
 }
