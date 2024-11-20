@@ -268,8 +268,13 @@ const Footer = () => {
             </Box>
             <Box className={classes.contact}>
               <Box my={10}>
-                <Text fz="20px">+1 891 989-11-91</Text>
-                <Text>info@mediend.com</Text>
+                <Text component="a" href="tel:+918750300099" fz="20px">
+                  +91 8750300099
+                </Text>
+                <br />
+                <Text component="a" href="mailto:info@mediend.com">
+                  info@mediend.com
+                </Text>
               </Box>
               <Box my={10}>
                 <Text fw={700}>Registered Office Address</Text>

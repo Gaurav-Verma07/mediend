@@ -6,7 +6,7 @@ const ConsultationBox = () => {
   return (
     <Box>
       <Box className={classes.box}>
-        <Image src="/assets/nurse.png" className={classes.img} />
+        <Image src="/assets/nurse.png" className={classes.img} alt="nurse" />
         <Box className={classes.infoBox}>
           <Title fz={rem(30)} c="#1D3557" mb={20}>
             Treatment Cost Calculator
