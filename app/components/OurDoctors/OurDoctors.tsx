@@ -28,6 +28,30 @@ const doctorsData = [
     domain: "MBBS, MD - General Medicine Neurologist",
     experience: 31,
   },
+  {
+    img: "/assets/doctors/doctor_1.png",
+    name: "Dr. Prof. A Murali ",
+    domain: "MBBS, MD-General Medicine Gastroenterologist ",
+    experience: 41,
+  },
+  {
+    img: "/assets/doctors/doctor_2.png",
+    name: "Dr. R. Deepak",
+    domain: "MBBS, MS - General Surgery Urologist",
+    experience: 16,
+  },
+  {
+    img: "/assets/doctors/doctor_3.png",
+    name: "Dr. Ramesh Benguluri",
+    domain: "MS- Orthopaedics Orthopedic surgeon",
+    experience: 11,
+  },
+  {
+    img: "/assets/doctors/doctor_4.png",
+    name: "Dr. Murali Krishna Menon",
+    domain: "MBBS, MD - General Medicine Neurologist",
+    experience: 31,
+  },
 ];
 const OurDoctors = () => {
   const theme = useMantineTheme();

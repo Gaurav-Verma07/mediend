@@ -5,7 +5,7 @@
 }
 .carousel_main {
   margin: 0 auto !important;
-  max-width: 324px !important;
+  max-width: 333px !important;
   @media (min-width: 800px) {
     max-width: 995px !important;
   }
