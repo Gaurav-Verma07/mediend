@@ -52,17 +52,19 @@ const Header = () => {
             <Image src={"/logo.png"} alt="logo" height={80} />
 
             {mobile && (
-              <>
+              <Box style={{ display: "flex" }}>
                 <Input
                   radius="md"
+                  w={250}
                   classNames={{ input: classes.input }}
                   leftSection={<IconSearch />}
                   placeholder="Search ..."
+                  mr={30}
                 />
                 <Button onClick={modalOpen} radius="xl" bg="#4A3AFF">
                   Schedule Call
                 </Button>
-              </>
+              </Box>
             )}
             <Burger
               opened={opened}
