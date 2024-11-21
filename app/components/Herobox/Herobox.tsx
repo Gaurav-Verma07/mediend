@@ -32,6 +32,7 @@ function Card({ image, title, category, info }: CardProps) {
       style={{ backgroundImage: `url(${image})` }}
       className={classes.card}
     >
+      <Box className={classes.gradient}></Box>
       <Box className={classes.cardData} data-aos="fade-right">
         <Box className={classes.box__top}>
           <Image
@@ -76,7 +77,6 @@ const Herobox = () => {
         loop
         withControls
         classNames={{
-          controls: classes.carousel__control_container,
           control: classes.carousel__control,
         }}
       >

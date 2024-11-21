@@ -27,7 +27,7 @@ const WhyUs = () => {
     <Box className={classes.main}>
       <Box className={classes.data__box} data-aos="fade-right">
         <Title c="#1D3557" fz={rem(48)} className={classes.main__title}>
-          Why mediEND Surgery care
+          Why mediEND
         </Title>
         <Text>
           World-class surgeons, advanced technology, and personalized care. We

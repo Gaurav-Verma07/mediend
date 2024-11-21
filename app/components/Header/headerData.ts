@@ -6,7 +6,6 @@ export const tabs = [
       { label: "Fistula Treatment", link: "" },
       { label: "Fissure Treatment", link: "" },
       { label: "Pilonidal Sinus Treatment", link: "" },
-      { label: "Rectal Prolapse", link: "" },
       { label: "Proctology", link: "" },
     ],
   },
