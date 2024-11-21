@@ -43,7 +43,7 @@ const Stories = () => {
       </Text>
       <Box className={classes.carousel_main}>
         <Carousel
-          slideSize={{ base: "100%", sm: "50%" }}
+          slideSize={{ base: "100%", sm: "fit-content" }}
           slideGap={{ base: rem(2), sm: "xl" }}
           align="start"
           controlsOffset="xs"
