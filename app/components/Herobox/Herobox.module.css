@@ -55,6 +55,10 @@
 .cardData {
   max-width: 574px !important;
   margin: 40px 0 !important;
+  border-radius: 20px;
+  @media (min-width: 1000px) {
+    backdrop-filter: blur(5px);
+  }
 }
 
 .btn {

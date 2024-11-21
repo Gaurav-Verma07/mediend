@@ -32,7 +32,7 @@ function Card({ image, title, category, info }: CardProps) {
       style={{ backgroundImage: `url(${image})` }}
       className={classes.card}
     >
-      <Box className={classes.gradient}></Box>
+      {/* <Box className={classes.gradient}></Box> */}
       <Box className={classes.cardData} data-aos="fade-right">
         <Box className={classes.box__top}>
           <Image
