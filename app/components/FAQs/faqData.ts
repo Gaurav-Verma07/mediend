@@ -1,4 +1,4 @@
-export const faqs = [
+export const faqData = [
   {
     que: "What is MediEND, and what do they offer?",
     ans: "MediEND is a leading healthcare provider specializing in minimally invasive surgical solutions. We connect patients with experienced surgeons and advanced facilities to ensure top-notch care.",

@@ -38,8 +38,7 @@ const Stories = () => {
         Our Success Stories
       </Title>
       <Text maw={418} m="20px auto" c="#6D758F">
-        Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
-        phasellus mollis sit aliquam sit nullam.
+       Discover inspiring stories of patients whose lives were transformed by our expert care.
       </Text>
       <Box className={classes.carousel_main}>
         <Carousel

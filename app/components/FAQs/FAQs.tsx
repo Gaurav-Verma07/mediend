@@ -2,7 +2,7 @@
 import { Accordion, Box, Image, rem, Title } from "@mantine/core";
 import classes from "./FAQs.module.css";
 import { useState } from "react";
-import { faqs } from "./faqs";
+import { faqData } from "./faqData";
 
 const FAQs = () => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
@@ -26,7 +26,7 @@ const FAQs = () => {
           }
           classNames={{ item: classes.item, chevron: classes.chevron }}
         >
-          {faqs.map((el, index: number) => (
+          {faqData.map((el, index: number) => (
             <Accordion.Item
               key={index}
               className={`${classes.item} ${
