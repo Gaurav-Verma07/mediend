@@ -26,7 +26,7 @@ const FAQs = () => {
           }
           classNames={{ item: classes.item, chevron: classes.chevron }}
         >
-          {faqs.map((el, index: number) => (
+          {faqs?.map((el, index: number) => (
             <Accordion.Item
               key={index}
               className={`${classes.item} ${

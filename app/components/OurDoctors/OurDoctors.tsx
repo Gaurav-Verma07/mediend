@@ -62,8 +62,7 @@ const OurDoctors = () => {
         Meet Our Talented Doctors
       </Title>
       <Text ta="center" c="#6D758F" maw={400} m="20px auto">
-        Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
-        phasellus mollis sit aliquam sit nullam.
+        Meet our experienced doctors dedicated to providing exceptional care and innovative treatments.
       </Text>
       <Box className={classes.carousel_main}>
         <Carousel

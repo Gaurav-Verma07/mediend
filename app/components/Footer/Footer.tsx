@@ -289,14 +289,14 @@ const Footer = () => {
                   201301
                 </Text>
               </Box>
-              <Box my={10}>
+              {/* <Box my={10}>
                 <Text c="#A9B1BC" fz={28}>
                   9.00—18.00
                 </Text>
                 <Text className={classes.dates}>
                   Mo <div className={classes.divider}></div> Fr
                 </Text>
-              </Box>
+              </Box> */}
             </Box>
           </Box>
         </Box>
