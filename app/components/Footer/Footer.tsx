@@ -49,10 +49,10 @@ const Footer = () => {
         <Box className={classes.main__box}>
           <Box className={classes.top}>
             <Box my={10}>
-              <Button bg="#FF990C" mr={10}>
+              <Button bg="#FF990C" mr={10} my={5}>
                 Get a Consultation
               </Button>
-              <Button variant="outline" className={classes.order__btn}>
+              <Button my={5} variant="outline" className={classes.order__btn}>
                 Order a call
               </Button>
             </Box>
@@ -240,18 +240,20 @@ const Footer = () => {
               </>
             )}
             <Box style={{ display: "flex", justifyContent: "space-between" }}>
-              <Box className={classes.box_company}>
-                <Box className={classes.middle__box_upper}>
-                  <IconCircle size="15px" color="#FF990C" />{" "}
-                  <Text tt="uppercase" c="#fff" ml={4} fz={10}>
-                    Our Company
-                  </Text>
+              {!mobile && (
+                <Box className={classes.box_company}>
+                  <Box className={classes.middle__box_upper}>
+                    <IconCircle size="15px" color="#FF990C" />{" "}
+                    <Text tt="uppercase" c="#fff" ml={4} fz={10}>
+                      Our Company
+                    </Text>
+                  </Box>
+                  <Text>History</Text>
+                  <Text>Partnership</Text>
+                  <Text>News</Text>
+                  <Text>Contact</Text>
                 </Box>
-                <Text>History</Text>
-                <Text>Partnership</Text>
-                <Text>News</Text>
-                <Text>Contact</Text>
-              </Box>
+              )}
               {!mobile && (
                 <Box className={classes.patients} style={{ textAlign: "left" }}>
                   <Box className={classes.middle__box_upper}>
