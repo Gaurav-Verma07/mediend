@@ -41,10 +41,10 @@ const elements = [
   { position: 58, mass: 140.12, symbol: "Ce", name: "Cerium" },
 ];
 
-export default function Page({ params }: { params: { disease: string } }) {
-  const disease = params.disease;
-  const formattedDisease =
-    disease.charAt(0).toLocaleUpperCase() + disease.slice(1);
+export default function Page() {
+  // const disease = params.disease;
+  // const formattedDisease =
+  //   disease.charAt(0).toLocaleUpperCase() + disease.slice(1);
 
   const rows = elements.map((element) => (
     <Table.Tr key={element.name}>
@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { disease: string } }) {
                 <Group my={"lg"}>
                   <Title>
                     {" "}
-                    Best Treatment for {formattedDisease} in Delhi - NCR{" "}
+                    Best Treatment for {"Lipoma"} in Delhi - NCR{" "}
                   </Title>
                   <Text>
                     {" "}
