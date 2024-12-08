@@ -2,7 +2,7 @@ import Blogs from "./components/Blogs/Blogs";
 import BookConsultation from "./components/BookConsultation/BookConsultation";
 import ConsultationBox from "./components/ConsultationBox/ConsultationBox";
 import DiseaseList from "./components/DiseaseList/DiseaseList";
-import FAQs from "./components/FAQs/FAQs";
+import FAQs from "./components/FAQs/FrequentlyAskedQuestions";
 import Footer from "./components/Footer/Footer";
 import GetInTouch from "./components/GetInTouch/GetInTouch";
 import Herobox from "./components/Herobox/Herobox";

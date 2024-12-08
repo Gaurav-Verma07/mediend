@@ -8,14 +8,14 @@ import {
   Text,
   TextInput,
 } from "@mantine/core";
-import classes from "./Appointment.module.css";
+import classes from "../Appointment/Appointment.module.css";
 import { useState } from "react";
 import { useForm } from "@mantine/form";
-import { diseasesList } from "./diseaseList";
-import { citylist } from "./citylist";
+import { diseasesList } from "../Appointment/diseaseList";
+import { citylist } from "../Appointment/citylist";
 import { IconPhonePlus } from "@tabler/icons-react";
 import { useMediaQuery } from "@mantine/hooks";
-const Appointment = () => {
+const AppointmentForm = () => {
   const [active, setActive] = useState(4);
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -74,93 +74,6 @@ const Appointment = () => {
 
   return (
     <Box className={classes.main}>
-      {mobile && (
-        <>
-          {" "}
-          <Box className={classes.main__content}>
-            <Box>
-              <Text fw={600}>Simplifying Surgery Experience</Text>
-              <Text c="dimmed" fz={14}>
-                Consult with our expert surgeon for more than 50+ diseases
-              </Text>
-            </Box>
-            <Box className={classes.stepper__main} my={20}>
-              <Text fz={14} mb={10} fw={600}>
-                Next Steps
-              </Text>
-              <Stepper
-                classNames={{
-                  stepIcon: classes.stepIcon,
-                  stepCompletedIcon: classes.stepCompletedIcon,
-                  verticalSeparator: classes.verticalSeparator,
-                }}
-                active={4}
-                onStepClick={setActive}
-                orientation="vertical"
-              >
-                <Stepper.Step
-                  completedIcon={
-                    <Image
-                      fit="contain"
-                      className={classes.stepper_completed_icon}
-                      src="https://img.pristyncare.com/static_pages%2FNewbookAppointmentForm%2FGroup%2010264.svg"
-                      alt="call person"
-                    />
-                  }
-                  fz={14}
-                  description="Once you share your details, our care coordinator will get in touch with you."
-                />
-                <Stepper.Step
-                  completedIcon={
-                    <Image
-                      fit="contain"
-                      className={classes.stepper_completed_icon}
-                      src="https://img.pristyncare.com/static_pages%2FNewbookAppointmentForm%2FGroup%2010263.svg"
-                      alt="call person"
-                    />
-                  }
-                  fz={14}
-                  description="The coordinator will understand your symptoms and health condition in detail."
-                />
-                <Stepper.Step
-                  completedIcon={
-                    <Image
-                      fit="contain"
-                      className={classes.stepper_completed_icon}
-                      src="https://img.pristyncare.com/static_pages%2FNewbookAppointmentForm%2FGroup%2010262.svg"
-                      alt="call person"
-                    />
-                  }
-                  fz={14}
-                  description="Your consultation will be scheduled at the earliest."
-                />
-              </Stepper>
-            </Box>
-            <Box className={classes.stats__main}>
-              <Box>
-                <Text fw={600} fz={20}>
-                  2M+
-                </Text>
-                <Text fz={14}>Happy Patients</Text>
-              </Box>
-              <Box>
-                <Text fw={600} fz={20}>
-                  150+
-                </Text>
-                <Text fz={14}>Clinics</Text>
-              </Box>
-              <Box>
-                <Text fw={600} fz={20}>
-                  45+
-                </Text>
-                <Text fz={14}>Cities</Text>
-              </Box>
-            </Box>
-          </Box>
-          <div className={classes.divider}></div>
-        </>
-      )}
-
       <Box className={classes.main__form}>
         <form onSubmit={form.onSubmit(submitHandler)}>
           <TextInput
@@ -233,4 +146,4 @@ const Appointment = () => {
     </Box>
   );
 };
-export default Appointment;
+export default AppointmentForm;

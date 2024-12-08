@@ -1,10 +1,11 @@
 "use client";
 import { Accordion, Box, Image, rem, Title } from "@mantine/core";
-import classes from "./FAQs.module.css";
+import classes from "./faq.module.css";
 import { useState } from "react";
 import { faqs } from "./faqs";
+import { IconChevronCompactRight, IconChevronRight } from "@tabler/icons-react";
 
-const FAQs = () => {
+const FrequentlyAskedQuestions = () => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
   console.log(activeItem);
   return (
@@ -18,11 +19,7 @@ const FAQs = () => {
           value={activeItem}
           onChange={setActiveItem}
           chevron={
-            <Image
-              src="assets/blog_chevron.png"
-              className={classes.chevron__icon}
-              alt="chevron"
-            />
+            <IconChevronRight/>
           }
           classNames={{ item: classes.item, chevron: classes.chevron }}
         >
@@ -43,4 +40,4 @@ const FAQs = () => {
     </Box>
   );
 };
-export default FAQs;
+export default FrequentlyAskedQuestions;
