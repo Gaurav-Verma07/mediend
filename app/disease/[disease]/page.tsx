@@ -3,6 +3,7 @@ import Appointment from "../../components/Appointment/Appointment";
 import AppointmentForm from "../../components/AppointmentForm/AppointmentForm";
 import BookConsultation from "../../components/BookConsultation/BookConsultation";
 import FrequentlyAskedQuestions from "../../components/FAQs/FrequentlyAskedQuestions";
+
 import {
   Card,
   Container,
@@ -32,26 +33,98 @@ import {
   IconStethoscope,
 } from "@tabler/icons-react";
 import { Carousel } from "@mantine/carousel";
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { PortableText } from "@portabletext/react";
 
 const elements = [
-  { position: 6, mass: 12.011, symbol: "C", name: "Carbon" },
-  { position: 7, mass: 14.007, symbol: "N", name: "Nitrogen" },
-  { position: 39, mass: 88.906, symbol: "Y", name: "Yttrium" },
-  { position: 56, mass: 137.33, symbol: "Ba", name: "Barium" },
-  { position: 58, mass: 140.12, symbol: "Ce", name: "Cerium" },
+  { property: "Incision Size", traditional: "5-7cm", minimallyInvasive: "1-2cm"},
+  { property: "Incision Size", traditional: "5-7cm", minimallyInvasive: "1-2cm"},
+  { property: "Incision Size", traditional: "5-7cm", minimallyInvasive: "1-2cm"},
+  { property: "Incision Size", traditional: "5-7cm", minimallyInvasive: "1-2cm"},
+
 ];
 
+interface LipomaSanityDocument {
+  title: string;
+  header: string;
+  shortDescription: string;
+  featuredTreatments: string[];
+  content: ContentBlock[];
+  infoCards: InfoCard[];
+}
+
+interface ContentBlock {
+  _type: string;
+  style: string;
+  _key: string;
+  markDefs?: any[];
+  children: ContentChild[];
+  level?: number;
+  listItem?: string;
+}
+
+interface ContentChild {
+  _type: string;
+  marks: string[];
+  text: string;
+  _key: string;
+}
+
+interface InfoCard {
+  _type: string;
+  infoCardTitle: string;
+  infoCardBody: string[];
+  _key: string;
+}
+
 export default function Page() {
-  // const disease = params.disease;
-  // const formattedDisease =
-  //   disease.charAt(0).toLocaleUpperCase() + disease.slice(1);
+  const params = useParams()
+const { disease } = params
+const cardBackgrounds = ["#F4F7FB", "#FFF8F0"];
+
+ 
+const [pageData, setPageData] = useState<LipomaSanityDocument>()
+const [isLoading, setIsLoading] = useState(true)
+const [error, setError] = useState(null)
+
+useEffect(() => {
+  setIsLoading(true)
+  fetch('https://7rljkuk3.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type%3D%3D%22disease%22%5D%7B%0A++title%2C%0A++header%2C%0A++shortDescription%2C%0A++featuredTreatments%2C%0A++content%2C%0A++infoCards%0A++%0A%7D%5B0%5D', {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json"
+    }
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json()
+  })
+  .then((data) => {
+    console.log('Fetched data:', data);
+    setPageData(data.result);
+    setIsLoading(false);
+  })
+  .catch((error) => {
+    console.error('Error fetching data:', error);
+    setError(error);
+    setIsLoading(false);
+  });
+}, [disease])
+
+
+if (isLoading) return <div>Loading...</div>
+if (error) return <div>Error loading data</div>
+if (!pageData) return <div>No data found</div>
+
 
   const rows = elements.map((element) => (
-    <Table.Tr key={element.name}>
-      <Table.Td>{element.position}</Table.Td>
-      <Table.Td>{element.name}</Table.Td>
-      <Table.Td>{element.symbol}</Table.Td>
-      <Table.Td>{element.mass}</Table.Td>
+    <Table.Tr key={element.property} style={{background:"#EEF0F5", margin:"2px"}}>
+      <Table.Td>{element.property}</Table.Td>
+      <Table.Td><div style={{paddingInline:"1.5rem", padding:"0.5rem", background:"white", borderRadius:"100px", textAlign:"center"}}>{element.traditional.toLocaleUpperCase()}</div></Table.Td>
+      <Table.Td><div style={{paddingInline:"1.5rem", padding:"0.5rem", background:"#3269DB", borderRadius:"100px", color:"white",textAlign:"center"}}>{element.minimallyInvasive.toLocaleUpperCase()}</div></Table.Td>
     </Table.Tr>
   ));
 
@@ -65,14 +138,11 @@ export default function Page() {
                 <Group my={"lg"}>
                   <Title>
                     {" "}
-                    Best Treatment for {"Lipoma"} in Delhi - NCR{" "}
+                    {pageData.header}
                   </Title>
                   <Text>
                     {" "}
-                    A lipoma is a slow-growing, noncancerous lump of fatty
-                    tissue that is mostly painless and non-cancerous. They
-                    commonly appear on the neck, shoulders, back, belly, arms,
-                    and thighs. Know all about Lipoma Treatment in Noida.
+                    {pageData.shortDescription}
                   </Text>
                 </Group>
                 <Group my={"md"}>
@@ -114,7 +184,7 @@ export default function Page() {
                 </Group>
                 <Group my={"md"}>
                   <Flex gap={"md"} wrap={"wrap"}>
-                    <Button size="lg" variant="filled">
+                    <Button size="lg" variant="filled" >
                       Book An Appointment
                     </Button>
                     <Button
@@ -135,139 +205,84 @@ export default function Page() {
               <Grid.Col span={6} mt={"lg"}>
                 <hr style={{ margin: "2rem 0" }} />
                 <Grid>
-                  <Grid.Col span={6}>
-                    <Card style={{ background: "#F4F7FB" }} padding={"sm"}>
-                      <Title order={4}>Why opt for Lipoma Treatment?</Title>
-                      <Card.Section p={"md"}>
-                        <List
-                          spacing="xs"
-                          size="sm"
-                          center
-                          icon={
-                            <ThemeIcon color="#FF990C" size={24} radius="xl">
-                              <IconCircleCheck
-                                style={{ width: rem(16), height: rem(16) }}
-                              />
-                            </ThemeIcon>
-                          }
-                        >
-                          <List.Item> Item 1</List.Item>
-                          <List.Item> Item 1</List.Item>
-                          <List.Item> Item 1</List.Item>
-                          <List.Item> Item 1</List.Item>
-                        </List>
-                      </Card.Section>
-                    </Card>
-                  </Grid.Col>
-                  <Grid.Col span={6}>
-                    <Card style={{ background: "#FFF8F0" }} padding={"sm"}>
-                      <Title order={4}>Why opt for Lipoma Treatment?</Title>
-                      <Card.Section p={"md"}>
-                        <List
-                          spacing="xs"
-                          size="sm"
-                          center
-                          icon={
-                            <ThemeIcon color="#FF990C" size={24} radius="xl">
-                              <IconCircleCheck
-                                style={{ width: rem(16), height: rem(16) }}
-                              />
-                            </ThemeIcon>
-                          }
-                        >
-                          <List.Item> Item 1</List.Item>
-                          <List.Item> Item 1</List.Item>
-                          <List.Item> Item 1</List.Item>
-                          <List.Item> Item 1</List.Item>
-                        </List>
-                      </Card.Section>
-                    </Card>
-                  </Grid.Col>
-                  <Grid.Col span={6}>
-                    <Card style={{ background: "#FFF8F0" }} padding={"sm"}>
-                      <Title order={4}>Why opt for Lipoma Treatment?</Title>
-                      <Card.Section p={"md"}>
-                        <List
-                          spacing="xs"
-                          size="sm"
-                          center
-                          icon={
-                            <ThemeIcon color="#FF990C" size={24} radius="xl">
-                              <IconCircleCheck
-                                style={{ width: rem(16), height: rem(16) }}
-                              />
-                            </ThemeIcon>
-                          }
-                        >
-                          <List.Item> Item 1</List.Item>
-                          <List.Item> Item 1</List.Item>
-                          <List.Item> Item 1</List.Item>
-                          <List.Item> Item 1</List.Item>
-                        </List>
-                      </Card.Section>
-                    </Card>
-                  </Grid.Col>
-                  <Grid.Col span={6}>
-                    <Card style={{ background: "#F4F7FB" }} padding={"sm"}>
-                      <Title order={4}>Why opt for Lipoma Treatment?</Title>
-                      <Card.Section p={"md"}>
-                        <List
-                          spacing="xs"
-                          size="sm"
-                          center
-                          icon={
-                            <ThemeIcon color="#FF990C" size={24} radius="xl">
-                              <IconCircleCheck
-                                style={{ width: rem(16), height: rem(16) }}
-                              />
-                            </ThemeIcon>
-                          }
-                        >
-                          <List.Item> Item 1</List.Item>
-                          <List.Item> Item 1</List.Item>
-                          <List.Item> Item 1</List.Item>
-                          <List.Item> Item 1</List.Item>
-                        </List>
-                      </Card.Section>
-                    </Card>
-                  </Grid.Col>
-                </Grid>
+                {pageData.infoCards.map((card, index) => (
+        <Grid.Col key={card._key} span={6}>
+          <Card 
+            style={{ 
+              background: cardBackgrounds[index % cardBackgrounds.length] 
+            }} 
+            padding="sm"
+          >
+            <Title order={4}>{card.infoCardTitle}</Title>
+            <Card.Section p="md">
+              <List
+                spacing="xs"
+                size="sm"
+                center
+                icon={
+                  <ThemeIcon color="#FF990C" size={24} radius="xl">
+                    <IconCircleCheck
+                      style={{ width: rem(16), height: rem(16) }}
+                    />
+                  </ThemeIcon>
+                }
+              >
+                {card.infoCardBody.map((item, itemIndex) => (
+                  <List.Item key={itemIndex}>{item}</List.Item>
+                ))}
+              </List>
+            </Card.Section>
+          </Card>
+        </Grid.Col>
+      ))}
+    </Grid>
                 <hr style={{ margin: "2rem 0", color: "grey" }} />
               </Grid.Col>
 
               <Grid.Col span={8}>
                 <Title>Featured Treatments</Title>
                 <Flex wrap={"wrap"} gap={"md"}>
-                  <Card style={{ background: "#F4F7FB" }} padding={"lg"}>
-                    <Text size="md">Treatment 1</Text>
+                  {
+                    pageData.featuredTreatments.map((treatment,idx) => {
+                      return(
+                      <Card style={{background: cardBackgrounds[idx % cardBackgrounds.length] }} padding={"lg"} key={idx}>
+                    <Text size="md">{treatment}</Text>
                   </Card>
-                  <Card style={{ background: "#FFF8F0" }} padding={"lg"}>
-                    <Text size="md">Treatment 1</Text>
-                  </Card>
+                      )
+                    })
+                  }
+                  
                 </Flex>
               </Grid.Col>
 
               <Grid.Col span={8}>
-                <Table>
+                <Title>Why opt for Minimally Invasive Lipoma Procedure?</Title>
+                <Table withRowBorders={false} verticalSpacing={"md"} horizontalSpacing={"md"} striped highlightOnHover >
                   <Table.Thead>
                     <Table.Tr>
-                      <Table.Th>Element position</Table.Th>
-                      <Table.Th>Element name</Table.Th>
-                      <Table.Th>Symbol</Table.Th>
-                      <Table.Th>Atomic mass</Table.Th>
+                      <Table.Th></Table.Th>
+                      <Table.Th style={{textAlign:"center"}}>Traditional</Table.Th>
+                      <Table.Th style={{textAlign:"center"}}>Minimally Invasive</Table.Th>
                     </Table.Tr>
                   </Table.Thead>
                   <Table.Tbody>{rows}</Table.Tbody>
-                  <Table.Caption>Scroll page to see sticky thead</Table.Caption>
                 </Table>
               </Grid.Col>
               <Grid.Col span={8}>
                 <Title>Our Expert Doctors</Title>
-                <Carousel slideSize="70%" height={200} slideGap="md" loop>
-                  <Carousel.Slide>1</Carousel.Slide>
+                {/* <Carousel slideSize="70%" height={200} slideGap="md" loop>
+                  <Carousel.Slide>
+                    <Card>
+                      <Image src="https://media.istockphoto.com/id/177373093/photo/indian-male-doctor.jpg?s=612x612&w=0&k=20&c=5FkfKdCYERkAg65cQtdqeO_D0JMv6vrEdPw3mX1Lkfg=" radius={"lg"}></Image>
+
+                    </Card>
+                    </Carousel.Slide>
                   <Carousel.Slide>2</Carousel.Slide>
                   <Carousel.Slide>3</Carousel.Slide>
-                </Carousel>
+                </Carousel> */}
+              </Grid.Col>
+              <Grid.Col>
+                <PortableText value={pageData.content}/>
               </Grid.Col>
             </Grid>
           </Grid.Col>
