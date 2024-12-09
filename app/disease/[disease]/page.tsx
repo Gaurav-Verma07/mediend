@@ -282,7 +282,9 @@ if (!pageData) return <div>No data found</div>
                 </Carousel> */}
               </Grid.Col>
               <Grid.Col>
+                <div className="prose prose-xl">
                 <PortableText value={pageData.content}/>
+                </div>
               </Grid.Col>
             </Grid>
           </Grid.Col>
