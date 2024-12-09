@@ -376,8 +376,9 @@ if (!pageData) return <div>No data found</div>
           <Grid.Col span={3} pos={"relative"}>
             <Card shadow="sm" padding="lg" radius="md" withBorder pos={"sticky"} top={24}>
               <Title order={3}>Request a callback</Title>
-              <Text>
+              <Text c={"#5F6D7A"}>
                 {" "}
+                
                 Speak to one of our representatives by filling the form below
               </Text>
               <AppointmentForm></AppointmentForm>
