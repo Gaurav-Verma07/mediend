@@ -73,8 +73,8 @@ const AppointmentForm = () => {
   };
 
   return (
-    <Box className={classes.main}>
-      <Box className={classes.main__form}>
+    <Box className="flex justify-center px-4 py-4 ">
+      <Box className="flex-1">
         <form onSubmit={form.onSubmit(submitHandler)}>
           <TextInput
             label="Patient Name"
@@ -87,7 +87,8 @@ const AppointmentForm = () => {
             }
             radius="md"
             p={5}
-            my={20}
+            my={10}
+
           />
           <TextInput
             classNames={{ label: classes.label, input: classes.input__input }}
@@ -101,36 +102,38 @@ const AppointmentForm = () => {
             }
             radius="md"
             p={5}
-            my={20}
+            my={10}
+
           />
           <Autocomplete
             classNames={{ label: classes.label, input: classes.input__input }}
             label="Select City"
             key={form.key("city")}
             {...form.getInputProps("city")}
-            my={20}
+            my={10}
             value={form.values.city}
             onChange={(value) => form.setFieldValue("city", value)}
             data={citylist}
             maxDropdownHeight={200}
+
           />
           <Autocomplete
             classNames={{ label: classes.label, input: classes.input__input }}
             label="Select Disease"
-            my={20}
+            my={10}
             key={form.key("disease")}
             {...form.getInputProps("disease")}
             value={form.values.disease}
             onChange={(value) => form.setFieldValue("disease", value)}
             maxDropdownHeight={200}
             data={diseasesList}
+            
           />
           <Button
             type="submit"
             radius="md"
             mt={20}
-            mb={10}
-            bg="#FF990C"
+            bg="#3269DB"
             fullWidth
           >
             Book

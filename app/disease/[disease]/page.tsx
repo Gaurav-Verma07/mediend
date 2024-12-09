@@ -19,6 +19,7 @@ import {
   rem,
   Space,
   Table,
+  Stack,
 } from "@mantine/core";
 import DiseaseImage from "./diseaseImage.png";
 import Stories from "../../components/Stories/Stories";
@@ -26,16 +27,19 @@ import Specialities from "../../components/Specialities/Specialities";
 import {
   IconArrowRight,
   IconBrandWhatsapp,
+  IconBriefcase,
   IconCircleCheck,
   IconHeart,
   IconHeartbeat,
   IconMessages,
   IconStethoscope,
+  IconThumbUp,
 } from "@tabler/icons-react";
 import { Carousel } from "@mantine/carousel";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { PortableText } from "@portabletext/react";
+import Footer from "../../components/Footer/Footer";
 
 const elements = [
   { property: "Incision Size", traditional: "5-7cm", minimallyInvasive: "1-2cm"},
@@ -130,8 +134,8 @@ if (!pageData) return <div>No data found</div>
 
   return (
     <>
-      <div style={{ padding: "24px" }}>
-        <Grid grow gutter={"lg"}>
+      <Group grow p={"xl"}>
+        <Grid grow gutter={"xl"} className="relative">
           <Grid.Col span={8}>
             <Grid grow gutter={"md"}>
               <Grid.Col span={6}>
@@ -145,13 +149,13 @@ if (!pageData) return <div>No data found</div>
                     {pageData.shortDescription}
                   </Text>
                 </Group>
-                <Group my={"md"}>
+                <Group my={"md"} grow>
                   <Grid gutter={"md"}>
                     <Grid.Col span={4}>
                       <Card style={{ background: "lightblue" }}>
-                        <Flex justify={"space-between"} align={"center"}>
+                        <Flex justify={"start"} align={"center"}>
                           <IconHeartbeat
-                            style={{ color: "#FF990C" }}
+                            style={{ color: "#FF990C",marginRight:"8px" }}
                           ></IconHeartbeat>
                           <Title order={4}>100%</Title>
                         </Flex>
@@ -160,9 +164,9 @@ if (!pageData) return <div>No data found</div>
                     </Grid.Col>
                     <Grid.Col span={4}>
                       <Card style={{ background: "lightblue" }}>
-                        <Flex justify={"space-between"} align={"center"}>
+                        <Flex justify={"start"} align={"center"}>
                           <IconStethoscope
-                            style={{ color: "#FF990C" }}
+                            style={{ color: "#FF990C",marginRight:"8px" }}
                           ></IconStethoscope>
                           <Title order={4}>50+</Title>
                         </Flex>
@@ -171,9 +175,9 @@ if (!pageData) return <div>No data found</div>
                     </Grid.Col>
                     <Grid.Col span={4}>
                       <Card style={{ background: "lightblue" }}>
-                        <Flex justify={"space-between"} align={"center"}>
+                        <Flex justify={"start"} align={"center"}>
                           <IconMessages
-                            style={{ color: "#FF990C" }}
+                            style={{ color: "#FF990C",marginRight:"8px" }}
                           ></IconMessages>
                           <Title order={4}>1:1</Title>
                         </Flex>
@@ -182,7 +186,7 @@ if (!pageData) return <div>No data found</div>
                     </Grid.Col>
                   </Grid>
                 </Group>
-                <Group my={"md"}>
+                <Group my={"xl"}>
                   <Flex gap={"md"} wrap={"wrap"}>
                     <Button size="lg" variant="filled" >
                       Book An Appointment
@@ -206,7 +210,7 @@ if (!pageData) return <div>No data found</div>
                 <hr style={{ margin: "2rem 0" }} />
                 <Grid>
                 {pageData.infoCards.map((card, index) => (
-        <Grid.Col key={card._key} span={6}>
+        <Grid.Col key={card._key} span={{base:12, md:6}}>
           <Card 
             style={{ 
               background: cardBackgrounds[index % cardBackgrounds.length] 
@@ -239,8 +243,9 @@ if (!pageData) return <div>No data found</div>
                 <hr style={{ margin: "2rem 0", color: "grey" }} />
               </Grid.Col>
 
-              <Grid.Col span={8}>
-                <Title>Featured Treatments</Title>
+              <Grid.Col span={8} mt={"lg"}>
+                <Stack gap={"lg"}>
+                <Title order={2}>Featured Treatments</Title>
                 <Flex wrap={"wrap"} gap={"md"}>
                   {
                     pageData.featuredTreatments.map((treatment,idx) => {
@@ -253,10 +258,12 @@ if (!pageData) return <div>No data found</div>
                   }
                   
                 </Flex>
+                </Stack>
               </Grid.Col>
 
-              <Grid.Col span={8}>
-                <Title>Why opt for Minimally Invasive Lipoma Procedure?</Title>
+              <Grid.Col span={8} mt={"lg"}>
+                <Stack  gap={"lg"}>
+                <Title order={2}>Why opt for Minimally Invasive Lipoma Procedure?</Title>
                 <Table withRowBorders={false} verticalSpacing={"md"} horizontalSpacing={"md"} striped highlightOnHover >
                   <Table.Thead>
                     <Table.Tr>
@@ -267,29 +274,107 @@ if (!pageData) return <div>No data found</div>
                   </Table.Thead>
                   <Table.Tbody>{rows}</Table.Tbody>
                 </Table>
+                </Stack>
               </Grid.Col>
-              <Grid.Col span={8}>
-                <Title>Our Expert Doctors</Title>
-                {/* <Carousel slideSize="70%" height={200} slideGap="md" loop>
+              <Grid.Col span={8} mt={"lg"}>
+                <Stack gap={"lg"}>
+                <Title order={2}>Our Expert Doctors</Title>
+                <Carousel slideSize="60%" slideGap="md" loop p={"md"}>
+                  
                   <Carousel.Slide>
-                    <Card>
-                      <Image src="https://media.istockphoto.com/id/177373093/photo/indian-male-doctor.jpg?s=612x612&w=0&k=20&c=5FkfKdCYERkAg65cQtdqeO_D0JMv6vrEdPw3mX1Lkfg=" radius={"lg"}></Image>
+                    <Card shadow="lg">
+                      <Group gap={"md"}>
+                      <Image src="https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-young-afro-professional-doctor-png-image_10148632.png" radius={"lg"} w={150}></Image>
+                      <Stack gap={"lg"} justify="space-between">
+                      <div>
+                      <Title order={4} c={"#3269DB"}>Dr. Deepak Kumar Sinha</Title>
+                      <Text size="xs" c={"#5F6D7A"}>General</Text>
+                      <Text size="xs" c={"#5F6D7A"}>Surgery, Proctology, Laproscopic Surg...</Text>
+                      </div>
+                      <Group>
+                        <div>
+                        <Group gap={"sm"}><IconBriefcase color="#3269DB" size={20}/><Title order={6} c={"#3269DB"}>19+ Years</Title></Group>
+                        <Text size="xs" c={"#5F6D7A"}> Experience</Text>
+                        </div>
+                        <hr/>
+                        <div>
+                        <Group><IconThumbUp color="#3269DB" size={20}/> <Title order={6} c={"#3269DB"}>99%</Title></Group>
+                        <Text size="xs"c={"#5F6D7A"}> Recommended</Text>
+                        </div>
+                      </Group>
+                      </Stack>
 
+                      <Button fullWidth variant="outline" size="md">Book Appointment</Button>
+                      </Group>
                     </Card>
                     </Carousel.Slide>
-                  <Carousel.Slide>2</Carousel.Slide>
-                  <Carousel.Slide>3</Carousel.Slide>
-                </Carousel> */}
+                  <Carousel.Slide>
+                    <Card shadow="lg">
+                      <Group gap={"md"}>
+                      <Image src="https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-young-afro-professional-doctor-png-image_10148632.png" radius={"lg"} w={150}></Image>
+                      <Stack gap={"lg"} justify="space-between">
+                      <div>
+                      <Title order={4} c={"#3269DB"}>Dr. Deepak Kumar Sinha</Title>
+                      <Text size="xs" c={"#5F6D7A"}>General</Text>
+                      <Text size="xs" c={"#5F6D7A"}>Surgery, Proctology, Laproscopic Surg...</Text>
+                      </div>
+                      <Group>
+                        <div>
+                        <Group gap={"sm"}><IconBriefcase color="#3269DB" size={20}/><Title order={6} c={"#3269DB"}>19+ Years</Title></Group>
+                        <Text size="xs" c={"#5F6D7A"}> Experience</Text>
+                        </div>
+                        <hr/>
+                        <div>
+                        <Group><IconThumbUp color="#3269DB" size={20}/> <Title order={6} c={"#3269DB"}>99%</Title></Group>
+                        <Text size="xs"c={"#5F6D7A"}> Recommended</Text>
+                        </div>
+                      </Group>
+                      </Stack>
+
+                      <Button fullWidth variant="outline" size="md">Book Appointment</Button>
+                      </Group>
+                    </Card>
+                    </Carousel.Slide>
+                  <Carousel.Slide>
+                    <Card shadow="lg">
+                      <Group gap={"md"}>
+                      <Image src="https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-young-afro-professional-doctor-png-image_10148632.png" radius={"lg"} w={150}></Image>
+                      <Stack gap={"lg"} justify="space-between">
+                      <div>
+                      <Title order={4} c={"#3269DB"}>Dr. Deepak Kumar Sinha</Title>
+                      <Text size="xs" c={"#5F6D7A"}>General</Text>
+                      <Text size="xs" c={"#5F6D7A"}>Surgery, Proctology, Laproscopic Surg...</Text>
+                      </div>
+                      <Group>
+                        <div>
+                        <Group gap={"sm"}><IconBriefcase color="#3269DB" size={20}/><Title order={6} c={"#3269DB"}>19+ Years</Title></Group>
+                        <Text size="xs" c={"#5F6D7A"}> Experience</Text>
+                        </div>
+                        <hr/>
+                        <div>
+                        <Group><IconThumbUp color="#3269DB" size={20}/> <Title order={6} c={"#3269DB"}>99%</Title></Group>
+                        <Text size="xs"c={"#5F6D7A"}> Recommended</Text>
+                        </div>
+                      </Group>
+                      </Stack>
+
+                      <Button fullWidth variant="outline" size="md">Book Appointment</Button>
+                      </Group>
+                    </Card>
+                    </Carousel.Slide>
+                  
+                </Carousel>
+                </Stack>
               </Grid.Col>
-              <Grid.Col>
-                <div className="prose">
+              <Grid.Col span={8} mt={"lg"}>
+                <div className="prose max-w-full ">
                 <PortableText value={pageData.content}/>
                 </div>
               </Grid.Col>
             </Grid>
           </Grid.Col>
-          <Grid.Col span={4}>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
+          <Grid.Col span={3} pos={"relative"}>
+            <Card shadow="sm" padding="lg" radius="md" withBorder pos={"sticky"} top={24}>
               <Title order={3}>Request a callback</Title>
               <Text>
                 {" "}
@@ -299,7 +384,7 @@ if (!pageData) return <div>No data found</div>
             </Card>
           </Grid.Col>
         </Grid>
-      </div>
+      </Group>
 
       <Stories />
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>

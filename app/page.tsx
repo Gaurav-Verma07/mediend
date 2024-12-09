@@ -42,7 +42,7 @@ export default function HomePage() {
         <FAQs />
         <BookConsultation />
       </div>
-      <Footer />
+
     </div>
   );
 }
