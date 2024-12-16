@@ -212,7 +212,7 @@ if (!pageData) return <div>No data found</div>
                     </List>
                     </Stack>
                 </Card>
-                <Card shadow="sm" id="articles" padding={"lg"} >
+                <Card shadow="sm" id="healthFeed" padding={"lg"} >
                     <Title order={2}> Health Articles </Title>
                     <Card.Section p={"lg"}>
                     <Carousel

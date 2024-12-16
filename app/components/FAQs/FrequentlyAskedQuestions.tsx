@@ -42,7 +42,7 @@ const FrequentlyAskedQuestions: React.FC<FrequentlyAskedQuestionsProps> = ({
   }
 
   return (
-    <Box my={100} data-aos="zoom-in" className={className}>
+    <Box my={100} data-aos="zoom-in" className={className} id="FAQs">
       <Title className={classes.main__title} data-aos="zoom-in-up">
         {title}
       </Title>

@@ -44,7 +44,7 @@ const Stories: React.FC<StoriesProps> = ({
   }
 
   return (
-    <Box className={classes.main} ta="center" py={60}>
+    <Box className={classes.main} ta="center" py={60} id='reviews'>
       <Title className={classes.title} data-aos="zoom-in-up">
         {title}
       </Title>
