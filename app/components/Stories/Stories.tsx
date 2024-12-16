@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import { Avatar, Box, rem, Text, Title, useMantineTheme } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
@@ -58,7 +59,7 @@ const Stories: React.FC<StoriesProps> = ({
           controlsOffset="xs"
           classNames={{ root: classes.carousel__root }}
           slidesToScroll={1}
-          loop
+          loop={true}
         >
           {reviews.map((review, index) => (
             <Carousel.Slide key={index} className={classes.box}>
