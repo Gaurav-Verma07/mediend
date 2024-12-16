@@ -207,7 +207,7 @@ if (!pageData) return <div>No data found</div>
                       }
                       >
                         {pageData.treatments.map((treatment,idx)=>{
-                          return <ListItem c={"blue"} className=" underline-offset-1 underline"><Link href={treatment.treatmentLink}><Text>{treatment.treatmentName}</Text></Link></ListItem>
+                          return <ListItem c={"blue"} className=" underline-offset-1 underline" key={idx}><Link href={treatment.treatmentLink}><Text>{treatment.treatmentName}</Text></Link></ListItem>
                         })}
                     </List>
                     </Stack>
