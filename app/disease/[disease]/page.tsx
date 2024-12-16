@@ -3,7 +3,7 @@ import Appointment from "../../components/Appointment/Appointment";
 import AppointmentForm from "../../components/AppointmentForm/AppointmentForm";
 import BookConsultation from "../../components/BookConsultation/BookConsultation";
 import FrequentlyAskedQuestions from "../../components/FAQs/FrequentlyAskedQuestions";
-
+import { faqs } from "../../components/FAQs/faqs";
 import {
   Card,
   Container,
@@ -49,9 +49,37 @@ const elements = [
 
 ];
 
+const storiesData = [
+  {
+    imageUrl: "/assets/stories/stories_1.png",
+    highlight: "“Strength to embrace my son and life again”",
+    review: "We feel like we can finally live a normal life!” I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!",
+    name: "Vanamala Ramesh",
+  },
+  {
+    imageUrl: "/assets/stories/stories_2.png",
+    highlight: "“We feel like we can finally live a normal life!”",
+    review: "I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!.",
+    name: "Stephanie Powell",
+  },
+  {
+    imageUrl: "/assets/stories/stories_1.png",
+    highlight: "“Strength to embrace my son and life again”",
+    review: "We feel like we can finally live a normal life!” I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!",
+    name: "Vanamala Ramesh",
+  },
+  {
+    imageUrl: "/assets/stories/stories_2.png",
+    highlight: "“We feel like we can finally live a normal life!”",
+    review: "I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!.",
+    name: "Stephanie Powell",
+  },
+];
+
 interface LipomaSanityDocument {
   title: string;
   header: string;
+  imageUrl:string,
   shortDescription: string;
   featuredTreatments: string[];
   content: ContentBlock[];
@@ -94,7 +122,7 @@ const [error, setError] = useState(null)
 
 useEffect(() => {
   setIsLoading(true)
-  fetch('https://7rljkuk3.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type%3D%3D%22disease%22%5D%7B%0A++title%2C%0A++header%2C%0A++shortDescription%2C%0A++featuredTreatments%2C%0A++content%2C%0A++infoCards%0A++%0A%7D%5B0%5D', {
+  fetch('https://7rljkuk3.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27disease%27%5D%7B%0A++++title%2C%0A++header%2C%0A++shortDescription%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++featuredTreatments%2C%0A++content%2C%0A++infoCards%0A%7D%5B0%5D', {
     method: "GET",
     headers: {
       "Content-type": "application/json"
@@ -203,7 +231,7 @@ if (!pageData) return <div>No data found</div>
                 </Group>
               </Grid.Col>
               <Grid.Col span={{ base: 0, md: 2, lg: 2 }}>
-                <Image src="https://s3-alpha-sig.figma.com/img/3ff9/0c22/b2c6f1aa504feb35c4921e907fa641a6?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=o2oK34~PtySBv5thxhy1ISXx3TAR-iq-vrdh~wpzpBwc0TCKiMAm9DW3IEMwzv3UR4wZlb-mZn5Nm3jvUyi6D0N4kQ98ATaQh4s4hSKwJcaGNQyh1tPTwLXwdozyQ0qLQE1AH26wm~MW2AdnhHob7y8B4UU5~bj2jCLDR2yLMf-z~JUITJnvSaXiDtOr6nV5R2ahl-J-wY25r75xsCucemIk2HRRYyMloorx43-W0VH0ClKzW6VLqeFobIwMeZAa97wz5bfOxU7MqbgMlmmaGdSFLUhfvhr~da0isfHJ52TRCGNiE9D3D9MR7F5MdGOCdHi-fvXMTtE-1ydi7mq-Hw__"></Image>
+                <Image src={pageData.imageUrl}></Image>
               </Grid.Col>
 
               <Grid.Col span={6} mt={"lg"}>
@@ -387,9 +415,9 @@ if (!pageData) return <div>No data found</div>
         </Grid>
       </Group>
 
-      <Stories />
+      <Stories reviews={storiesData} />
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        <FrequentlyAskedQuestions />
+        <FrequentlyAskedQuestions faqs={faqs} />
         <BookConsultation />
       </div>
     </>

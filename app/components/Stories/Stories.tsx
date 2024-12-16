@@ -1,44 +1,54 @@
-"use client";
+import React from 'react';
 import { Avatar, Box, rem, Text, Title, useMantineTheme } from "@mantine/core";
-import classes from "./Stories.module.css";
 import { useMediaQuery } from "@mantine/hooks";
 import { Carousel } from "@mantine/carousel";
-const storiesData = [
-  {
-    img: "/assets/stories/stories_1.png",
-    quote: "“Strength to embrace my son and life again”",
-    info: "We feel like we can finally live a normal life!” I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!",
-    name: "Vanamala Ramesh",
-  },
-  {
-    img: "/assets/stories/stories_2.png",
-    quote: "“We feel like we can finally live a normal life!”",
-    info: "I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!.",
-    name: "Stephanie Powell",
-  },
-  {
-    img: "/assets/stories/stories_1.png",
-    quote: "“Strength to embrace my son and life again”",
-    info: "We feel like we can finally live a normal life!” I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!",
-    name: "Vanamala Ramesh",
-  },
-  {
-    img: "/assets/stories/stories_2.png",
-    quote: "“We feel like we can finally live a normal life!”",
-    info: "I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!.",
-    name: "Stephanie Powell",
-  },
-];
-const Stories = () => {
+import classes from "./Stories.module.css";
+
+// Updated interface to match the Review type
+export interface Review {
+  name: string;
+  imageUrl: string;
+  review: string;
+  highlight: string;
+}
+
+interface StoriesProps {
+  reviews: Review[];
+  title?: string;
+  subtitle?: string;
+  emptyStateMessage?: string;
+}
+
+const Stories: React.FC<StoriesProps> = ({ 
+  reviews, 
+  title = "Our Success Stories", 
+  subtitle = "Discover inspiring stories of patients whose lives were transformed by our expert care.",
+  emptyStateMessage = "No stories available at the moment."
+}) => {
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
+
+  // Handle case when reviews array is empty
+  if (!reviews || reviews.length === 0) {
+    return (
+      <Box className={classes.main} ta="center" py={60}>
+        <Title className={classes.title} data-aos="zoom-in-up">
+          {title}
+        </Title>
+        <Text maw={418} m="20px auto" c="#6D758F">
+          {emptyStateMessage}
+        </Text>
+      </Box>
+    );
+  }
+
   return (
     <Box className={classes.main} ta="center" py={60}>
       <Title className={classes.title} data-aos="zoom-in-up">
-        Our Success Stories
+        {title}
       </Title>
       <Text maw={418} m="20px auto" c="#6D758F">
-       Discover inspiring stories of patients whose lives were transformed by our expert care.
+        {subtitle}
       </Text>
       <Box className={classes.carousel_main}>
         <Carousel
@@ -50,17 +60,22 @@ const Stories = () => {
           slidesToScroll={1}
           loop
         >
-          {storiesData.map((el, index: number) => (
+          {reviews.map((review, index) => (
             <Carousel.Slide key={index} className={classes.box}>
-              <Avatar size="lg" src={el.img} bd="1px solid #B4B9C9" />
+              <Avatar 
+                size="lg" 
+                src={review.imageUrl} 
+                alt={`${review.name}'s profile`}
+                bd="1px solid #B4B9C9" 
+              />
               <Box>
                 <Text c="#023E8A" fz={rem(18)}>
-                  {el.quote}
+                  {review.highlight}
                 </Text>
-                <Text c="#6D758F">{el.info}</Text>
+                <Text c="#6D758F">{review.review}</Text>
               </Box>
               <Text c="#6D758F" fw={600}>
-                {el.name}
+                {review.name}
               </Text>
             </Carousel.Slide>
           ))}
@@ -69,4 +84,5 @@ const Stories = () => {
     </Box>
   );
 };
+
 export default Stories;

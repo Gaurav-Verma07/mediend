@@ -1,38 +1,76 @@
-"use client";
-import { Accordion, Box, Image, rem, Title } from "@mantine/core";
-import classes from "./faq.module.css";
-import { useState } from "react";
-import { faqs } from "./faqs";
-import { IconChevronCompactRight, IconChevronRight } from "@tabler/icons-react";
+"use client"
 
-const FrequentlyAskedQuestions = () => {
+import React, { useState } from "react";
+import { Accordion, Box, Title } from "@mantine/core";
+import { IconChevronRight } from "@tabler/icons-react";
+import classes from "./faq.module.css";
+
+// Define the type for an individual FAQ item
+export interface FAQItem {
+  question: string;  // Question
+  answer: string;  // Answer
+}
+
+// Props interface for the component
+interface FrequentlyAskedQuestionsProps {
+  faqs: FAQItem[];
+  title?: string;
+  emptyStateMessage?: string;
+  className?: string;
+}
+
+const FrequentlyAskedQuestions: React.FC<FrequentlyAskedQuestionsProps> = ({
+  faqs,
+  title = "Frequently Asked Questions",
+  emptyStateMessage = "No questions available at the moment.",
+  className
+}) => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
-  console.log(activeItem);
+
+  // Handle empty state
+  if (!faqs || faqs.length === 0) {
+    return (
+      <Box my={100} data-aos="zoom-in" className={className}>
+        <Title className={classes.main__title} data-aos="zoom-in-up">
+          {title}
+        </Title>
+        <Box className={classes.accordion__main}>
+          {emptyStateMessage}
+        </Box>
+      </Box>
+    );
+  }
+
   return (
-    <Box my={100} data-aos="zoom-in">
+    <Box my={100} data-aos="zoom-in" className={className}>
       <Title className={classes.main__title} data-aos="zoom-in-up">
-        Frequently Asked Questions
+        {title}
       </Title>
       <Box className={classes.accordion__main}>
         <Accordion
           variant="separated"
           value={activeItem}
           onChange={setActiveItem}
-          chevron={
-            <IconChevronRight/>
-          }
-          classNames={{ item: classes.item, chevron: classes.chevron }}
+          chevron={<IconChevronRight />}
+          classNames={{ 
+            item: classes.item, 
+            chevron: classes.chevron 
+          }}
         >
-          {faqs?.map((el, index: number) => (
+          {faqs.map((faq, index) => (
             <Accordion.Item
               key={index}
               className={`${classes.item} ${
-                activeItem === el.que ? classes.activeItem : ""
+                activeItem === faq.question ? classes.activeItem : ""
               }`}
-              value={el.que}
+              value={faq.question}
             >
-              <Accordion.Control c="#170F49">{el.que}</Accordion.Control>
-              <Accordion.Panel c="#6F6C90">{el.ans}</Accordion.Panel>
+              <Accordion.Control c="#170F49">
+                {faq.question}
+              </Accordion.Control>
+              <Accordion.Panel c="#6F6C90">
+                {faq.answer}
+              </Accordion.Panel>
             </Accordion.Item>
           ))}
         </Accordion>
@@ -40,4 +78,5 @@ const FrequentlyAskedQuestions = () => {
     </Box>
   );
 };
+
 export default FrequentlyAskedQuestions;
