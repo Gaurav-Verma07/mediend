@@ -52,7 +52,7 @@ const DoctorProfile = () => {
        {
         [1,2,3,4,5,6].map((item,idx)=>{
             return (
-                <Card key={idx} radius={"lg"} mb={"lg"}>
+                <Card key={idx} radius={"lg"} mb={"lg"} shadow="md">
                 <div className="flex gap-4 justify-center items-center">
                   <div className="col-span-1">
                     <Image
