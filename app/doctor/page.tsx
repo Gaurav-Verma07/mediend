@@ -48,7 +48,7 @@ const DoctorProfile = () => {
             <Title c={"blue"}>When you need answers, Best Doctors can help</Title>
             <Text size='xl' c={"dimmed"}> Find the care you need</Text>
         </div>
-    <div className="shadow-xl rounded-lg overflow-hidden p-6 md:px-12 bg-slate-100 columns-2 gap-8 ">
+    <div className="shadow-xl rounded-lg overflow-hidden p-6 md:px-12 bg-slate-100 grid grid-cols-1 md:grid-cols-2 gap-8 ">
        {
         [1,2,3,4,5,6].map((item,idx)=>{
             return (
