@@ -83,7 +83,7 @@ export interface Doctor {
 
 export default function Page() {
   const params = useParams()
-const { disease } = params
+const { doctorName } = params
 
 const headerRef = useRef(null);
 const [isSticky, setIsSticky] = useState(false);
@@ -118,7 +118,7 @@ useEffect(() => {
     setError(error);
     setIsLoading(false);
   });
-}, [disease])
+}, [doctorName])
 
 
 if (isLoading) return <div>Loading...</div>
