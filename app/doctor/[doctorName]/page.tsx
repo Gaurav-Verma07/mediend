@@ -134,7 +134,7 @@ if (!pageData) return <div>No data found</div>
           <Grid.Col span={8}>
 
             {/* Hero */}
-            <Card shadow="md">
+
             <Stack>
                 <Image src={pageData.imageUrl} maw={250} className=" rounded-md "></Image>
                 <Flex gap={"sm"} align={"center"}>
@@ -182,7 +182,6 @@ if (!pageData) return <div>No data found</div>
                   </Flex>
                 </Group> 
             </Stack>
-            </Card>
 
             {/* Description */}
 

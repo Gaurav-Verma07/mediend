@@ -18,11 +18,11 @@ const StickyTabs = () => {
     const handleScroll = () => {
       if (!tabsRef.current) return;
 
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollTop = window.scrollY|| document.documentElement.scrollTop;
 
 
       // Add sticky if scrolled past original position; remove sticky when scrolling back up
-      setIsSticky(scrollTop-300 > originalOffset);
+      setIsSticky(scrollTop-900 > originalOffset);
     };
 
     // Add scroll event listener
