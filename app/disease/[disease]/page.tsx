@@ -122,7 +122,7 @@ const [error, setError] = useState(null)
 
 useEffect(() => {
   setIsLoading(true)
-  fetch('https://7rljkuk3.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27disease%27%5D%7B%0A++++title%2C%0A++header%2C%0A++shortDescription%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++featuredTreatments%2C%0A++content%2C%0A++infoCards%0A%7D%5B0%5D', {
+  fetch('https://7rljkuk3.apicdn.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27disease%27%5D%7B%0A++++title%2C%0A++header%2C%0A++shortDescription%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++featuredTreatments%2C%0A++content%2C%0A++infoCards%0A%7D%5B0%5D', {
     method: "GET",
     headers: {
       "Content-type": "application/json"
@@ -165,7 +165,7 @@ if (!pageData) return <div>No data found</div>
       <Group grow p={"xl"} bg={"#F8F9FA"}>
         <Grid grow gutter={"xl"} className="relative">
           <Grid.Col span={8}>
-            <Grid grow gutter={"md"}>
+            <Grid grow gutter={"sm"}>
               <Grid.Col span={6}>
                 <Group my={"lg"}>
                   <Title>
@@ -229,10 +229,21 @@ if (!pageData) return <div>No data found</div>
                     </Button>
                   </Flex>
                 </Group>
+                
               </Grid.Col>
+
               <Grid.Col span={{ base: 0, md: 2, lg: 2 }}>
                 <Image src={pageData.imageUrl}></Image>
               </Grid.Col>
+
+              <Grid.Col span={8} className="hidden sm:flex ">
+              <Group >
+                  <Card w={"100%"}>
+                        <Image src={"https://s3-alpha-sig.figma.com/img/1ccd/0a20/2477415d64f1e10258a27b64a05499cc?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=M7vTDrmeMQWNZvKB07vWlMySKpX4CmeNHEkAa0SM6uqPLzeaKqCHHUJ4wqPCoNPO45OLnIYmVikXyIawoTUBqV0gNtIDtVQho3lv3oXVDWF2-16iDn1ATneAjTmcW6EH8oEqo-tyznL4Lt8gdomkUtHNPJIC~169BuOlrv588SXHmMUy0AhsBWWA6YkDJ2qql~OLJ7WSFornpViJk2qgPG4nYk0LVLkZSUj4PSDExWGaRZgAF-rpiOi8sxVsguylPvGGqxmoH~6P4REba3JUNTfyZVA7baDvpYRelMaN5OmiUmGCjcG6vj2hvnLqwlen~UGiMT6KQuO4mR~tWqCJ6A__"} className=" scale-125"></Image>
+                  </Card>
+                </Group>
+              </Grid.Col>
+
 
               <Card radius={"lg"} shadow="lg" m={"lg"}>
 
