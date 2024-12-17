@@ -162,7 +162,7 @@ if (!pageData) return <div>No data found</div>
 
   return (
     <>
-      <Group grow p={"xl"}>
+      <Group grow p={"xl"} bg={"#F8F9FA"}>
         <Grid grow gutter={"xl"} className="relative">
           <Grid.Col span={8}>
             <Grid grow gutter={"md"}>
@@ -234,8 +234,10 @@ if (!pageData) return <div>No data found</div>
                 <Image src={pageData.imageUrl}></Image>
               </Grid.Col>
 
+              <Card radius={"lg"} shadow="lg" m={"lg"}>
+
               <Grid.Col span={6} mt={"lg"}>
-                <hr style={{ margin: "2rem 0" }} />
+                {/* <hr style={{ margin: "2rem 0" }} /> */}
                 <Grid>
                 {pageData.infoCards.map((card, index) => (
         <Grid.Col key={card._key} span={{base:12, md:6}}>
@@ -271,6 +273,9 @@ if (!pageData) return <div>No data found</div>
                 <hr style={{ margin: "2rem 0", color: "grey" }} />
               </Grid.Col>
 
+              </Card>
+
+
               <Grid.Col span={8} mt={"lg"}>
                 <Stack gap={"lg"}>
                 <Title order={2}>Featured Treatments</Title>
@@ -289,6 +294,7 @@ if (!pageData) return <div>No data found</div>
                 </Stack>
               </Grid.Col>
 
+              <Card radius={"lg"} shadow="lg" m={"lg"} w={"100%"}> 
               <Grid.Col span={8} mt={"lg"}>
                 <Stack  gap={"lg"}>
                 <Title order={2}>Why opt for Minimally Invasive Lipoma Procedure?</Title>
@@ -304,6 +310,7 @@ if (!pageData) return <div>No data found</div>
                 </Table>
                 </Stack>
               </Grid.Col>
+              </Card>
               <Grid.Col span={8} mt={"lg"}>
                 <Stack gap={"lg"}>
                 <Title order={2}>Our Expert Doctors</Title>
@@ -394,11 +401,13 @@ if (!pageData) return <div>No data found</div>
                 </Carousel>
                 </Stack>
               </Grid.Col>
+              <Card radius={"lg"} shadow="lg" m={"lg"}>
               <Grid.Col span={8} mt={"lg"}>
                 <div className="prose max-w-full ">
                 <PortableText value={pageData.content}/>
                 </div>
               </Grid.Col>
+              </Card>
             </Grid>
           </Grid.Col>
           <Grid.Col span={3} pos={"relative"}>
