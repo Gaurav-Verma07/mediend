@@ -55,8 +55,8 @@ const DoctorProfile = () => {
        {
         pageData.map((item,idx)=>{
             return (
-              <Link href={`/doctor/${item.slug}`}>
-                <Card key={idx} radius={"lg"} mb={"lg"} shadow="md">
+              <Link href={`/doctor/${item.slug}`} key={idx}>
+                <Card  radius={"lg"} mb={"lg"} shadow="md">
                 <div className="flex gap-4 justify-center items-center">
                   <div className="col-span-1">
                     <Image
