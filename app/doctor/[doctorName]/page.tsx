@@ -50,6 +50,7 @@ import Footer from "../../components/Footer/Footer";
 import Link from "next/link";
 import StickyTabs from "../../components/Doctors/StickyTabs/StickyTabs";
 import ArticleCard from "../../components/Doctors/ArticleCard/ArticleCard";
+import LoadingScreen from "../../components/Loading/loading";
 
 
 export interface Treatment {
@@ -121,7 +122,7 @@ useEffect(() => {
 }, [doctorName])
 
 
-if (isLoading) return <div>Loading...</div>
+if (isLoading) return <LoadingScreen/>
 if (error) return <div>Error loading data</div>
 if (!pageData) return <div>No data found</div>
 

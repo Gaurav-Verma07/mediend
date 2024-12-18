@@ -40,6 +40,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { PortableText } from "@portabletext/react";
 import Footer from "../../components/Footer/Footer";
+import LoadingScreen from "../../components/Loading/loading";
 
 const elements = [
   { property: "Incision Size", traditional: "5-7cm", minimallyInvasive: "1-2cm"},
@@ -147,7 +148,7 @@ useEffect(() => {
 }, [disease])
 
 
-if (isLoading) return <div>Loading...</div>
+if (isLoading) return <LoadingScreen/>
 if (error) return <div>Error loading data</div>
 if (!pageData) return <div>No data found</div>
 

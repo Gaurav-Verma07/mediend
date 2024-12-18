@@ -5,6 +5,7 @@ import { Card } from "@mantine/core"
 import { IconPhone, IconCalendarEvent, IconBrandWhatsapp, IconArrowRight, IconStar, IconStarFilled } from '@tabler/icons-react';
 import sanityClient from '@sanity/client';
 import { Doctor } from './[doctorName]/page';
+import LoadingScreen from '../components/Loading/loading';
 
 
 
@@ -40,7 +41,8 @@ const DoctorProfile = () => {
       });
     }, [])
 
-  if (!pageData) return <div>Loading...</div>;
+    if (isLoading) return <LoadingScreen/>
+    if (!pageData) return <p> Please check your connection </p>
 
   return (
     <main>
