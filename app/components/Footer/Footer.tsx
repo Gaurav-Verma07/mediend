@@ -312,7 +312,7 @@ const Footer = () => {
       <Box className={classes.footer__bottom}>
         <Image
           src="/assets/footer_logo.png"
-          height={100}
+          h={100}
           fit="contain"
           alt="logo"
         />

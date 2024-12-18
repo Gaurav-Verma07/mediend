@@ -1,104 +1,165 @@
-"use client";
-import cx from "clsx";
-import { useState } from "react";
-import {
-  Container,
-  Avatar,
-  UnstyledButton,
-  Group,
-  Text,
-  Menu,
-  Tabs,
-  Burger,
-  rem,
-  useMantineTheme,
-  Image,
-  Button,
-  Input,
-  Box,
-  Drawer,
-  Modal,
-} from "@mantine/core";
-import { useDisclosure, useMediaQuery } from "@mantine/hooks";
-import { IconSearch } from "@tabler/icons-react";
-import { tabs } from "./headerData";
-import HoverCards from "./HoverCards";
-import {
-  LinksGroup,
-  LinksGroupProps,
-  NavbarLinksGroup,
-} from "./NavbarLinksGroup";
-import Appointment from "../Appointment/Appointment";
+"use client"
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { IconChevronDown, IconSearch, IconMenu2, IconX } from '@tabler/icons-react';
+import Image from 'next/image';
+import Logo from '../../../public/logo.png'
+import {tabs} from "./headerData"
+import { Button, Modal, TextInput } from '@mantine/core';
+import Appointment from '../Appointment/Appointment';
+import { useDisclosure } from '@mantine/hooks';
 import classes from "./Header.module.css";
 
-const user = {
-  name: "Jane Spoonfighter",
-  email: "janspoon@fighter.dev",
-  image:
-    "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-5.png",
-};
+const MedicalServicesNavigation = () => {
+  const [activeTab, setActiveTab] = useState<number | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [modalOpened, { open: modalOpen, close: modalClose }] = useDisclosure(false);
 
-const Header = () => {
-  const [modalOpened, { open: modalOpen, close: modalClose }] =
-    useDisclosure(false);
-  const [opened, { toggle, close }] = useDisclosure(false);
-  const mobile = useMediaQuery(`(min-width: 1200px)`);
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+    setActiveTab(null);
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+    setActiveTab(null);
+  };
 
   return (
     <>
-      <div className={classes.header}>
-        <Container className={classes.mainSection} size="xl">
-          <Group justify="space-between">
-            <Image src={"/logo.png"} alt="logo" height={80} />
-
-            {mobile && (
-              <Box style={{ display: "flex" }}>
-                <Input
-                  radius="md"
-                  w={250}
-                  classNames={{ input: classes.input }}
-                  leftSection={<IconSearch />}
-                  placeholder="Search ..."
-                  mr={30}
-                />
-                <Button onClick={modalOpen} radius="xl" bg="#4A3AFF">
-                  Schedule Call
-                </Button>
-              </Box>
-            )}
-            <Burger
-              opened={opened}
-              onClick={toggle}
-              hiddenFrom="lg"
-              size="sm"
+      <nav className="w-full bg-white shadow-md py-2">
+        {/* Mobile Header */}
+        <div className="md:hidden flex justify-between items-center px-4 py-2">
+          <Image src={Logo} alt='logo' height={40} width={100} />
+          <div className="flex items-center gap-3">
+            <TextInput 
+              placeholder="Search..." 
+              variant="filled" 
+              leftSection={<IconSearch/>} 
+              className="w-full max-w-[200px]"
             />
-          </Group>
-        </Container>
-        {mobile && (
-          <Container size="xl" className={classes.subHeader} mb={5}>
-            <Box>
-              {tabs.map((el: any, index: number) => (
-                <HoverCards key={index} data={el} />
-              ))}
-            </Box>
-          </Container>
+            <button onClick={toggleMobileMenu} className="p-2">
+              {mobileMenuOpen ? <IconX size={24} /> : <IconMenu2 size={24} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Desktop Header */}
+        <div className="hidden md:flex container justify-between items-center px-4 md:px-8">
+          <div className="flex justify-between items-center w-full">
+            <Image src={Logo} alt='logo' height={40} width={100} />
+            <div className='flex gap-4 justify-center items-center'>
+              <TextInput 
+                placeholder="Search..." 
+                variant="filled" 
+                leftSection={<IconSearch/>} 
+                className="w-[250px]"
+              />
+              <Button onClick={modalOpen}> Book Free Consultation </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white absolute top-20 left-0 w-full z-50 shadow-lg">
+            {tabs.map((tab, index) => (
+              <div key={index} className="border-b">
+                <button 
+                  onClick={() => setActiveTab(activeTab === index ? null : index)}
+                  className="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-gray-100"
+                >
+                  {tab.label}
+                  {tab.links.length > 0 && (
+                    <IconChevronDown 
+                      className={`ml-2 h-5 w-5 transform transition-transform ${
+                        activeTab === index ? 'rotate-180' : ''
+                      }`} 
+                    />
+                  )}
+                </button>
+                
+                {tab.links.length > 0 && activeTab === index && (
+                  <div className="bg-gray-50 px-4">
+                    {tab.links.map((link, linkIndex) => (
+                      <Link
+                        key={linkIndex}
+                        href={link.link || '#'}
+                        className="block py-2 text-gray-700 hover:text-blue-600"
+                        onClick={closeMobileMenu}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+            <div className="p-4">
+              <Button 
+                onClick={() => {
+                  modalOpen();
+                  closeMobileMenu();
+                }} 
+                className="w-full"
+              >
+                Book Free Consultation
+              </Button>
+            </div>
+          </div>
         )}
-        <Drawer opened={opened} onClose={close}>
-          {tabs.map((el, index: number) => (
-            <LinksGroup {...el} key={index} />
-          ))}
-        </Drawer>
-      </div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:block container mx-auto px-4 md:px-8">
+          <div className="flex flex-row justify-center items-center">
+            {tabs.map((tab, index) => (
+              <div
+                key={index}
+                className="relative group"
+                onMouseEnter={() => setActiveTab(index)}
+                onMouseLeave={() => setActiveTab(null)}
+              >
+                <button
+                  className="p-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600 flex items-center text-sm"
+                >
+                  {tab.label}
+                  {tab.links.length > 0 && (
+                    <IconChevronDown className="ml-2 h-4 w-4" />
+                  )}
+                </button>
+               
+                {tab.links.length > 0 && activeTab === index && (
+                  <div className="absolute z-50 left-1/2 -translate-x-1/2 mt-0 bg-white shadow-lg border rounded-md min-w-[250px] max-w-[calc(100vw-2rem)]">
+                    <div className="py-2">
+                      {tab.links.map((link, linkIndex) => (
+                        <Link
+                          key={linkIndex}
+                          href={link.link || '#'}
+                          className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600"
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </nav>
+
       <Modal
-        opened={modalOpened}
-        onClose={modalClose}
-        radius="lg"
+        size={"55em"}
         classNames={{
           content: classes.modal__content,
           header: classes.modal__header,
           title: classes.modal__title,
           close: classes.modal__close,
         }}
+        opened={modalOpened}
+        onClose={modalClose}
+        radius="lg"
         title="Book Your FREE Consultation Now"
       >
         <Appointment />
@@ -107,4 +168,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default MedicalServicesNavigation;

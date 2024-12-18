@@ -10,6 +10,7 @@ export const metadata = {
 };
 import "./global.css";
 import AOSContainer from "./components/AOS/AOS";
+import Footer from "./components/Footer/Footer";
 
 export default function RootLayout({ children }: { children: any }) {
   return (
@@ -26,8 +27,11 @@ export default function RootLayout({ children }: { children: any }) {
           <MantineProvider defaultColorScheme="light" theme={theme}>
             <Header />
             {children}
+            <Footer/>
+
           </MantineProvider>
         </AOSContainer>
+
       </body>
     </html>
   );
