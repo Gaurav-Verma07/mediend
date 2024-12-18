@@ -117,7 +117,7 @@ const AppointmentForm = () => {
             maxDropdownHeight={200}
 
           />
-          <Autocomplete
+          {/* <Autocomplete
             classNames={{ label: classes.label, input: classes.input__input }}
             label="Select Disease"
             my={10}
@@ -128,7 +128,7 @@ const AppointmentForm = () => {
             maxDropdownHeight={200}
             data={diseasesList}
             
-          />
+          /> */}
           <Button
             type="submit"
             radius="md"

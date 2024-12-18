@@ -10,14 +10,14 @@ import LoadingScreen from '../components/Loading/loading';
 
 
 const DoctorProfile = () => {
-    const [pageData, setPageData] = useState<Doctor | null >(null)
+    const [pageData, setPageData] = useState<Doctor[] | null >(null)
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
     
     
     useEffect(() => {
       setIsLoading(true)
-      fetch('https://7rljkuk3.apicdn.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27doctor%27%5D%7B%0A++title%2C%0A++speciality%2C%0A++degrees%2C%0A++%22imageUrl%22%3A+image.asset-%3Eurl%2C%0A++yearsOfExperience%2C%0A++aboutDoctor%2C%0A++treatments%2C%0A++%22reviews%22%3A+reviews%5B%5D%7B%0A++++name%2C%0A++++%22imageUrl%22%3A+image.asset-%3Eurl%2C%0A++++review%2C%0A++++highlight%0A++%7D%2C%0A++faqs%0A%7D%5B0%5D', {
+      fetch('https://7rljkuk3.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27doctor%27%5D+%7C+order%28_createdAt+desc%29%7B%0A++title%2C%0A++speciality%2C%0A++%22slug%22%3Aslug.current%2C%0A++degrees%2C%0A++%22imageUrl%22%3A+image.asset-%3Eurl%2C%0A++yearsOfExperience%2C%0A++aboutDoctor%2C%0A++treatments%2C%0A++%22reviews%22%3A+reviews%5B%5D%7B%0A++++name%2C%0A++++%22imageUrl%22%3A+image.asset-%3Eurl%2C%0A++++review%2C%0A++++highlight%0A++%7D%2C%0A++faqs%0A%7D', {
         method: "GET",
         headers: {
           "Content-type": "application/json"
@@ -52,13 +52,13 @@ const DoctorProfile = () => {
         </div>
     <div className="shadow-xl rounded-lg overflow-hidden p-6 md:px-12 bg-slate-100 grid grid-cols-1 md:grid-cols-2 gap-8 ">
        {
-        [1,2,3,4,5,6].map((item,idx)=>{
+        pageData.map((item,idx)=>{
             return (
                 <Card key={idx} radius={"lg"} mb={"lg"} shadow="md">
                 <div className="flex gap-4 justify-center items-center">
                   <div className="col-span-1">
                     <Image
-                      src={pageData.imageUrl}
+                      src={item.imageUrl}
                       alt="Doctor"
                       radius="md"
                       fit="cover"
@@ -70,14 +70,14 @@ const DoctorProfile = () => {
                     <Group justify="apart" align="center">
                       <div>
                         <Flex gap={"sm"} align={"center"} >
-                        <Text size="xl"  className='text-blue-700 '>{pageData.title}</Text>
+                        <Text size="xl"  className='text-blue-700 '>{item.title}</Text>
                         <Badge c="blue" variant="light">4.7</Badge>
                         <IconStarFilled className='h-4 text-yellow-400'></IconStarFilled>
                         </Flex>
-                        <Text size="sm" c="blue">{pageData.degrees}</Text>
+                        <Text size="sm" c="blue">{item.degrees}</Text>
                       </div>
                     </Group>
-                    <Text size="sm" c="dark" mt={4}>{pageData.yearsOfExperience} Years Experience</Text>
+                    <Text size="sm" c="dark" mt={4}>{item.yearsOfExperience} Years Experience</Text>
                     <Text size="sm" c="dark" mt={4}>Mediend Care Clinic, Bangalore</Text>
                   </div>
 
