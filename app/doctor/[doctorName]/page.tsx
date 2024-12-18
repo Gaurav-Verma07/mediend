@@ -72,6 +72,7 @@ export interface FAQ {
 
 export interface Doctor {
   title: string;
+  slug?:string;
   imageUrl:string;
   speciality: string;
   degrees: string;

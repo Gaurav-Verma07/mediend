@@ -6,6 +6,7 @@ import { IconPhone, IconCalendarEvent, IconBrandWhatsapp, IconArrowRight, IconSt
 import sanityClient from '@sanity/client';
 import { Doctor } from './[doctorName]/page';
 import LoadingScreen from '../components/Loading/loading';
+import Link from 'next/link';
 
 
 
@@ -54,6 +55,7 @@ const DoctorProfile = () => {
        {
         pageData.map((item,idx)=>{
             return (
+              <Link href={`/doctor/${item.slug}`}>
                 <Card key={idx} radius={"lg"} mb={"lg"} shadow="md">
                 <div className="flex gap-4 justify-center items-center">
                   <div className="col-span-1">
@@ -67,6 +69,7 @@ const DoctorProfile = () => {
                     />
                   </div>
                   <div className="col-span-2 p-6">
+
                     <Group justify="apart" align="center">
                       <div>
                         <Flex gap={"sm"} align={"center"} >
@@ -111,7 +114,8 @@ const DoctorProfile = () => {
                   </Group>
                 </div>
                 </Card>
-                  
+                </Link>
+
             )
         })
        } 
