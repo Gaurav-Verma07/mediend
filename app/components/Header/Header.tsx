@@ -35,22 +35,14 @@ const MedicalServicesNavigation = () => {
     <>
       <nav className="w-full bg-white shadow-md py-2">
         {/* Mobile Header */}
-        <div className="md:hidden flex justify-between items-center px-4 py-2">
-          <Box component={Link} href="/">
-            <Image
-              style={{ cursor: "pointer" }}
-              src={Logo}
-              alt="logo"
-              height={40}
-              width={100}
-            />
-          </Box>
+        <div className="lg:hidden flex justify-between items-center px-4 py-2">
+          <Image src={Logo} alt='logo' height={40} width={100} />
           <div className="flex items-center gap-3">
-            <TextInput
-              placeholder="Search..."
-              variant="filled"
-              leftSection={<IconSearch />}
-              className="w-full max-w-[200px] hidden md:flex"
+            <TextInput 
+              placeholder="Search..." 
+              variant="filled" 
+              leftSection={<IconSearch/>} 
+              className="w-full max-w-[200px] hidden lg:flex"
             />
             <button onClick={toggleMobileMenu} className="p-2">
               {mobileMenuOpen ? <IconX size={24} /> : <IconMenu2 size={24} />}
@@ -59,7 +51,7 @@ const MedicalServicesNavigation = () => {
         </div>
 
         {/* Desktop Header */}
-        <div className="hidden md:flex container justify-between items-center px-4 md:px-8">
+        <div className="hidden lg:flex container justify-between items-center px-4 lg:px-8">
           <div className="flex justify-between items-center w-full">
             <Box component={Link} href="/">
               <Image
@@ -84,7 +76,7 @@ const MedicalServicesNavigation = () => {
 
         {/* Mobile Navigation Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-white absolute top-20 left-0 w-full z-50 shadow-lg">
+          <div className="lg:hidden bg-white absolute top-20 left-0 w-full z-50 shadow-lg">
             {tabs.map((tab, index) => (
               <div key={index} className="border-b">
                 <button
@@ -134,7 +126,7 @@ const MedicalServicesNavigation = () => {
         )}
 
         {/* Desktop Navigation */}
-        <div className="hidden md:block container mx-auto px-4 md:px-8">
+        <div className="hidden lg:block container mx-auto px-4 lg:px-8">
           <div className="flex flex-row justify-center items-center">
             {tabs.map((tab, index) => (
               <div
