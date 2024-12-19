@@ -1,19 +1,25 @@
-"use client"
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { IconChevronDown, IconSearch, IconMenu2, IconX } from '@tabler/icons-react';
-import Image from 'next/image';
-import Logo from '../../../public/logo.png'
-import {tabs} from "./headerData"
-import { Button, Modal, TextInput } from '@mantine/core';
-import Appointment from '../Appointment/Appointment';
-import { useDisclosure } from '@mantine/hooks';
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
+import {
+  IconChevronDown,
+  IconSearch,
+  IconMenu2,
+  IconX,
+} from "@tabler/icons-react";
+import Image from "next/image";
+import Logo from "../../../public/logo.png";
+import { tabs } from "./headerData";
+import { Box, Button, Modal, TextInput } from "@mantine/core";
+import Appointment from "../Appointment/Appointment";
+import { useDisclosure } from "@mantine/hooks";
 import classes from "./Header.module.css";
 
 const MedicalServicesNavigation = () => {
   const [activeTab, setActiveTab] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [modalOpened, { open: modalOpen, close: modalClose }] = useDisclosure(false);
+  const [modalOpened, { open: modalOpen, close: modalClose }] =
+    useDisclosure(false);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -47,12 +53,20 @@ const MedicalServicesNavigation = () => {
         {/* Desktop Header */}
         <div className="hidden lg:flex container justify-between items-center px-4 lg:px-8">
           <div className="flex justify-between items-center w-full">
-            <Image src={Logo} alt='logo' height={40} width={100} />
-            <div className='flex gap-4 justify-center items-center'>
-              <TextInput 
-                placeholder="Search..." 
-                variant="filled" 
-                leftSection={<IconSearch/>} 
+            <Box component={Link} href="/">
+              <Image
+                style={{ cursor: "pointer" }}
+                src={Logo}
+                alt="logo"
+                height={40}
+                width={100}
+              />
+            </Box>
+            <div className="flex gap-4 justify-center items-center">
+              <TextInput
+                placeholder="Search..."
+                variant="filled"
+                leftSection={<IconSearch />}
                 className="w-[250px]"
               />
               <Button onClick={modalOpen}> Book Free Consultation </Button>
@@ -65,26 +79,28 @@ const MedicalServicesNavigation = () => {
           <div className="lg:hidden bg-white absolute top-20 left-0 w-full z-50 shadow-lg">
             {tabs.map((tab, index) => (
               <div key={index} className="border-b">
-                <button 
-                  onClick={() => setActiveTab(activeTab === index ? null : index)}
+                <button
+                  onClick={() =>
+                    setActiveTab(activeTab === index ? null : index)
+                  }
                   className="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-gray-100"
                 >
                   {tab.label}
                   {tab.links.length > 0 && (
-                    <IconChevronDown 
+                    <IconChevronDown
                       className={`ml-2 h-5 w-5 transform transition-transform ${
-                        activeTab === index ? 'rotate-180' : ''
-                      }`} 
+                        activeTab === index ? "rotate-180" : ""
+                      }`}
                     />
                   )}
                 </button>
-                
+
                 {tab.links.length > 0 && activeTab === index && (
                   <div className="bg-gray-50 px-4">
                     {tab.links.map((link, linkIndex) => (
                       <Link
                         key={linkIndex}
-                        href={link.link || '#'}
+                        href={link.link || "#"}
                         className="block py-2 text-gray-700 hover:text-blue-600"
                         onClick={closeMobileMenu}
                       >
@@ -96,11 +112,11 @@ const MedicalServicesNavigation = () => {
               </div>
             ))}
             <div className="p-4">
-              <Button 
+              <Button
                 onClick={() => {
                   modalOpen();
                   closeMobileMenu();
-                }} 
+                }}
                 className="w-full"
               >
                 Book Free Consultation
@@ -119,22 +135,20 @@ const MedicalServicesNavigation = () => {
                 onMouseEnter={() => setActiveTab(index)}
                 onMouseLeave={() => setActiveTab(null)}
               >
-                <button
-                  className="p-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600 flex items-center text-sm"
-                >
+                <button className="p-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600 flex items-center text-sm">
                   {tab.label}
                   {tab.links.length > 0 && (
                     <IconChevronDown className="ml-2 h-4 w-4" />
                   )}
                 </button>
-               
+
                 {tab.links.length > 0 && activeTab === index && (
                   <div className="absolute z-50 left-1/2 -translate-x-1/2 mt-0 bg-white shadow-lg border rounded-md min-w-[250px] max-w-[calc(100vw-2rem)]">
                     <div className="py-2">
                       {tab.links.map((link, linkIndex) => (
                         <Link
                           key={linkIndex}
-                          href={link.link || '#'}
+                          href={link.link || "#"}
                           className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600"
                         >
                           {link.label}

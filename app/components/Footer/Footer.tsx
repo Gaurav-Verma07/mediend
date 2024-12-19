@@ -28,7 +28,7 @@ const surgeryItems = [
 ];
 
 const quickLinks = [
-  { label: "About Us", link: "https://mediend.com/about-us.php" },
+  { label: "About Us", link: "/about-us" },
   { label: "Our Experts", link: "https://mediend.com/our-expert.php" },
   { label: "Blogs", link: "https://mediend.com/blogs-wp/" },
   { label: "Careers", link: "https://mediend.com/career.php" },

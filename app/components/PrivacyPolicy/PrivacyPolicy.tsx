@@ -55,7 +55,7 @@ const PrivacyPolicy = () => {
         Information”). Personal Information includes (but is not limited to) the
         following categories of information:
       </Text>
-      <List type="unordered" withPadding my={20}>
+      <List type="unordered" my={20} listStyleType="disc">
         <List.Item>
           contact data (such as your mobile number, email address and other
           contact phone number);
@@ -92,7 +92,7 @@ const PrivacyPolicy = () => {
         We also may automatically collect certain data when you use the
         Services, such as
       </Text>
-      <List type="ordered" withPadding my={20}>
+      <List type="ordered" my={20} listStyleType="decimal">
         <List.Item>IP address</List.Item>
         <List.Item>domain server</List.Item>
         <List.Item>type of device(s) used to access the Services</List.Item>
@@ -118,7 +118,7 @@ const PrivacyPolicy = () => {
         when you use and interact with the Services, and in some cases from
         third party sources. Such means of the collection include:
       </Text>
-      <List type="unordered" withPadding my={20}>
+      <List type="unordered" my={20} listStyleType="disc">
         <List.Item>
           3.1 When you use the Services’ interactive tools and services, such as
           searching for Healthcare Providers, sending location and chat messages
@@ -161,7 +161,7 @@ const PrivacyPolicy = () => {
         Services and to help improve the Services, to develop new services, or
         to advertise. Such use may include:
       </Text>
-      <List type="unordered" withPadding my={20}>
+      <List type="unordered" my={20} listStyleType="disc">
         <List.Item>
           Providing you with the services and information you request
         </List.Item>
@@ -228,7 +228,7 @@ const PrivacyPolicy = () => {
         about you if we determine in good faith that such disclosure is needed
         to:
       </Text>
-      <List type="ordered" withPadding my={20}>
+      <List type="ordered" my={20} listStyleType="decimal">
         <List.Item>
           comply with or fulfill our obligations under applicable law,
           regulation, court order or other legal processes
