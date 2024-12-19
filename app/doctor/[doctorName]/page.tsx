@@ -291,7 +291,7 @@ if (!pageData) return <div>No data found</div>
                 
                 Speak to one of our representatives by filling the form below
               </Text>
-              <AppointmentForm></AppointmentForm>
+              <AppointmentForm pageName={doctorName}></AppointmentForm>
             </Card>
           </Grid.Col>
         </Grid>
