@@ -58,6 +58,23 @@ export interface Treatment {
   treatmentLink: string;
 }
 
+interface ContentBlock {
+  _type: string;
+  style: string;
+  _key: string;
+  markDefs?: any[];
+  children: ContentChild[];
+  level?: number;
+  listItem?: string;
+}
+
+interface ContentChild {
+  _type: string;
+  marks: string[];
+  text: string;
+  _key: string;
+}
+
 export interface Review {
   name: string;
   imageUrl:string;
@@ -77,7 +94,9 @@ export interface Doctor {
   speciality: string;
   degrees: string;
   yearsOfExperience: number;
-  aboutDoctor: any[]; // Sanity block content
+  aboutDoctor: ContentBlock[]; // Sanity block content
+  additionalContent1: ContentBlock[]; // Sanity block content
+  additionalContent2: ContentBlock[]; // Sanity block content
   treatments: Treatment[];
   reviews: Review[];
   faqs: FAQ[];
@@ -98,7 +117,7 @@ const [error, setError] = useState(null)
 
 useEffect(() => {
   setIsLoading(true)
-  fetch(`https://7rljkuk3.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27doctor%27%26%26slug.current%3D%3D%27${doctorName}%27%5D%7B%0A++title%2C%0A++speciality%2C%0A++%22slug%22%3Aslug.current%2C%0A++degrees%2C%0A++%22imageUrl%22%3A+image.asset-%3Eurl%2C%0A++yearsOfExperience%2C%0A++aboutDoctor%2C%0A++treatments%2C%0A++%22reviews%22%3A+reviews%5B%5D%7B%0A++++name%2C%0A++++%22imageUrl%22%3A+image.asset-%3Eurl%2C%0A++++review%2C%0A++++highlight%0A++%7D%2C%0A++faqs%0A%7D%5B0%5D`, {
+  fetch(`https://7rljkuk3.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27doctor%27%26%26slug.current%3D%3D%27${doctorName}%27%5D%7B%0A++++title%2C%0A++%22slug%22%3Aslug.current%2C%0A++speciality%2C%0A++degrees%2C%0A++++++yearsOfExperience%2C%0A++++++%22reviews%22%3A+reviews%5B%5D%7B%0A++++name%2C%0A++++%22imageUrl%22%3A+image.asset-%3Eurl%2C%0A++++review%2C%0A++++highlight%0A++%7D%2C%0A++++++faqs%2C%0A++++++%0A++%22imageUrl%22%3A+image.asset-%3Eurl%2C%0A++treatments%2C%0A++aboutDoctor%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D%0A`, {
     method: "GET",
     headers: {
       "Content-type": "application/json"
@@ -131,17 +150,21 @@ if (!pageData) return <div>No data found</div>
 
   return (
     <>
+
       <Group grow p={"xl"} bg={"#F8F9FA"}>
         <Grid grow gutter={"xl"} className="relative">
           <Grid.Col span={8}>
 
             {/* Hero */}
-
-            <Stack>
-                <Image src={pageData.imageUrl} maw={250} className=" rounded-md "></Image>
+            <Grid grow gutter={"xl"} my={"md"}>
+            <Grid.Col span={4}>
+            <Image src={pageData.imageUrl} maw={250} className=" rounded-md "></Image>
+            </Grid.Col>
+            <Grid.Col span={8}>
+            <Stack pos={"relative"}>
                 <Flex gap={"sm"} align={"center"}>
                 <Title c={"#1C7ED6"} className="font-semibold">{pageData.title}</Title>
-                <IconRosetteDiscountCheckFilled color="#1C7ED6"/>
+                <span><IconRosetteDiscountCheckFilled color="#1C7ED6"/></span>
                 </Flex>
                 <div>
                     <Text c={"#5B6B7D"}>{pageData.speciality}</Text>
@@ -151,7 +174,7 @@ if (!pageData) return <div>No data found</div>
                 <Stack gap={"xs"} >
                     <Group gap={"xs"}>
                     <IconBriefcase color="#1C7ED6"/>
-                    <Title order={2} c={"#1C7ED6"}>{pageData.yearsOfExperience}+ Years</Title>
+                    <Title order={4} c={"#1C7ED6"}>{pageData.yearsOfExperience}+ Years</Title>
                     </Group>
                         <Text size="xs" c={"#5F6D7A"}>
                             Experience
@@ -161,14 +184,14 @@ if (!pageData) return <div>No data found</div>
                     <Stack gap={"xs"}>
                     <Group gap={"xs"}>
                     <IconThumbUp color="#1C7ED6"/>
-                    <Title order={2} c={"#1C7ED6"}>99%</Title>
+                    <Title order={4} c={"#1C7ED6"}>99%</Title>
                     </Group>
                         <Text size="xs" c={"#5F6D7A"}>
                             Recommended
                         </Text>
                     </Stack>
                 </div>
-                <Group my={"xl"}>
+                <Group>
                   <Flex gap={"md"} wrap={"wrap"}>
                     <Button size="lg" variant="filled" >
                       Book An Appointment
@@ -184,6 +207,8 @@ if (!pageData) return <div>No data found</div>
                   </Flex>
                 </Group> 
             </Stack>
+            </Grid.Col>
+            </Grid>
 
             {/* Description */}
 
@@ -195,6 +220,24 @@ if (!pageData) return <div>No data found</div>
                 <PortableText value={pageData.aboutDoctor}/>
                 </div>
                 </Card>
+                {
+                  pageData.additionalContent1 && 
+                  <Card shadow="sm" mt={"md"}>
+                  <div className="prose max-w-full ">
+                <PortableText value={pageData.additionalContent1}/>
+                </div>
+                </Card>
+                }
+                {
+                  pageData.additionalContent2 && 
+                  <Card shadow="sm" mt={"md"}>
+
+                  <div className="prose max-w-full ">
+                <PortableText value={pageData.additionalContent2}/>
+                </div>
+                </Card>
+                }
+
 
                 <Card id="treatment" shadow="sm" p={"md"}>
                   <Stack>
@@ -248,7 +291,7 @@ if (!pageData) return <div>No data found</div>
                 
                 Speak to one of our representatives by filling the form below
               </Text>
-              <AppointmentForm></AppointmentForm>
+              <AppointmentForm pageName={doctorName}></AppointmentForm>
             </Card>
           </Grid.Col>
         </Grid>
