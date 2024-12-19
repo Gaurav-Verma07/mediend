@@ -15,7 +15,14 @@ import { diseasesList } from "../Appointment/diseaseList";
 import { citylist } from "../Appointment/citylist";
 import { IconPhonePlus } from "@tabler/icons-react";
 import { useMediaQuery } from "@mantine/hooks";
-const AppointmentForm = () => {
+
+
+
+
+
+
+
+const AppointmentForm = ({pageName}:{pageName:string|string[]|undefined}) => {
   const [active, setActive] = useState(4);
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -36,7 +43,7 @@ const AppointmentForm = () => {
     },
   });
   const form_id = `https://docs.google.com/forms/d/e/${process.env.NEXT_PUBLIC_APPOINTMENT_SHEET_ID}/formResponse?&submit=Submit`;
-
+  const pageNameData = (typeof(pageName)!=='string')?" ":pageName
   const submitHandler = async () => {
     try {
       setIsLoading(true);
@@ -56,7 +63,7 @@ const AppointmentForm = () => {
       );
       formData.append(
         `entry.${process.env.NEXT_PUBLIC_APPOINTMENT_SHEET_ENTRY_4}`,
-        form.values.disease
+        pageNameData
       );
 
       const response = await fetch(form_id, {

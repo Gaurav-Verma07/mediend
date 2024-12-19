@@ -85,6 +85,25 @@ interface LipomaSanityDocument {
   featuredTreatments: string[];
   content: ContentBlock[];
   infoCards: InfoCard[];
+  additionalContent1?: ContentBlock[];
+  
+  additionalContent2?: ContentBlock[];
+
+  reviews?: Review[];
+  faqs?: FAQ[];
+
+}
+
+export interface Review {
+  name: string;
+  imageUrl:string;
+  review: string;
+  highlight: string;
+}
+
+export interface FAQ {
+  question: string;
+  answer: string;
 }
 
 interface ContentBlock {
@@ -114,7 +133,7 @@ interface InfoCard {
 export default function Page() {
   const params = useParams()
 const { disease } = params
-const cardBackgrounds = ["#F4F7FB", "#FFF8F0"];
+const cardBackgrounds = ["#D7E4F2", "#FFEBD9"];
 
  
 const [pageData, setPageData] = useState<LipomaSanityDocument>()
@@ -123,7 +142,7 @@ const [error, setError] = useState(null)
 
 useEffect(() => {
   setIsLoading(true)
-  fetch(`https://7rljkuk3.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27disease%27%26%26slug.current%3D%3D%27${disease}%27%5D%7B%0A++++title%2C%0A++header%2C%0A++%22slug%22%3Aslug.current%2C%0A++shortDescription%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++featuredTreatments%2C%0A++content%2C%0A++infoCards%0A%7D%5B0%5D%0A%0A`, {
+  fetch(`https://7rljkuk3.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27disease%27%26%26slug.current%3D%3D%27${disease}%27%5D%7B%0A++++title%2C%0A++header%2C%0A++%22slug%22%3Aslug.current%2C%0A++shortDescription%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++featuredTreatments%2C%0A++content%2C%0A++infoCards%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D%0A%0A`, {
     method: "GET",
     headers: {
       "Content-type": "application/json"
@@ -413,13 +432,31 @@ if (!pageData) return <div>No data found</div>
                 </Carousel>
                 </Stack>
               </Grid.Col>
-              <Card radius={"lg"} shadow="lg" m={"lg"}>
               <Grid.Col span={8} mt={"lg"}>
+              <Card radius={"lg"} shadow="lg">
                 <div className="prose max-w-full ">
                 <PortableText value={pageData.content}/>
                 </div>
+                </Card>
+                {
+                  pageData.additionalContent1 && 
+                  <Card shadow="sm" mt={"md"} radius={"lg"}>
+                  <div className="prose max-w-full ">
+                <PortableText value={pageData.additionalContent1}/>
+                </div>
+                </Card>
+                }
+                {
+                  pageData.additionalContent2 && 
+                  <Card shadow="sm" mt={"md"} radius={"lg"}>
+
+                  <div className="prose max-w-full ">
+                <PortableText value={pageData.additionalContent2}/>
+                </div>
+                </Card>
+                }
               </Grid.Col>
-              </Card>
+
             </Grid>
           </Grid.Col>
           <Grid.Col span={3} pos={"relative"}>
@@ -430,15 +467,20 @@ if (!pageData) return <div>No data found</div>
                 
                 Speak to one of our representatives by filling the form below
               </Text>
-              <AppointmentForm></AppointmentForm>
+              <AppointmentForm pageName={disease}></AppointmentForm>
             </Card>
           </Grid.Col>
         </Grid>
       </Group>
+                  { pageData.reviews &&
 
-      <Stories reviews={storiesData} />
+      <Stories reviews={pageData.reviews} />
+                  }
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        <FrequentlyAskedQuestions faqs={faqs} />
+        {
+          pageData.faqs &&
+        <FrequentlyAskedQuestions faqs={pageData.faqs} />
+        }
         <BookConsultation />
       </div>
     </>
