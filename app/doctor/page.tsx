@@ -47,8 +47,8 @@ const DoctorProfile = () => {
 
   return (
     <main>
-        <div className=' bg-blue-200 h-40 text-center flex flex-col justify-center items-center'>
-            <Title c={"blue"}>When you need answers, Best Doctors can help</Title>
+        <div className=' bg-blue-200 h-40 text-center flex flex-col justify-center items-center px-4'>
+            <Title c={"blue"} order={2}>When you need answers, Best Doctors can help</Title>
             <Text size='xl' c={"dimmed"}> Find the care you need</Text>
         </div>
     <div className="shadow-xl rounded-lg overflow-hidden p-6 md:px-12 bg-slate-100 grid grid-cols-1 md:grid-cols-2 gap-8 ">

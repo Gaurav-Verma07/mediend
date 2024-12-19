@@ -36,7 +36,7 @@ const MedicalServicesNavigation = () => {
               placeholder="Search..." 
               variant="filled" 
               leftSection={<IconSearch/>} 
-              className="w-full max-w-[200px]"
+              className="w-full max-w-[200px] hidden md:flex"
             />
             <button onClick={toggleMobileMenu} className="p-2">
               {mobileMenuOpen ? <IconX size={24} /> : <IconMenu2 size={24} />}
