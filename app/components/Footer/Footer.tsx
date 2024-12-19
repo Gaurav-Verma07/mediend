@@ -36,7 +36,7 @@ const quickLinks = [
   { label: "Privacy & Policy", link: "/privacy-policy" },
   {
     label: "Terms & Conditions",
-    link: "https://mediend.com/terms-condition.php",
+    link: "/terms-and-conditions",
   },
   { label: "Disclaimer", link: "https://mediend.com/disclaimer.php" },
   { label: "Autism", link: "https://mediend.com/medicine.php" },
