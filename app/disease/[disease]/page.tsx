@@ -142,7 +142,7 @@ const [error, setError] = useState(null)
 
 useEffect(() => {
   setIsLoading(true)
-  fetch(`https://7rljkuk3.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27disease%27%26%26slug.current%3D%3D%27${disease}%27%5D%7B%0A++++title%2C%0A++header%2C%0A++%22slug%22%3Aslug.current%2C%0A++shortDescription%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++featuredTreatments%2C%0A++content%2C%0A++infoCards%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D%0A%0A`, {
+  fetch(`https://7rljkuk3.apicdn.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27disease%27%26%26slug.current%3D%3D%27${disease}%27%5D%7B%0A++++title%2C%0A++header%2C%0A++%22slug%22%3Aslug.current%2C%0A++shortDescription%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++featuredTreatments%2C%0A++content%2C%0A++infoCards%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D%0A%0A`, {
     method: "GET",
     headers: {
       "Content-type": "application/json"
