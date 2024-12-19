@@ -30,3 +30,11 @@
 .btn:hover {
   background-color: none !important;
 }
+
+.img {
+  transition: 0.3s ease !important;
+}
+
+.img:hover {
+  transform: scale(1.2) !important;
+}

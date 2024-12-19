@@ -23,6 +23,7 @@ const DiseaseList = () => {
             key={index}
           >
             <Image
+              className={classes.img}
               src={el.img}
               alt={el.title}
               height={70}
