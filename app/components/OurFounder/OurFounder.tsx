@@ -33,10 +33,13 @@ const OurFounder = () => {
       </Box>
       <Box>
         <Box
-          w={{ base: 300, sm: 530 }}
-          h={{ base: 300, sm: 530 }}
+          w={{ base: "90vw", sm: 530 }}
+          h={{ base: 350, sm: 530 }}
           style={{
             backgroundImage: "url(/assets/getintouch.png)",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
             position: "relative",
             borderRadius: 25,
           }}

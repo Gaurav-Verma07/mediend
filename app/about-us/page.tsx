@@ -3,10 +3,12 @@ import OurFounder from "../components/OurFounder/OurFounder";
 import OurValues from "../components/OurValues/OurValues";
 import PrivacyPolicy from "../components/PrivacyPolicy/PrivacyPolicy";
 import OurTeam from "../components/OurTeam/OurTeam";
+import AboutHerobox from "../components/AboutHerobox/AboutHerobox";
 
 export default function AboutUsPage() {
   return (
     <>
+      <AboutHerobox />
       <Container size="xl">
         <OurFounder />
         <OurValues />

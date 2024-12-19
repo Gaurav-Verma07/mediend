@@ -33,7 +33,7 @@ const OurValues = () => {
       <Flex
         justify={{ base: "center", lg: "space-between" }}
         wrap="wrap"
-        my={200}
+        my={{ base: 60, md: 200 }}
       >
         <Box maw={590} my={20}>
           <Title c="#2967B0" fz={{ base: 24, sm: 40 }}>
@@ -81,7 +81,7 @@ const OurValues = () => {
               </Title>
             </Group>
             <Text
-              my={40}
+              my={{ base: 20, sm: 40 }}
               lh="120%"
               c="#1C1B1A"
               fw={300}

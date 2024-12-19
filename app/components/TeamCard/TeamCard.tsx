@@ -29,10 +29,11 @@ const TeamCard = ({ data }: { data: CardProp }) => {
   return (
     <BackgroundImage
       pos="relative"
-      w={{ base: "100%", sm: 300, lg: 350 }}
-      h={{ base: 350, sm: 300, lg: 400 }}
+      w={{ base: 300, sm: 300, lg: 350 }}
+      h={{ base: 300, sm: 300, lg: 400 }}
       src={data.image}
       radius={20}
+      m={10}
     >
       <Box
         pos="absolute"
