@@ -131,17 +131,21 @@ if (!pageData) return <div>No data found</div>
 
   return (
     <>
+
       <Group grow p={"xl"} bg={"#F8F9FA"}>
         <Grid grow gutter={"xl"} className="relative">
           <Grid.Col span={8}>
 
             {/* Hero */}
-
-            <Stack>
-                <Image src={pageData.imageUrl} maw={250} className=" rounded-md "></Image>
+            <Grid grow gutter={"xl"} my={"md"}>
+            <Grid.Col span={4}>
+            <Image src={pageData.imageUrl} maw={250} className=" rounded-md "></Image>
+            </Grid.Col>
+            <Grid.Col span={8}>
+            <Stack pos={"relative"}>
                 <Flex gap={"sm"} align={"center"}>
                 <Title c={"#1C7ED6"} className="font-semibold">{pageData.title}</Title>
-                <IconRosetteDiscountCheckFilled color="#1C7ED6"/>
+                <span><IconRosetteDiscountCheckFilled color="#1C7ED6"/></span>
                 </Flex>
                 <div>
                     <Text c={"#5B6B7D"}>{pageData.speciality}</Text>
@@ -151,7 +155,7 @@ if (!pageData) return <div>No data found</div>
                 <Stack gap={"xs"} >
                     <Group gap={"xs"}>
                     <IconBriefcase color="#1C7ED6"/>
-                    <Title order={2} c={"#1C7ED6"}>{pageData.yearsOfExperience}+ Years</Title>
+                    <Title order={4} c={"#1C7ED6"}>{pageData.yearsOfExperience}+ Years</Title>
                     </Group>
                         <Text size="xs" c={"#5F6D7A"}>
                             Experience
@@ -161,14 +165,14 @@ if (!pageData) return <div>No data found</div>
                     <Stack gap={"xs"}>
                     <Group gap={"xs"}>
                     <IconThumbUp color="#1C7ED6"/>
-                    <Title order={2} c={"#1C7ED6"}>99%</Title>
+                    <Title order={4} c={"#1C7ED6"}>99%</Title>
                     </Group>
                         <Text size="xs" c={"#5F6D7A"}>
                             Recommended
                         </Text>
                     </Stack>
                 </div>
-                <Group my={"xl"}>
+                <Group>
                   <Flex gap={"md"} wrap={"wrap"}>
                     <Button size="lg" variant="filled" >
                       Book An Appointment
@@ -184,6 +188,8 @@ if (!pageData) return <div>No data found</div>
                   </Flex>
                 </Group> 
             </Stack>
+            </Grid.Col>
+            </Grid>
 
             {/* Description */}
 
