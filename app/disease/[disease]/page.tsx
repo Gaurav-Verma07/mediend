@@ -253,7 +253,7 @@ if (!pageData) return <div>No data found</div>
               </Grid.Col>
 
               <Grid.Col span={{ base: 0, md: 2, lg: 2 }}>
-                <Image src={pageData.imageUrl}></Image>
+                <Image src={pageData.imageUrl} maw={250}></Image>
               </Grid.Col>
 
               <Grid.Col span={8} className="hidden sm:flex ">
@@ -265,7 +265,7 @@ if (!pageData) return <div>No data found</div>
               </Grid.Col>
 
 
-              <Card radius={"lg"} shadow="lg" m={"lg"}>
+              <Card radius={"lg"} shadow="lg" my={"lg"}>
 
               <Grid.Col span={6} mt={"lg"}>
                 {/* <hr style={{ margin: "2rem 0" }} /> */}
@@ -325,7 +325,7 @@ if (!pageData) return <div>No data found</div>
                 </Stack>
               </Grid.Col>
 
-              <Card radius={"lg"} shadow="lg" m={"lg"} w={"100%"}> 
+              <Card radius={"lg"} shadow="lg" my={"lg"} w={"100%"}> 
               <Grid.Col span={8} mt={"lg"}>
                 <Stack  gap={"lg"}>
                 <Title order={2}>Why opt for Minimally Invasive Lipoma Procedure?</Title>
