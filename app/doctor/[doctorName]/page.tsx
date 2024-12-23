@@ -195,7 +195,7 @@ if (!pageData) return <div>No data found</div>
                 <Stack gap={"xs"} >
                     <Group gap={"xs"}>
                     <IconBriefcase color="#1C7ED6"/>
-                    <Title order={4} c={"#1C7ED6"}>{pageData.yearsOfExperience}+ Years</Title>
+                    <Title order={4} c={"#1C7ED6"}>{pageData.yearsOfExperience}</Title>
                     </Group>
                         <Text size="xs" c={"#5F6D7A"}>
                             Experience
@@ -314,7 +314,7 @@ if (!pageData) return <div>No data found</div>
                       }
                       >
                         {pageData.treatments.map((treatment,idx)=>{
-                          return <ListItem c={"blue"} className=" underline-offset-1 underline" key={idx}><Link href={treatment.treatmentLink}><Text>{treatment.treatmentName}</Text></Link></ListItem>
+                          return <ListItem c={"blue"} className=" underline-offset-1 underline" key={idx}><Link href={treatment.treatmentLink?treatment.treatmentLink:" "}><Text>{treatment.treatmentName}</Text></Link></ListItem>
                         })}
                     </List>
                     </Stack>
@@ -359,12 +359,15 @@ if (!pageData) return <div>No data found</div>
           </Grid.Col>
         </Grid>
       </Group>
-
+    {
+      pageData.reviews &&
       <Stories 
   reviews={pageData.reviews} 
   title="Patient Journeys" 
   subtitle="Hear from those who have transformed their lives"
 />
+    }
+      
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <FrequentlyAskedQuestions faqs={pageData.faqs}/>
         <BookConsultation />
