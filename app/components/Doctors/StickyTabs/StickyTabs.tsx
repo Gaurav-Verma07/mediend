@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { ScrollArea, Tabs, Text } from "@mantine/core";
 import { useRouter } from "next/navigation";
 
-const StickyTabs = () => {
+const StickyTabs = ({slug}:{slug:string}) => {
   const router = useRouter();
   const tabsRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
@@ -46,7 +46,7 @@ const StickyTabs = () => {
         onChange={(value) => {
           if (!value) value = "";
           setActiveTab(value);
-          router.push(`/doctor/anoop/#${value}`);
+          router.push(`/doctor/${slug}/#${value}`);
         }}
         className={`
           ${isSticky ? "fixed top-0 left-0 right-0 z-50" : "relative"}

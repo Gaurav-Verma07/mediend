@@ -275,7 +275,7 @@ if (!pageData) return <div>No data found</div>
 
             {/* Description */}
             <Container bg={"#F8F9FA"} py={"lg"}>
-            <StickyTabs></StickyTabs>
+            <StickyTabs slug={(typeof(doctorName)=="string")?doctorName:" "}></StickyTabs>
 
             <Stack id="doctor" >
                 <Card id="aboutDoctor" shadow="sm">
