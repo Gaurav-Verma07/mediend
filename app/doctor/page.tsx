@@ -73,7 +73,7 @@ const DoctorProfile = () => {
                     <Group justify="apart" align="center">
                       <div>
                         <Flex gap={"sm"} align={"center"} >
-                        <Text size="xl"  className='text-blue-700 '>{item.title}{item.slug}</Text>
+                        <Text size="xl"  className='text-blue-700 '>{item.title}</Text>
                         <Badge c="blue" variant="light">4.7</Badge>
                         <IconStarFilled className='h-4 text-yellow-400'></IconStarFilled>
                         </Flex>
