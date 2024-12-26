@@ -112,28 +112,11 @@ const { doctorName } = params
 const headerRef = useRef(null);
 const [isSticky, setIsSticky] = useState(false);
 
-const schedule = [
-  { day: "Monday", time: "10:00 AM - 4:00 PM", isAvailable: true },
-  { day: "Tuesday", time: "9:00 AM - 5:00 PM", isAvailable: true },
-  { day: "Wednesday", time: "10:00 AM - 4:00 PM", isAvailable: true },
-  { day: "Thursday", time: "9:00 AM - 5:00 PM", isAvailable: true },
-  { day: "Friday", time: "10:00 AM - 4:00 PM", isAvailable: true },
-  { day: "Saturday", time: "11:00 AM - 3:00 PM", isAvailable: true },
-  { day: "Sunday", time: "Closed", isAvailable: false },
-];
-
  
 const [pageData, setPageData] = useState<Doctor | null >(null)
 const [isLoading, setIsLoading] = useState(true)
 const [error, setError] = useState(null)
 
-const [isExpanded, setIsExpanded] = useState(false);
-
-  const visibleSchedule = isExpanded ? schedule : schedule.slice(0, 2);
-
-  const toggleExpanded = () => {
-    setIsExpanded((prev) => !prev);
-  };
 
 
 useEffect(() => {
@@ -213,44 +196,6 @@ if (!pageData) return <div>No data found</div>
                     </Stack>
                 </div>
                 <Group>
-                <Card shadow="sm" padding="lg" radius="md" bg="gray.0">
-      <Stack gap="xs">
-        <Group>
-          <IconCalendarTime size={20} color="#1C7ED6" />
-          <Title order={4} className="truncate">Availability Schedule</Title>
-        </Group>
-        <Stack gap="xs">
-          {visibleSchedule.map((slot, index) => (
-            <Group key={index} justify="apart" className="py-1" wrap="nowrap">
-              <Text size="sm" fw={500} w={80} className="truncate">{slot.day}</Text>
-              <Group gap="xs" wrap="nowrap" className="flex-1 min-w-0">
-                <IconClock size={16} color="#1C7ED6" className="shrink-0" />
-                <Text size="sm" c={slot.isAvailable ? "dark" : "red"} className="truncate">
-                  {slot.time}
-                </Text>
-              </Group>
-              <Badge 
-                variant="light" 
-                color={slot.isAvailable ? "blue" : "red"}
-                className="shrink-0"
-              >
-                {slot.isAvailable ? "Available" : "Closed"}
-              </Badge>
-            </Group>
-          ))}
-        </Stack>
-        <Group justify="center" mt="md">
-          <Button 
-            variant="light" 
-            color="blue" 
-            size="xs" 
-            onClick={toggleExpanded}
-          >
-            {isExpanded ? "See Less" : "See More"}
-          </Button>
-        </Group>
-      </Stack>
-    </Card>
                 </Group>
 
                 <Group>
@@ -274,11 +219,11 @@ if (!pageData) return <div>No data found</div>
             </Grid>
 
             {/* Description */}
-            <Container bg={"#F8F9FA"} py={"lg"}>
+            <Container py={"lg"} >
             <StickyTabs slug={(typeof(doctorName)=="string")?doctorName:" "}></StickyTabs>
 
             <Stack id="doctor" >
-                <Card id="aboutDoctor" shadow="sm">
+                <Card id="aboutDoctor" className="shadow-[0px_0px_40px_-6px_rgba(0,_0,_0,_0.1)]">
                 <div className="prose max-w-full ">
                 <PortableText value={pageData.aboutDoctor}/>
                 </div>
@@ -302,7 +247,7 @@ if (!pageData) return <div>No data found</div>
                 }
 
 
-                <Card id="treatment" shadow="sm" p={"md"}>
+                <Card id="treatment" p={"md"} className="shadow-[0px_0px_40px_-6px_rgba(0,_0,_0,_0.1)]">
                   <Stack>
                     <Title order={2}> Treatments </Title>
                     <List
@@ -319,7 +264,7 @@ if (!pageData) return <div>No data found</div>
                     </List>
                     </Stack>
                 </Card>
-                <Card shadow="sm" id="healthFeed" padding={"lg"} >
+                <Card shadow="sm" id="healthFeed" padding={"lg"} className="shadow-[0px_0px_40px_-6px_rgba(0,_0,_0,_0.1)]">
                     <Title order={2}> Health Articles </Title>
                     <Card.Section p={"lg"}>
                     <Carousel
@@ -347,7 +292,7 @@ if (!pageData) return <div>No data found</div>
             
           </Grid.Col>
           <Grid.Col span={3} pos={"relative"}>
-            <Card shadow="sm" padding="lg" radius="md" withBorder pos={"sticky"} top={24}>
+            <Card shadow="sm" padding="lg" radius="md" withBorder pos={"sticky"} top={24} >
               <Title order={3}>Request a callback</Title>
               <Text c={"#5F6D7A"}>
                 {" "}

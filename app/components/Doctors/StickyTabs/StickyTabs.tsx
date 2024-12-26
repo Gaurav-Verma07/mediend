@@ -49,8 +49,8 @@ const StickyTabs = ({slug}:{slug:string}) => {
           router.push(`/doctor/${slug}/#${value}`);
         }}
         className={`
-          ${isSticky ? "fixed top-0 left-0 right-0 z-50" : "relative"}
-          bg-white shadow-md transition-all duration-300 ease-in-out
+          ${isSticky ? "fixed top-0 left-0 right-0 z-50" : "relative bg-zinc-50 rounded-t-md"}
+          bg-white shadow-lg transition-all duration-300 ease-in-out
           w-full
         `}
       >

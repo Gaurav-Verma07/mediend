@@ -1,4 +1,9 @@
 "use client";
+
+
+import { useRef } from 'react';
+import Autoplay from 'embla-carousel-autoplay';
+
 import Appointment from "../../components/Appointment/Appointment";
 import AppointmentForm from "../../components/AppointmentForm/AppointmentForm";
 import BookConsultation from "../../components/BookConsultation/BookConsultation";
@@ -41,6 +46,11 @@ import { useParams, useRouter } from "next/navigation";
 import { PortableText } from "@portabletext/react";
 import Footer from "../../components/Footer/Footer";
 import LoadingScreen from "../../components/Loading/loading";
+import WhyUs from "../../components/WhyUs/WhyUs";
+import { Doctor } from '../../doctor/[doctorName]/page';
+import Link from 'next/link';
+import useEmblaCarousel, { EmblaPluginType } from 'embla-carousel-react';
+import DoctorCarousel from '../../components/Doctors/DoctorCarousel/DoctorCarousel';
 
 const elements = [
   { property: "Incision Size", traditional: "5-7cm", minimallyInvasive: "1-2cm"},
@@ -85,6 +95,7 @@ interface LipomaSanityDocument {
   featuredTreatments: string[];
   content: ContentBlock[];
   infoCards: InfoCard[];
+  doctors: Doctor[];
   additionalContent1?: ContentBlock[];
   
   additionalContent2?: ContentBlock[];
@@ -142,7 +153,7 @@ const [error, setError] = useState(null)
 
 useEffect(() => {
   setIsLoading(true)
-  fetch(`https://7rljkuk3.apicdn.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27disease%27%26%26slug.current%3D%3D%27${disease}%27%5D%7B%0A++++title%2C%0A++header%2C%0A++%22slug%22%3Aslug.current%2C%0A++shortDescription%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++featuredTreatments%2C%0A++content%2C%0A++infoCards%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D%0A%0A`, {
+  fetch(`https://7rljkuk3.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27disease%27+%26%26+slug.current+%3D%3D+%22${disease}%22%5D%7B%0A++title%2C%0A++header%2C%0A++shortDescription%2C%0A++%22slug%22%3Aslug.current%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++doctors%5B%5D-%3E%7B%0A++++title%2C%0A++++%22imageUrl%22%3Aimage.asset-%3Eurl%2C%0A++++degrees%2C%0A++++speciality%2C%0A++++yearsOfExperience%2C%0A++++%22slug%22%3Aslug.current%0A++++%0A++%7D%2C%0A++featuredTreatments%2C%0A++content%2C%0A++infoCards%2C%0A++reviews%2C%0A++faqs%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D%0A`, {
     method: "GET",
     headers: {
       "Content-type": "application/json"
@@ -183,8 +194,8 @@ if (!pageData) return <div>No data found</div>
   return (
     <>
       <Group grow p={"xl"} bg={"#F8F9FA"}>
-        <Grid grow gutter={"xl"} className="relative">
-          <Grid.Col span={8}>
+        <Grid gutter={"xl"} className="relative" >
+          <Grid.Col span={{base:12,md:8,lg:8}}>
             <Grid grow gutter={"sm"}>
               <Grid.Col span={6}>
                 <Group my={"lg"}>
@@ -349,91 +360,7 @@ if (!pageData) return <div>No data found</div>
               <Grid.Col span={8} mt={"lg"}>
                 <Stack gap={"lg"}>
                 <Title order={2}>Our Expert Doctors</Title>
-                <Carousel slideSize="60%" slideGap="md" loop p={"md"}>
-                  
-                  <Carousel.Slide>
-                    <Card shadow="lg">
-                      <Group gap={"md"}>
-                      <Image src="https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-young-afro-professional-doctor-png-image_10148632.png" radius={"lg"} w={150}></Image>
-                      <Stack gap={"lg"} justify="space-between">
-                      <div>
-                      <Title order={4} c={"#3269DB"}>Dr. Deepak Kumar Sinha</Title>
-                      <Text size="xs" c={"#5F6D7A"}>General</Text>
-                      <Text size="xs" c={"#5F6D7A"}>Surgery, Proctology, Laproscopic Surg...</Text>
-                      </div>
-                      <Group>
-                        <div>
-                        <Group gap={"sm"}><IconBriefcase color="#3269DB" size={20}/><Title order={6} c={"#3269DB"}>19+ Years</Title></Group>
-                        <Text size="xs" c={"#5F6D7A"}> Experience</Text>
-                        </div>
-                        <hr/>
-                        <div>
-                        <Group><IconThumbUp color="#3269DB" size={20}/> <Title order={6} c={"#3269DB"}>99%</Title></Group>
-                        <Text size="xs"c={"#5F6D7A"}> Recommended</Text>
-                        </div>
-                      </Group>
-                      </Stack>
-
-                      <Button fullWidth variant="outline" size="md">Book Appointment</Button>
-                      </Group>
-                    </Card>
-                    </Carousel.Slide>
-                  <Carousel.Slide>
-                    <Card shadow="lg">
-                      <Group gap={"md"}>
-                      <Image src="https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-young-afro-professional-doctor-png-image_10148632.png" radius={"lg"} w={150}></Image>
-                      <Stack gap={"lg"} justify="space-between">
-                      <div>
-                      <Title order={4} c={"#3269DB"}>Dr. Deepak Kumar Sinha</Title>
-                      <Text size="xs" c={"#5F6D7A"}>General</Text>
-                      <Text size="xs" c={"#5F6D7A"}>Surgery, Proctology, Laproscopic Surg...</Text>
-                      </div>
-                      <Group>
-                        <div>
-                        <Group gap={"sm"}><IconBriefcase color="#3269DB" size={20}/><Title order={6} c={"#3269DB"}>19+ Years</Title></Group>
-                        <Text size="xs" c={"#5F6D7A"}> Experience</Text>
-                        </div>
-                        <hr/>
-                        <div>
-                        <Group><IconThumbUp color="#3269DB" size={20}/> <Title order={6} c={"#3269DB"}>99%</Title></Group>
-                        <Text size="xs"c={"#5F6D7A"}> Recommended</Text>
-                        </div>
-                      </Group>
-                      </Stack>
-
-                      <Button fullWidth variant="outline" size="md">Book Appointment</Button>
-                      </Group>
-                    </Card>
-                    </Carousel.Slide>
-                  <Carousel.Slide>
-                    <Card shadow="lg">
-                      <Group gap={"md"}>
-                      <Image src="https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-young-afro-professional-doctor-png-image_10148632.png" radius={"lg"} w={150}></Image>
-                      <Stack gap={"lg"} justify="space-between">
-                      <div>
-                      <Title order={4} c={"#3269DB"}>Dr. Deepak Kumar Sinha</Title>
-                      <Text size="xs" c={"#5F6D7A"}>General</Text>
-                      <Text size="xs" c={"#5F6D7A"}>Surgery, Proctology, Laproscopic Surg...</Text>
-                      </div>
-                      <Group>
-                        <div>
-                        <Group gap={"sm"}><IconBriefcase color="#3269DB" size={20}/><Title order={6} c={"#3269DB"}>19+ Years</Title></Group>
-                        <Text size="xs" c={"#5F6D7A"}> Experience</Text>
-                        </div>
-                        <hr/>
-                        <div>
-                        <Group><IconThumbUp color="#3269DB" size={20}/> <Title order={6} c={"#3269DB"}>99%</Title></Group>
-                        <Text size="xs"c={"#5F6D7A"}> Recommended</Text>
-                        </div>
-                      </Group>
-                      </Stack>
-
-                      <Button fullWidth variant="outline" size="md">Book Appointment</Button>
-                      </Group>
-                    </Card>
-                    </Carousel.Slide>
-                  
-                </Carousel>
+                  <DoctorCarousel data={pageData.doctors}></DoctorCarousel>
                 </Stack>
               </Grid.Col>
               <Grid.Col span={8} mt={"lg"}>
@@ -463,7 +390,7 @@ if (!pageData) return <div>No data found</div>
 
             </Grid>
           </Grid.Col>
-          <Grid.Col span={3} pos={"relative"}>
+          <Grid.Col span={{base:12,md:4,lg:4}} pos={"relative"}>
             <Card shadow="sm" padding="lg" radius="md" withBorder pos={"sticky"} top={24}>
               <Title order={3}>Request a callback</Title>
               <Text c={"#5F6D7A"}>
@@ -476,6 +403,8 @@ if (!pageData) return <div>No data found</div>
           </Grid.Col>
         </Grid>
       </Group>
+
+      <WhyUs></WhyUs>
                   { pageData.reviews &&
 
       <Stories reviews={pageData.reviews} />

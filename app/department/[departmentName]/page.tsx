@@ -1,6 +1,7 @@
 "use client";
 
-
+import { useRef } from 'react';
+import Autoplay from 'embla-carousel-autoplay';
 import BookConsultation from "../../components/BookConsultation/BookConsultation";
 import FrequentlyAskedQuestions from "../../components/FAQs/FrequentlyAskedQuestions";
 import AppointmentForm from "../../components/AppointmentForm/AppointmentForm";
@@ -39,6 +40,7 @@ import { PortableText } from "@portabletext/react";
 import LoadingScreen from "../../components/Loading/loading";
 import { Doctor } from "../../doctor/[doctorName]/page";
 import Link from "next/link";
+import BackLinks from '../../components/Backlinks/Backlinks';
 
 
 const storiesData = [
@@ -169,7 +171,7 @@ if (isLoading) return <LoadingScreen/>
 if (error) return <div>Error loading data</div>
 if (!pageData) return <div>No data found</div>
 
-
+const autoplay = useRef(Autoplay({ delay: 2000 }));
   return (
     <>
       <Group grow p={"xl"} bg={"#F8F9FA"}>
@@ -333,7 +335,11 @@ if (!pageData) return <div>No data found</div>
               <Grid.Col span={8} mt={"lg"}>
                 <Stack gap={"lg"}>
                 <Title order={2}>Our Expert Doctors</Title>
-                <Carousel slideSize="60%" slideGap="md" loop={true} p={"md"}>
+                <Carousel slideSize="60%" slideGap="md" loop={true} p={"md"}
+                plugins={[autoplay.current]}
+                onMouseEnter={autoplay.current.stop}
+                onMouseLeave={autoplay.current.reset}
+                >
                   {
                     pageData.doctors.map((doctor,idx)=>{
                           return                   <Carousel.Slide key={idx}>
