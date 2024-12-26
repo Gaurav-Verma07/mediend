@@ -1,9 +1,9 @@
 "use client";
 
 
-import BookConsultation from "../../components/BookConsultation/BookConsultation";
-import FrequentlyAskedQuestions from "../../components/FAQs/FrequentlyAskedQuestions";
-import AppointmentForm from "../../components/AppointmentForm/AppointmentForm";
+import BookConsultation from "../../../components/BookConsultation/BookConsultation";
+import FrequentlyAskedQuestions from "../../../components/FAQs/FrequentlyAskedQuestions";
+import AppointmentForm from "../../../components/AppointmentForm/AppointmentForm";
 import {
 
   Card,
@@ -21,7 +21,7 @@ import {
   Table,
   Stack,
 } from "@mantine/core";
-import Stories from "../../components/Stories/Stories";
+import Stories from "../../../components/Stories/Stories";
 import {
   IconArrowRight,
   IconBrandWhatsapp,
@@ -36,9 +36,12 @@ import { Carousel } from "@mantine/carousel";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { PortableText } from "@portabletext/react";
-import LoadingScreen from "../../components/Loading/loading";
-import { Doctor } from "../../doctor/[doctorName]/page";
+import LoadingScreen from "../../../components/Loading/loading";
+import { Doctor } from "../../../doctor/[doctorName]/page";
 import Link from "next/link";
+import WhyUs from "../../../components/WhyUs/WhyUs";
+import CapitalizeFirstLetter from "../../../../lib/utils/capitalizeFirstLetter";
+import BackLinks from "../../../components/Backlinks/Backlinks";
 
 
 const storiesData = [
@@ -67,6 +70,82 @@ const storiesData = [
     name: "Stephanie Powell",
   },
 ];
+
+const procedures = [
+    {
+      title: "Sclerotherapy for Varicose Veins Cost in Pune",
+      link: "/procedures/sclerotherapy-varicose-veins"
+    },
+    {
+      title: "Open Circumcision Cost in Pune",
+      link: "/procedures/open-circumcision"
+    },
+    {
+      title: "Inguinal Hernia Surgery Cost in Pune",
+      link: "/procedures/inguinal-hernia-surgery"
+    },
+    {
+      title: "Inguinal Hernia Surgery Cost in Pune",
+      link: "/procedures/inguinal-hernia-surgery"
+    },
+    {
+      title: "Inguinal Hernia Surgery Cost in Pune",
+      link: "/procedures/inguinal-hernia-surgery"
+    },
+    {
+      title: "Inguinal Hernia Surgery Cost in Pune",
+      link: "/procedures/inguinal-hernia-surgery"
+    },
+    {
+      title: "Inguinal Hernia Surgery Cost in Pune",
+      link: "/procedures/inguinal-hernia-surgery"
+    },
+    {
+      title: "Inguinal Hernia Surgery Cost in Pune",
+      link: "/procedures/inguinal-hernia-surgery"
+    },
+    {
+      title: "Inguinal Hernia Surgery Cost in Pune",
+      link: "/procedures/inguinal-hernia-surgery"
+    },
+    {
+      title: "Inguinal Hernia Surgery Cost in Pune",
+      link: "/procedures/inguinal-hernia-surgery"
+    },
+    {
+      title: "Inguinal Hernia Surgery Cost in Pune",
+      link: "/procedures/inguinal-hernia-surgery"
+    },
+    {
+      title: "Inguinal Hernia Surgery Cost in Pune",
+      link: "/procedures/inguinal-hernia-surgery"
+    },
+    {
+      title: "Inguinal Hernia Surgery Cost in Pune",
+      link: "/procedures/inguinal-hernia-surgery"
+    },
+    {
+      title: "Inguinal Hernia Surgery Cost in Pune",
+      link: "/procedures/inguinal-hernia-surgery"
+    },
+    {
+      title: "Inguinal Hernia Surgery Cost in Pune",
+      link: "/procedures/inguinal-hernia-surgery"
+    },
+    {
+      title: "Inguinal Hernia Surgery Cost in Pune",
+      link: "/procedures/inguinal-hernia-surgery"
+    },
+    {
+      title: "Inguinal Hernia Surgery Cost in Pune",
+      link: "/procedures/inguinal-hernia-surgery"
+    },
+    {
+      title: "Inguinal Hernia Surgery Cost in Pune",
+      link: "/procedures/inguinal-hernia-surgery"
+    },
+    // Add more procedures as needed
+  ]
 
 interface Department {
   title: string;
@@ -130,7 +209,7 @@ interface InfoCard {
 
 export default function Page() {
   const params = useParams()
-const { departmentName } = params
+const { disease,cityName } = params
 const cardBackgrounds = ["#D7E4F2", "#FFEBD9"];
 
  
@@ -140,7 +219,7 @@ const [error, setError] = useState(null)
 
 useEffect(() => {
   setIsLoading(true)
-  fetch(`https://7rljkuk3.apicdn.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27department%27+%26%26+slug.current+%3D%3D+%22${departmentName}%22%5D%7B%0A++title%2C%0A++header%2C%0A++shortDescription%2C%0A++%22slug%22%3Aslug.current%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++%22specialities%22%3Aspecialities%5B%5D%7B%0A++++%22iconUrl%22%3A+icon.asset-%3Eurl%2C%0A++++title%2C%0A++++description%0A++%7D%2C%0A++doctors%5B%5D-%3E%7B%0A++++title%2C%0A++++%22imageUrl%22%3Aimage.asset-%3Eurl%2C%0A++++degrees%2C%0A++++speciality%2C%0A++++yearsOfExperience%2C%0A++++%22slug%22%3Aslug.current%0A++++%0A++%7D%2C%0A++content%2C%0A++infoCards%2C%0A++reviews%2C%0A++faqs%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D%0A`, {
+  fetch(`https://7rljkuk3.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27diseaseInCity%27+%26%26+city+%3D%3D+%27Hyderabad%27+%26%26+disease-%3Etitle+%3D%3D+%27Fistula%27+%5D%7B%0A++title%2C%0A++header%2C%0A++disease-%3E%7B%0A++++title%2C%0A++++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++%7D%2C%0A++city%2C%0A++shortDescription%2C%0A++%22slug%22%3Aslug.current%2C%0A++featuredTreatments%2C%0A++doctors%5B%5D-%3E%7B%0A++++title%2C%0A++++%22imageUrl%22%3Aimage.asset-%3Eurl%2C%0A++++degrees%2C%0A++++speciality%2C%0A++++yearsOfExperience%2C%0A++++%22slug%22%3Aslug.current%0A++++%0A++%7D%2C%0A++content%2C%0A++infoCards%2C%0A++reviews%2C%0A++faqs%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D%0A`, {
     method: "GET",
     headers: {
       "Content-type": "application/json"
@@ -162,12 +241,13 @@ useEffect(() => {
     setError(error);
     setIsLoading(false);
   });
-}, [departmentName])
+}, [disease])
 
 
 if (isLoading) return <LoadingScreen/>
 if (error) return <div>Error loading data</div>
 if (!pageData) return <div>No data found</div>
+
 
 
   return (
@@ -300,39 +380,10 @@ if (!pageData) return <div>No data found</div>
 
 
 
-              <Grid.Col span={8} mt={"lg"}>
-                <Stack gap={"lg"}>
-                <Title order={2}>Our Specialities</Title>
-                <Grid>
-                  {
-                    pageData.specialities.map((speciality,idx) => {
-                      return(
-                        <Grid.Col key={idx} span={6}>
-                      <Card padding={"xl"}  shadow="md" className="rounded-xl">
-                        <Grid grow gutter={"md"}>
-                          <Grid.Col span={3}>
-                            <Image src={speciality.iconUrl} className="rounded-md"></Image>
-                          </Grid.Col>
-                          <Grid.Col span={9}>
-                            <Stack>
-                              <Title order={4}>{speciality.title}</Title>
-                              <Text c={"gray.9"}>{speciality.description}</Text>
-                            </Stack>
-                          </Grid.Col>
-                        </Grid>
-                  </Card>
-                  </Grid.Col>
-                      )
-                    })
-                  }
-                  
-                </Grid>
-                </Stack>
-              </Grid.Col>
 
               <Grid.Col span={8} mt={"lg"}>
                 <Stack gap={"lg"}>
-                <Title order={2}>Our Expert Doctors</Title>
+                <Title order={2}>Our Expert Doctors in {CapitalizeFirstLetter(cityName)}</Title>
                 <Carousel slideSize="60%" slideGap="md" loop={true} p={"md"}>
                   {
                     pageData.doctors.map((doctor,idx)=>{
@@ -405,11 +456,13 @@ if (!pageData) return <div>No data found</div>
                 
                 Speak to one of our representatives by filling the form below
               </Text>
-              <AppointmentForm pageName={departmentName}></AppointmentForm>
+              <AppointmentForm pageName={disease}></AppointmentForm>
             </Card>
           </Grid.Col>
         </Grid>
       </Group>
+
+      <WhyUs></WhyUs>
     { pageData.reviews &&
 
       <Stories reviews={storiesData} />
@@ -420,6 +473,7 @@ if (!pageData) return <div>No data found</div>
         <FrequentlyAskedQuestions faqs={pageData.faqs} />
         }
         <BookConsultation />
+        <BackLinks procedures={procedures} header="Procedures in Top Cities"></BackLinks>
       </div>
     </>
   );
