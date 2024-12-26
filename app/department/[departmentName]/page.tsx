@@ -1,10 +1,11 @@
 "use client";
-import Appointment from "../../components/Appointment/Appointment";
-import AppointmentForm from "../../components/AppointmentForm/AppointmentForm";
+
+
 import BookConsultation from "../../components/BookConsultation/BookConsultation";
 import FrequentlyAskedQuestions from "../../components/FAQs/FrequentlyAskedQuestions";
-import { faqs } from "../../components/FAQs/faqs";
+import AppointmentForm from "../../components/AppointmentForm/AppointmentForm";
 import {
+
   Card,
   Container,
   Grid,
@@ -17,20 +18,15 @@ import {
   List,
   ThemeIcon,
   rem,
-  Space,
   Table,
   Stack,
 } from "@mantine/core";
-import DiseaseImage from "../../disease/[disease]/diseaseImage.png";
 import Stories from "../../components/Stories/Stories";
-import Specialities from "../../components/Specialities/Specialities";
 import {
-    IconArrowLeft,
   IconArrowRight,
   IconBrandWhatsapp,
   IconBriefcase,
   IconCircleCheck,
-  IconHeart,
   IconHeartbeat,
   IconMessages,
   IconStethoscope,
@@ -40,17 +36,10 @@ import { Carousel } from "@mantine/carousel";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { PortableText } from "@portabletext/react";
-import Footer from "../../components/Footer/Footer";
 import LoadingScreen from "../../components/Loading/loading";
+import { Doctor } from "../../doctor/[doctorName]/page";
 import Link from "next/link";
 
-const elements = [
-  { property: "Incision Size", traditional: "5-7cm", minimallyInvasive: "1-2cm"},
-  { property: "Incision Size", traditional: "5-7cm", minimallyInvasive: "1-2cm"},
-  { property: "Incision Size", traditional: "5-7cm", minimallyInvasive: "1-2cm"},
-  { property: "Incision Size", traditional: "5-7cm", minimallyInvasive: "1-2cm"},
-
-];
 
 const storiesData = [
   {
@@ -79,12 +68,13 @@ const storiesData = [
   },
 ];
 
-interface LipomaSanityDocument {
+interface Department {
   title: string;
   header: string;
   imageUrl:string,
   shortDescription: string;
-  featuredTreatments: string[];
+  specialities: Specialities[];
+  doctors: Doctor[];
   content: ContentBlock[];
   infoCards: InfoCard[];
   additionalContent1?: ContentBlock[];
@@ -94,6 +84,12 @@ interface LipomaSanityDocument {
   reviews?: Review[];
   faqs?: FAQ[];
 
+}
+
+export interface Specialities{
+  title: string;
+  iconUrl:string;
+  description:string;
 }
 
 export interface Review {
@@ -138,13 +134,13 @@ const { departmentName } = params
 const cardBackgrounds = ["#D7E4F2", "#FFEBD9"];
 
  
-const [pageData, setPageData] = useState<LipomaSanityDocument>()
+const [pageData, setPageData] = useState<Department>()
 const [isLoading, setIsLoading] = useState(true)
 const [error, setError] = useState(null)
 
 useEffect(() => {
   setIsLoading(true)
-  fetch(`https://7rljkuk3.apicdn.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27disease%27%26%26slug.current%3D%3D%27${departmentName}%27%5D%7B%0A++++title%2C%0A++header%2C%0A++%22slug%22%3Aslug.current%2C%0A++shortDescription%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++featuredTreatments%2C%0A++content%2C%0A++infoCards%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D%0A%0A`, {
+  fetch(`https://7rljkuk3.apicdn.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27department%27+%26%26+slug.current+%3D%3D+%22${departmentName}%22%5D%7B%0A++title%2C%0A++header%2C%0A++shortDescription%2C%0A++%22slug%22%3Aslug.current%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++%22specialities%22%3Aspecialities%5B%5D%7B%0A++++%22iconUrl%22%3A+icon.asset-%3Eurl%2C%0A++++title%2C%0A++++description%0A++%7D%2C%0A++doctors%5B%5D-%3E%7B%0A++++title%2C%0A++++%22imageUrl%22%3Aimage.asset-%3Eurl%2C%0A++++degrees%2C%0A++++speciality%2C%0A++++yearsOfExperience%2C%0A++++%22slug%22%3Aslug.current%0A++++%0A++%7D%2C%0A++content%2C%0A++infoCards%2C%0A++reviews%2C%0A++faqs%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D%0A`, {
     method: "GET",
     headers: {
       "Content-type": "application/json"
@@ -177,10 +173,10 @@ if (!pageData) return <div>No data found</div>
   return (
     <>
       <Group grow p={"xl"} bg={"#F8F9FA"}>
-        <Grid grow gutter={"xl"} className="relative">
-          <Grid.Col span={8}>
+        <Grid gutter={"xl"} >
+          <Grid.Col span={8} pos={"relative"}>
             <Grid grow gutter={"sm"}>
-              <Grid.Col span={6}>
+              <Grid.Col span={8}>
                 <Group my={"lg"}>
                   <Title>
                     {" "}
@@ -246,8 +242,8 @@ if (!pageData) return <div>No data found</div>
                 
               </Grid.Col>
 
-              <Grid.Col span={{ base: 0, md: 2, lg: 2 }}>
-                <Image src={pageData.imageUrl} maw={250}></Image>
+              <Grid.Col span={4}>
+                <Image src={pageData.imageUrl} maw={250} className="mix-blend-multiply"></Image>
               </Grid.Col>
 
               <Grid.Col span={8} className="hidden sm:flex ">
@@ -258,13 +254,14 @@ if (!pageData) return <div>No data found</div>
                 </Group>
               </Grid.Col>
 
-
+            {
+              pageData.infoCards && 
               <Card radius={"lg"} shadow="lg" my={"lg"}>
 
-              <Grid.Col span={6} m={"lg"}>
+              <Grid.Col span={6} mt={"lg"}>
                 {/* <hr style={{ margin: "2rem 0" }} /> */}
                 <Grid>
-                {pageData.infoCards.map((card, index) => (
+                { pageData.infoCards.map((card, index) => (
         <Grid.Col key={card._key} span={{base:12, md:6}}>
           <Card 
             style={{ 
@@ -295,32 +292,33 @@ if (!pageData) return <div>No data found</div>
         </Grid.Col>
       ))}
     </Grid>
+                <hr style={{ margin: "2rem 0", color: "grey" }} />
               </Grid.Col>
 
               </Card>
+            }
+
 
 
               <Grid.Col span={8} mt={"lg"}>
                 <Stack gap={"lg"}>
-                <Title order={2}>Our Specialities</Title>
-                <Grid grow gutter={"xl"}>
-
+                <Title order={2}>Our Speciality</Title>
+                <Grid>
                   {
-                    ["Treatment 1","Treatment 1","Treatment 1","Treatment 1","Treatment 1","Treatment 1",].map((treatment,idx) => {
+                    pageData.specialities.map((speciality,idx) => {
                       return(
-                        <Grid.Col  key={idx} span={4}>
-                      <Card padding={"lg"} shadow="lg" >
-                        <Grid justify="center" align="center">
-                            <Grid.Col span={4}>
-                                <Image src="https://img.pristyncare.com/category-disease-image/adenoidectomy.jpg">
-                                </Image>
-                            </Grid.Col>
-                            <Grid.Col span={8}>
-                                <Link href={"#"} className="flex justify-center items-center">
-                            <Title order={5}>{treatment} </Title>
-                            <IconArrowRight></IconArrowRight>
-                            </Link>
-                            </Grid.Col>
+                        <Grid.Col key={idx} span={6}>
+                      <Card padding={"xl"}  shadow="md" className="rounded-xl">
+                        <Grid grow gutter={"md"}>
+                          <Grid.Col span={3}>
+                            <Image src={speciality.iconUrl} className="rounded-md"></Image>
+                          </Grid.Col>
+                          <Grid.Col span={9}>
+                            <Stack>
+                              <Title order={4}>{speciality.title}</Title>
+                              <Text c={"gray.9"}>{speciality.description}</Text>
+                            </Stack>
+                          </Grid.Col>
                         </Grid>
                   </Card>
                   </Grid.Col>
@@ -335,90 +333,40 @@ if (!pageData) return <div>No data found</div>
               <Grid.Col span={8} mt={"lg"}>
                 <Stack gap={"lg"}>
                 <Title order={2}>Our Expert Doctors</Title>
-                <Carousel slideSize="60%" slideGap="md" loop p={"md"}>
-                  
-                  <Carousel.Slide>
-                    <Card shadow="lg">
-                      <Group gap={"md"}>
-                      <Image src="https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-young-afro-professional-doctor-png-image_10148632.png" radius={"lg"} w={150}></Image>
-                      <Stack gap={"lg"} justify="space-between">
-                      <div>
-                      <Title order={4} c={"#3269DB"}>Dr. Deepak Kumar Sinha</Title>
-                      <Text size="xs" c={"#5F6D7A"}>General</Text>
-                      <Text size="xs" c={"#5F6D7A"}>Surgery, Proctology, Laproscopic Surg...</Text>
-                      </div>
-                      <Group>
-                        <div>
-                        <Group gap={"sm"}><IconBriefcase color="#3269DB" size={20}/><Title order={6} c={"#3269DB"}>19+ Years</Title></Group>
-                        <Text size="xs" c={"#5F6D7A"}> Experience</Text>
-                        </div>
-                        <hr/>
-                        <div>
-                        <Group><IconThumbUp color="#3269DB" size={20}/> <Title order={6} c={"#3269DB"}>99%</Title></Group>
-                        <Text size="xs"c={"#5F6D7A"}> Recommended</Text>
-                        </div>
-                      </Group>
-                      </Stack>
-
-                      <Button fullWidth variant="outline" size="md">Book Appointment</Button>
-                      </Group>
-                    </Card>
-                    </Carousel.Slide>
-                  <Carousel.Slide>
-                    <Card shadow="lg">
-                      <Group gap={"md"}>
-                      <Image src="https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-young-afro-professional-doctor-png-image_10148632.png" radius={"lg"} w={150}></Image>
-                      <Stack gap={"lg"} justify="space-between">
-                      <div>
-                      <Title order={4} c={"#3269DB"}>Dr. Deepak Kumar Sinha</Title>
-                      <Text size="xs" c={"#5F6D7A"}>General</Text>
-                      <Text size="xs" c={"#5F6D7A"}>Surgery, Proctology, Laproscopic Surg...</Text>
-                      </div>
-                      <Group>
-                        <div>
-                        <Group gap={"sm"}><IconBriefcase color="#3269DB" size={20}/><Title order={6} c={"#3269DB"}>19+ Years</Title></Group>
-                        <Text size="xs" c={"#5F6D7A"}> Experience</Text>
-                        </div>
-                        <hr/>
-                        <div>
-                        <Group><IconThumbUp color="#3269DB" size={20}/> <Title order={6} c={"#3269DB"}>99%</Title></Group>
-                        <Text size="xs"c={"#5F6D7A"}> Recommended</Text>
-                        </div>
-                      </Group>
-                      </Stack>
-
-                      <Button fullWidth variant="outline" size="md">Book Appointment</Button>
-                      </Group>
-                    </Card>
-                    </Carousel.Slide>
-                  <Carousel.Slide>
-                    <Card shadow="lg">
-                      <Group gap={"md"}>
-                      <Image src="https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-young-afro-professional-doctor-png-image_10148632.png" radius={"lg"} w={150}></Image>
-                      <Stack gap={"lg"} justify="space-between">
-                      <div>
-                      <Title order={4} c={"#3269DB"}>Dr. Deepak Kumar Sinha</Title>
-                      <Text size="xs" c={"#5F6D7A"}>General</Text>
-                      <Text size="xs" c={"#5F6D7A"}>Surgery, Proctology, Laproscopic Surg...</Text>
-                      </div>
-                      <Group>
-                        <div>
-                        <Group gap={"sm"}><IconBriefcase color="#3269DB" size={20}/><Title order={6} c={"#3269DB"}>19+ Years</Title></Group>
-                        <Text size="xs" c={"#5F6D7A"}> Experience</Text>
-                        </div>
-                        <hr/>
-                        <div>
-                        <Group><IconThumbUp color="#3269DB" size={20}/> <Title order={6} c={"#3269DB"}>99%</Title></Group>
-                        <Text size="xs"c={"#5F6D7A"}> Recommended</Text>
-                        </div>
-                      </Group>
-                      </Stack>
-
-                      <Button fullWidth variant="outline" size="md">Book Appointment</Button>
-                      </Group>
-                    </Card>
-                    </Carousel.Slide>
-                  
+                <Carousel slideSize="60%" slideGap="md" loop={true} p={"md"}>
+                  {
+                    pageData.doctors.map((doctor,idx)=>{
+                          return                   <Carousel.Slide key={idx}>
+                            <Link href={`/doctor/${doctor.slug}`}>
+                          <Card shadow="lg">
+                            <Group gap={"md"}>
+                            <Image src={doctor.imageUrl} radius={"lg"} w={150}></Image>
+                            <Stack gap={"lg"} justify="space-between">
+                            <div>
+                            <Title order={4} c={"#3269DB"}>{doctor.title}</Title>
+                            <Text size="xs" c={"#5F6D7A"}>{doctor.degrees}</Text>
+                            <Text size="xs" c={"#5F6D7A"}>{doctor.speciality}</Text>
+                            </div>
+                            <Group>
+                              <div>
+                              <Group gap={"sm"}><IconBriefcase color="#3269DB" size={20}/><Title order={6} c={"#3269DB"}>{doctor.yearsOfExperience}</Title></Group>
+                              <Text size="xs" c={"#5F6D7A"}> Experience</Text>
+                              </div>
+                              <hr/>
+                              <div>
+                              <Group><IconThumbUp color="#3269DB" size={20}/> <Title order={6} c={"#3269DB"}>99%</Title></Group>
+                              <Text size="xs"c={"#5F6D7A"}> Recommended</Text>
+                              </div>
+                            </Group>
+                            </Stack>
+      
+                            <Button fullWidth variant="outline" size="md">Book Appointment</Button>
+                            </Group>
+                          </Card>
+                          </Link>
+                          </Carousel.Slide>
+                    })
+                  }
                 </Carousel>
                 </Stack>
               </Grid.Col>
@@ -449,7 +397,7 @@ if (!pageData) return <div>No data found</div>
 
             </Grid>
           </Grid.Col>
-          <Grid.Col span={3} pos={"relative"}>
+          <Grid.Col span={4} pos={"relative"}>
             <Card shadow="sm" padding="lg" radius="md" withBorder pos={"sticky"} top={24}>
               <Title order={3}>Request a callback</Title>
               <Text c={"#5F6D7A"}>
@@ -462,9 +410,9 @@ if (!pageData) return <div>No data found</div>
           </Grid.Col>
         </Grid>
       </Group>
-                  { pageData.reviews &&
+    { pageData.reviews &&
 
-      <Stories reviews={pageData.reviews} />
+      <Stories reviews={storiesData} />
                   }
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         {
