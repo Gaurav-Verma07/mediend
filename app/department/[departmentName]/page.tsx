@@ -1,7 +1,4 @@
 "use client";
-
-import { useRef } from 'react';
-import Autoplay from 'embla-carousel-autoplay';
 import BookConsultation from "../../components/BookConsultation/BookConsultation";
 import FrequentlyAskedQuestions from "../../components/FAQs/FrequentlyAskedQuestions";
 import AppointmentForm from "../../components/AppointmentForm/AppointmentForm";
@@ -41,6 +38,7 @@ import LoadingScreen from "../../components/Loading/loading";
 import { Doctor } from "../../doctor/[doctorName]/page";
 import Link from "next/link";
 import BackLinks from '../../components/Backlinks/Backlinks';
+import DoctorCarousel from "../../components/Doctors/DoctorCarousel/DoctorCarousel";
 
 
 const storiesData = [
@@ -171,7 +169,6 @@ if (isLoading) return <LoadingScreen/>
 if (error) return <div>Error loading data</div>
 if (!pageData) return <div>No data found</div>
 
-const autoplay = useRef(Autoplay({ delay: 2000 }));
   return (
     <>
       <Group grow p={"xl"} bg={"#F8F9FA"}>
@@ -335,45 +332,7 @@ const autoplay = useRef(Autoplay({ delay: 2000 }));
               <Grid.Col span={8} mt={"lg"}>
                 <Stack gap={"lg"}>
                 <Title order={2}>Our Expert Doctors</Title>
-                <Carousel slideSize="60%" slideGap="md" loop={true} p={"md"}
-                plugins={[autoplay.current]}
-                onMouseEnter={autoplay.current.stop}
-                onMouseLeave={autoplay.current.reset}
-                >
-                  {
-                    pageData.doctors.map((doctor,idx)=>{
-                          return                   <Carousel.Slide key={idx}>
-                            <Link href={`/doctor/${doctor.slug}`}>
-                          <Card shadow="lg">
-                            <Group gap={"md"}>
-                            <Image src={doctor.imageUrl} radius={"lg"} w={150}></Image>
-                            <Stack gap={"lg"} justify="space-between">
-                            <div>
-                            <Title order={4} c={"#3269DB"}>{doctor.title}</Title>
-                            <Text size="xs" c={"#5F6D7A"}>{doctor.degrees}</Text>
-                            <Text size="xs" c={"#5F6D7A"}>{doctor.speciality}</Text>
-                            </div>
-                            <Group>
-                              <div>
-                              <Group gap={"sm"}><IconBriefcase color="#3269DB" size={20}/><Title order={6} c={"#3269DB"}>{doctor.yearsOfExperience}</Title></Group>
-                              <Text size="xs" c={"#5F6D7A"}> Experience</Text>
-                              </div>
-                              <hr/>
-                              <div>
-                              <Group><IconThumbUp color="#3269DB" size={20}/> <Title order={6} c={"#3269DB"}>99%</Title></Group>
-                              <Text size="xs"c={"#5F6D7A"}> Recommended</Text>
-                              </div>
-                            </Group>
-                            </Stack>
-      
-                            <Button fullWidth variant="outline" size="md">Book Appointment</Button>
-                            </Group>
-                          </Card>
-                          </Link>
-                          </Carousel.Slide>
-                    })
-                  }
-                </Carousel>
+                <DoctorCarousel data={pageData.doctors}></DoctorCarousel>
                 </Stack>
               </Grid.Col>
               <Grid.Col span={8} mt={"lg"}>
