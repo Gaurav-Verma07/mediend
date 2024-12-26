@@ -219,7 +219,7 @@ const [error, setError] = useState(null)
 
 useEffect(() => {
   setIsLoading(true)
-  fetch(`https://7rljkuk3.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27diseaseInCity%27+%26%26+city+%3D%3D+%27Hyderabad%27+%26%26+disease-%3Etitle+%3D%3D+%27Fistula%27+%5D%7B%0A++title%2C%0A++header%2C%0A++disease-%3E%7B%0A++++title%2C%0A++++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++%7D%2C%0A++city%2C%0A++shortDescription%2C%0A++%22slug%22%3Aslug.current%2C%0A++featuredTreatments%2C%0A++doctors%5B%5D-%3E%7B%0A++++title%2C%0A++++%22imageUrl%22%3Aimage.asset-%3Eurl%2C%0A++++degrees%2C%0A++++speciality%2C%0A++++yearsOfExperience%2C%0A++++%22slug%22%3Aslug.current%0A++++%0A++%7D%2C%0A++content%2C%0A++infoCards%2C%0A++reviews%2C%0A++faqs%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D%0A`, {
+  fetch(`https://7rljkuk3.apicdn.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27diseaseInCity%27+%26%26+city+%3D%3D+%27${CapitalizeFirstLetter(cityName)}%27+%26%26+disease-%3Etitle+%3D%3D+%27${CapitalizeFirstLetter(disease)}%27+%5D%7B%0A++title%2C%0A++header%2C%0A++disease-%3E%7B%0A++++title%2C%0A++++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++%7D%2C%0A++city%2C%0A++shortDescription%2C%0A++%22slug%22%3Aslug.current%2C%0A++featuredTreatments%2C%0A++doctors%5B%5D-%3E%7B%0A++++title%2C%0A++++%22imageUrl%22%3Aimage.asset-%3Eurl%2C%0A++++degrees%2C%0A++++speciality%2C%0A++++yearsOfExperience%2C%0A++++%22slug%22%3Aslug.current%0A++++%0A++%7D%2C%0A++content%2C%0A++infoCards%2C%0A++reviews%2C%0A++faqs%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D%0A`, {
     method: "GET",
     headers: {
       "Content-type": "application/json"

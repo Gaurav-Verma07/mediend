@@ -264,66 +264,70 @@ if (!pageData) return <div>No data found</div>
                 </Group>
               </Grid.Col>
 
+          {     pageData.infoCards &&
+                            <Card radius={"lg"} shadow="lg" my={"lg"}>
 
-              <Card radius={"lg"} shadow="lg" my={"lg"}>
+                            <Grid.Col span={6} mt={"lg"}>
+                              {/* <hr style={{ margin: "2rem 0" }} /> */}
+                              <Grid>
+                              {pageData.infoCards.map((card, index) => (
+                      <Grid.Col key={card._key} span={{base:12, md:6}}>
+                        <Card 
+                          style={{ 
+                            background: cardBackgrounds[index % cardBackgrounds.length] 
+                          }} 
+                          padding="sm"
+                        >
+                          <Title order={4}>{card.infoCardTitle}</Title>
+                          <Card.Section p="md">
+                            <List
+                              spacing="xs"
+                              size="sm"
+                              center
+                              icon={
+                                <ThemeIcon color="#FF990C" size={24} radius="xl">
+                                  <IconCircleCheck
+                                    style={{ width: rem(16), height: rem(16) }}
+                                  />
+                                </ThemeIcon>
+                              }
+                            >
+                              {card.infoCardBody.map((item, itemIndex) => (
+                                <List.Item key={itemIndex}>{item}</List.Item>
+                              ))}
+                            </List>
+                          </Card.Section>
+                        </Card>
+                      </Grid.Col>
+                    ))}
+                  </Grid>
+                              <hr style={{ margin: "2rem 0", color: "grey" }} />
+                            </Grid.Col>
+              
+                            </Card>
+          }
 
-              <Grid.Col span={6} mt={"lg"}>
-                {/* <hr style={{ margin: "2rem 0" }} /> */}
-                <Grid>
-                {pageData.infoCards.map((card, index) => (
-        <Grid.Col key={card._key} span={{base:12, md:6}}>
-          <Card 
-            style={{ 
-              background: cardBackgrounds[index % cardBackgrounds.length] 
-            }} 
-            padding="sm"
-          >
-            <Title order={4}>{card.infoCardTitle}</Title>
-            <Card.Section p="md">
-              <List
-                spacing="xs"
-                size="sm"
-                center
-                icon={
-                  <ThemeIcon color="#FF990C" size={24} radius="xl">
-                    <IconCircleCheck
-                      style={{ width: rem(16), height: rem(16) }}
-                    />
-                  </ThemeIcon>
-                }
-              >
-                {card.infoCardBody.map((item, itemIndex) => (
-                  <List.Item key={itemIndex}>{item}</List.Item>
-                ))}
-              </List>
-            </Card.Section>
-          </Card>
-        </Grid.Col>
-      ))}
-    </Grid>
-                <hr style={{ margin: "2rem 0", color: "grey" }} />
-              </Grid.Col>
 
-              </Card>
+            { pageData.featuredTreatments &&
+                              <Grid.Col span={8} mt={"lg"}>
+                              <Stack gap={"lg"}>
+                              <Title order={2}>Featured Treatments</Title>
+                              <Flex wrap={"wrap"} gap={"md"}>
+                                {
+                                  pageData.featuredTreatments.map((treatment,idx) => {
+                                    return(
+                                    <Card style={{background: cardBackgrounds[idx % cardBackgrounds.length] }} padding={"lg"} key={idx}>
+                                  <Text size="md">{treatment}</Text>
+                                </Card>
+                                    )
+                                  })
+                                }
+                                
+                              </Flex>
+                              </Stack>
+                            </Grid.Col>
+            }
 
-
-              <Grid.Col span={8} mt={"lg"}>
-                <Stack gap={"lg"}>
-                <Title order={2}>Featured Treatments</Title>
-                <Flex wrap={"wrap"} gap={"md"}>
-                  {
-                    pageData.featuredTreatments.map((treatment,idx) => {
-                      return(
-                      <Card style={{background: cardBackgrounds[idx % cardBackgrounds.length] }} padding={"lg"} key={idx}>
-                    <Text size="md">{treatment}</Text>
-                  </Card>
-                      )
-                    })
-                  }
-                  
-                </Flex>
-                </Stack>
-              </Grid.Col>
 
               <Card radius={"lg"} shadow="lg" my={"lg"} w={"100%"}> 
               <Grid.Col span={8} mt={"lg"}>
