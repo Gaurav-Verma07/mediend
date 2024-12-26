@@ -23,6 +23,7 @@ import {
   Tabs,
   ListItem,
   Accordion,
+  Badge,
 } from "@mantine/core";
 import DiseaseImage from "./diseaseImage.png";
 import Stories from "../../components/Stories/Stories";
@@ -31,7 +32,9 @@ import {
   IconArrowRight,
   IconBrandWhatsapp,
   IconBriefcase,
+  IconCalendarTime,
   IconCircleCheck,
+  IconClock,
   IconHeart,
   IconHeartbeat,
   IconMessages,
@@ -109,10 +112,28 @@ const { doctorName } = params
 const headerRef = useRef(null);
 const [isSticky, setIsSticky] = useState(false);
 
+const schedule = [
+  { day: "Monday", time: "10:00 AM - 4:00 PM", isAvailable: true },
+  { day: "Tuesday", time: "9:00 AM - 5:00 PM", isAvailable: true },
+  { day: "Wednesday", time: "10:00 AM - 4:00 PM", isAvailable: true },
+  { day: "Thursday", time: "9:00 AM - 5:00 PM", isAvailable: true },
+  { day: "Friday", time: "10:00 AM - 4:00 PM", isAvailable: true },
+  { day: "Saturday", time: "11:00 AM - 3:00 PM", isAvailable: true },
+  { day: "Sunday", time: "Closed", isAvailable: false },
+];
+
  
 const [pageData, setPageData] = useState<Doctor | null >(null)
 const [isLoading, setIsLoading] = useState(true)
 const [error, setError] = useState(null)
+
+const [isExpanded, setIsExpanded] = useState(false);
+
+  const visibleSchedule = isExpanded ? schedule : schedule.slice(0, 2);
+
+  const toggleExpanded = () => {
+    setIsExpanded((prev) => !prev);
+  };
 
 
 useEffect(() => {
@@ -151,7 +172,7 @@ if (!pageData) return <div>No data found</div>
   return (
     <>
 
-      <Group grow p={"xl"} bg={"#F8F9FA"}>
+      <Group grow p={"xl"} >
         <Grid grow gutter={"xl"} className="relative">
           <Grid.Col span={8}>
 
@@ -174,7 +195,7 @@ if (!pageData) return <div>No data found</div>
                 <Stack gap={"xs"} >
                     <Group gap={"xs"}>
                     <IconBriefcase color="#1C7ED6"/>
-                    <Title order={4} c={"#1C7ED6"}>{pageData.yearsOfExperience}+ Years</Title>
+                    <Title order={4} c={"#1C7ED6"}>{pageData.yearsOfExperience}</Title>
                     </Group>
                         <Text size="xs" c={"#5F6D7A"}>
                             Experience
@@ -192,6 +213,47 @@ if (!pageData) return <div>No data found</div>
                     </Stack>
                 </div>
                 <Group>
+                <Card shadow="sm" padding="lg" radius="md" bg="gray.0">
+      <Stack gap="xs">
+        <Group>
+          <IconCalendarTime size={20} color="#1C7ED6" />
+          <Title order={4} className="truncate">Availability Schedule</Title>
+        </Group>
+        <Stack gap="xs">
+          {visibleSchedule.map((slot, index) => (
+            <Group key={index} justify="apart" className="py-1" wrap="nowrap">
+              <Text size="sm" fw={500} w={80} className="truncate">{slot.day}</Text>
+              <Group gap="xs" wrap="nowrap" className="flex-1 min-w-0">
+                <IconClock size={16} color="#1C7ED6" className="shrink-0" />
+                <Text size="sm" c={slot.isAvailable ? "dark" : "red"} className="truncate">
+                  {slot.time}
+                </Text>
+              </Group>
+              <Badge 
+                variant="light" 
+                color={slot.isAvailable ? "blue" : "red"}
+                className="shrink-0"
+              >
+                {slot.isAvailable ? "Available" : "Closed"}
+              </Badge>
+            </Group>
+          ))}
+        </Stack>
+        <Group justify="center" mt="md">
+          <Button 
+            variant="light" 
+            color="blue" 
+            size="xs" 
+            onClick={toggleExpanded}
+          >
+            {isExpanded ? "See Less" : "See More"}
+          </Button>
+        </Group>
+      </Stack>
+    </Card>
+                </Group>
+
+                <Group>
                   <Flex gap={"md"} wrap={"wrap"}>
                     <Button size="lg" variant="filled" >
                       Book An Appointment
@@ -206,13 +268,14 @@ if (!pageData) return <div>No data found</div>
                     </Button>
                   </Flex>
                 </Group> 
+
             </Stack>
             </Grid.Col>
             </Grid>
 
             {/* Description */}
-
-            <StickyTabs></StickyTabs>
+            <Container bg={"#F8F9FA"} py={"lg"}>
+            <StickyTabs slug={(typeof(doctorName)=="string")?doctorName:" "}></StickyTabs>
 
             <Stack id="doctor" >
                 <Card id="aboutDoctor" shadow="sm">
@@ -251,7 +314,7 @@ if (!pageData) return <div>No data found</div>
                       }
                       >
                         {pageData.treatments.map((treatment,idx)=>{
-                          return <ListItem c={"blue"} className=" underline-offset-1 underline" key={idx}><Link href={treatment.treatmentLink}><Text>{treatment.treatmentName}</Text></Link></ListItem>
+                          return <ListItem c={"blue"} className=" underline-offset-1 underline" key={idx}><Link href={treatment.treatmentLink?treatment.treatmentLink:" "}><Text>{treatment.treatmentName}</Text></Link></ListItem>
                         })}
                     </List>
                     </Stack>
@@ -280,7 +343,7 @@ if (!pageData) return <div>No data found</div>
                         </Accordion>
                 </Card> */}
             </Stack>
-
+            </Container>
             
           </Grid.Col>
           <Grid.Col span={3} pos={"relative"}>
@@ -296,12 +359,15 @@ if (!pageData) return <div>No data found</div>
           </Grid.Col>
         </Grid>
       </Group>
-
+    {
+      pageData.reviews &&
       <Stories 
   reviews={pageData.reviews} 
   title="Patient Journeys" 
   subtitle="Hear from those who have transformed their lives"
 />
+    }
+      
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <FrequentlyAskedQuestions faqs={pageData.faqs}/>
         <BookConsultation />
@@ -309,5 +375,4 @@ if (!pageData) return <div>No data found</div>
     </>
   );
 }
-
 
