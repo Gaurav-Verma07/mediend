@@ -9,6 +9,7 @@ import {
 import classes from "./Footer.module.css";
 import { useMediaQuery } from "@mantine/hooks";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const surgeryItems = [
   "Gynecomastia",
@@ -42,9 +43,11 @@ const quickLinks = [
   { label: "Autism", link: "https://mediend.com/medicine.php" },
 ];
 const Footer = () => {
+  const path = usePathname();
   const mobile = useMediaQuery(`(min-width: 700px)`);
+  console.log(path === "/ads");
   return (
-    <Box>
+    <Box style={{ display: path === "/ads" ? "none" : "block" }}>
       <Box className={classes.main}>
         <Box className={classes.main__box}>
           <Box className={classes.top}>
