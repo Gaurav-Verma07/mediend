@@ -20,14 +20,14 @@ export const AdsInfoBox = ({
   pb?: number;
   type?: string;
 }) => {
-  const isLipoma = type === "lipoma";
+  const isDisease = type === "disease";
   return (
     <Flex
       my={20}
       bg={bg}
       maw={823}
       direction={{
-        base: isLipoma ? "column-reverse" : "row",
+        base: isDisease ? "column-reverse" : "row",
         sm: "row",
       }}
       justify="space-between"
@@ -43,7 +43,7 @@ export const AdsInfoBox = ({
         {title}
         <Text
           ta={{ base: "center", md: "left" }}
-          fz={{ base: isLipoma ? 16 : 7, xs: 16 }}
+          fz={{ base: isDisease ? 16 : 7, xs: 16 }}
           my={10}
         >
           {info}

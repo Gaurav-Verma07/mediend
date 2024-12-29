@@ -12,7 +12,8 @@ import {
 import { ConsultForm } from "../ConsultForm/ConsultForm";
 import classes from "./AdsHerobox.module.css";
 import { useMediaQuery } from "@mantine/hooks";
-export const AdsHerobox = () => {
+import { Herobox } from "../../../lib/utils/adsDiseaseType";
+export const AdsHerobox = ({ data }: { data: Herobox }) => {
   const mobile = useMediaQuery(`(min-width: 600px)`);
 
   return (
@@ -39,9 +40,9 @@ export const AdsHerobox = () => {
         >
           <Box maw={500} my={50} ta={{ base: "center", md: "left" }}>
             <Title fz={{ base: 24, sm: 42 }}>
-              Best Surgery for Lipoma in{" "}
+              {data?.title?.mainTitle}{" "}
               <Text span fz={{ base: 24, sm: 42 }} c="#2967B0" fw={600}>
-                Delhi-NCR
+                {data?.title?.cityName}
               </Text>
             </Title>
             <List
@@ -52,7 +53,9 @@ export const AdsHerobox = () => {
               my={20}
               listStyleType="disc"
             >
-              <List.Item>50% Off on Treatment</List.Item>
+              {data?.list.map((el: string, index) => (
+                <List.Item key={index}>{el}</List.Item>
+              ))}
               <List.Item>Quick 30-Minute Procedure</List.Item>
               <List.Item>Insurance Accepted</List.Item>
             </List>

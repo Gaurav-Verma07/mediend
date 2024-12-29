@@ -10,6 +10,7 @@ import {
   Stack,
   Flex,
 } from "@mantine/core";
+import { About } from "../../../lib/utils/adsDiseaseType";
 const aboutData = [
   {
     que: "Why Consider Lipoma Treatment?",
@@ -36,7 +37,46 @@ const aboutData = [
     ],
   },
 ];
-export const AboutAds = () => {
+
+export const StickyForm = () => {
+  return (
+    <Paper
+      visibleFrom="lg"
+      h="fit-content"
+      pos="sticky"
+      top="20%"
+      shadow="sm"
+      p="md"
+      maw={390}
+    >
+      <Text fz={24} fw={500}>
+        Get Rid for Lipoma
+      </Text>
+      <Text fz={12} c="dimmed" mb="md">
+        Speak to one of our representatives by filling the form below
+      </Text>
+      <TextInput
+        size="md"
+        label="Patient Name"
+        placeholder="Enter your name"
+        mb="sm"
+      />
+      <TextInput
+        size="md"
+        label="Mobile Number"
+        placeholder="Enter your number"
+        mb="sm"
+      />
+      <TextInput size="md" label="City" placeholder="Noida" mb="sm" />
+      <TextInput size="md" label="Condition" placeholder="Lipoma" mb="sm" />
+      <Button size="md" fullWidth>
+        Request a call back
+      </Button>
+    </Paper>
+  );
+};
+
+export const AboutAds = ({ data }: { data: About[] }) => {
   return (
     <Flex
       align="center"
@@ -45,7 +85,7 @@ export const AboutAds = () => {
       my={50}
     >
       <Stack style={{ position: "relative" }}>
-        {aboutData.map(
+        {data?.map(
           ({ que, ans }: { que: string; ans: string[] }, index: number) => (
             <Paper
               key={index}
@@ -69,32 +109,6 @@ export const AboutAds = () => {
           )
         )}
       </Stack>
-
-      <Paper visibleFrom="lg" shadow="sm" p="md" maw={390}>
-        <Text fz={24} fw={500}>
-          Get Rid for Lipoma
-        </Text>
-        <Text fz={12} c="dimmed" mb="md">
-          Speak to one of our representatives by filling the form below
-        </Text>
-        <TextInput
-          size="md"
-          label="Patient Name"
-          placeholder="Enter your name"
-          mb="sm"
-        />
-        <TextInput
-          size="md"
-          label="Mobile Number"
-          placeholder="Enter your number"
-          mb="sm"
-        />
-        <TextInput size="md" label="City" placeholder="Noida" mb="sm" />
-        <TextInput size="md" label="Condition" placeholder="Lipoma" mb="sm" />
-        <Button size="md" fullWidth>
-          Request a call back
-        </Button>
-      </Paper>
     </Flex>
   );
 };

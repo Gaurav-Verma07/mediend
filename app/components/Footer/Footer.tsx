@@ -43,11 +43,11 @@ const quickLinks = [
   { label: "Autism", link: "https://mediend.com/medicine.php" },
 ];
 const Footer = () => {
-  const path = usePathname();
   const mobile = useMediaQuery(`(min-width: 700px)`);
-  console.log(path === "/ads");
+  const pathname = usePathname();
+  const isDiseasesPage = pathname.startsWith("/diseases");
   return (
-    <Box style={{ display: path === "/ads" ? "none" : "block" }}>
+    <Box style={{ display: isDiseasesPage ? "none" : "block" }}>
       <Box className={classes.main}>
         <Box className={classes.main__box}>
           <Box className={classes.top}>
