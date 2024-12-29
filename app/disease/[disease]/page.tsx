@@ -51,6 +51,7 @@ import { Doctor } from '../../doctor/[doctorName]/page';
 import Link from 'next/link';
 import useEmblaCarousel, { EmblaPluginType } from 'embla-carousel-react';
 import DoctorCarousel from '../../components/Doctors/DoctorCarousel/DoctorCarousel';
+import BackLinks from '../../components/Backlinks/Backlinks';
 
 const elements = [
   { property: "Incision Size", traditional: "5-7cm", minimallyInvasive: "1-2cm"},
@@ -86,6 +87,82 @@ const storiesData = [
     name: "Stephanie Powell",
   },
 ];
+
+const procedures = [
+  {
+    title: "Sclerotherapy for Varicose Veins Cost in Pune",
+    link: "/procedures/sclerotherapy-varicose-veins"
+  },
+  {
+    title: "Open Circumcision Cost in Pune",
+    link: "/procedures/open-circumcision"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  // Add more procedures as needed
+]
 
 interface LipomaSanityDocument {
   title: string;
@@ -193,7 +270,7 @@ if (!pageData) return <div>No data found</div>
 
   return (
     <>
-      <Group grow p={"xl"} bg={"#F8F9FA"}>
+      <Group grow p={{base:"sm",md:"md",lg:"xl"}}>
         <Grid gutter={"xl"} className="relative" >
           <Grid.Col span={{base:12,md:8,lg:8}}>
             <Grid grow gutter={"sm"}>
@@ -264,19 +341,19 @@ if (!pageData) return <div>No data found</div>
               </Grid.Col>
 
               <Grid.Col span={{ base: 0, md: 2, lg: 2 }}>
-                <Image src={pageData.imageUrl} maw={250}></Image>
+                <Image src={pageData.imageUrl} maw={250} ></Image>
               </Grid.Col>
 
               <Grid.Col span={8} className="hidden sm:flex ">
               <Group >
-                  <Card w={"100%"}>
+                  <Card w={"100%"} className='border'>
                         <Image src={"https://s3-alpha-sig.figma.com/img/1ccd/0a20/2477415d64f1e10258a27b64a05499cc?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=M7vTDrmeMQWNZvKB07vWlMySKpX4CmeNHEkAa0SM6uqPLzeaKqCHHUJ4wqPCoNPO45OLnIYmVikXyIawoTUBqV0gNtIDtVQho3lv3oXVDWF2-16iDn1ATneAjTmcW6EH8oEqo-tyznL4Lt8gdomkUtHNPJIC~169BuOlrv588SXHmMUy0AhsBWWA6YkDJ2qql~OLJ7WSFornpViJk2qgPG4nYk0LVLkZSUj4PSDExWGaRZgAF-rpiOi8sxVsguylPvGGqxmoH~6P4REba3JUNTfyZVA7baDvpYRelMaN5OmiUmGCjcG6vj2hvnLqwlen~UGiMT6KQuO4mR~tWqCJ6A__"} className=" scale-125"></Image>
                   </Card>
                 </Group>
               </Grid.Col>
 
           {     pageData.infoCards &&
-                            <Card radius={"lg"} shadow="lg" my={"lg"}>
+                            <Card radius={"lg"} shadow="lg" my={"lg"} className='border'>
 
                             <Grid.Col span={6} mt={"lg"}>
                               {/* <hr style={{ margin: "2rem 0" }} /> */}
@@ -340,7 +417,7 @@ if (!pageData) return <div>No data found</div>
             }
 
 
-              <Card radius={"lg"} shadow="lg" my={"lg"} w={"100%"}> 
+              <Card radius={"lg"} shadow="lg" my={"lg"} w={"100%"} className='border'> 
               <Grid.Col span={8} mt={"lg"}>
                 <Stack  gap={"lg"}>
                 <Title order={2}>Why opt for Minimally Invasive Lipoma Procedure?</Title>
@@ -364,14 +441,14 @@ if (!pageData) return <div>No data found</div>
                 </Stack>
               </Grid.Col>
               <Grid.Col span={8} mt={"lg"}>
-              <Card radius={"lg"} shadow="lg">
+              <Card radius={"lg"} shadow="lg" className='border'>
                 <div className="prose max-w-full ">
                 <PortableText value={pageData.content}/>
                 </div>
                 </Card>
                 {
                   pageData.additionalContent1 && 
-                  <Card shadow="sm" mt={"md"} radius={"lg"}>
+                  <Card shadow="sm" mt={"md"} radius={"lg"} className='border'>
                   <div className="prose max-w-full ">
                 <PortableText value={pageData.additionalContent1}/>
                 </div>
@@ -379,7 +456,7 @@ if (!pageData) return <div>No data found</div>
                 }
                 {
                   pageData.additionalContent2 && 
-                  <Card shadow="sm" mt={"md"} radius={"lg"}>
+                  <Card shadow="sm" mt={"md"} radius={"lg"} className='border'>
 
                   <div className="prose max-w-full ">
                 <PortableText value={pageData.additionalContent2}/>
@@ -415,6 +492,10 @@ if (!pageData) return <div>No data found</div>
         <FrequentlyAskedQuestions faqs={pageData.faqs} />
         }
         <BookConsultation />
+       {
+        procedures &&
+         <BackLinks procedures={procedures} header="Procedures in Top Cities"></BackLinks>
+       } 
       </div>
     </>
   );

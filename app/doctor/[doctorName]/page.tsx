@@ -155,68 +155,89 @@ if (!pageData) return <div>No data found</div>
   return (
     <>
 
-      <Group grow p={"xl"} >
+      <Group grow p={{base:"sm",md:"md",lg:"xl"}}>
         <Grid grow gutter={"xl"} className="relative">
           <Grid.Col span={8}>
 
             {/* Hero */}
-            <Grid grow gutter={"xl"} my={"md"}>
-            <Grid.Col span={4}>
-            <Image src={pageData.imageUrl} maw={250} className=" rounded-md "></Image>
-            </Grid.Col>
-            <Grid.Col span={8}>
-            <Stack pos={"relative"}>
-                <Flex gap={"sm"} align={"center"}>
-                <Title c={"#1C7ED6"} className="font-semibold">{pageData.title}</Title>
-                <span><IconRosetteDiscountCheckFilled color="#1C7ED6"/></span>
-                </Flex>
-                <div>
-                    <Text c={"#5B6B7D"}>{pageData.speciality}</Text>
-                    <Text c={"#5B6B7D"}>{pageData.degrees}</Text>
-                </div>
-                <div className="flex gap-8 p-4 bg-slate-100 rounded-md w-fit">
-                <Stack gap={"xs"} >
-                    <Group gap={"xs"}>
-                    <IconBriefcase color="#1C7ED6"/>
-                    <Title order={4} c={"#1C7ED6"}>{pageData.yearsOfExperience}</Title>
-                    </Group>
-                        <Text size="xs" c={"#5F6D7A"}>
-                            Experience
-                        </Text>
-                    </Stack>
-                    <hr />
-                    <Stack gap={"xs"}>
-                    <Group gap={"xs"}>
-                    <IconThumbUp color="#1C7ED6"/>
-                    <Title order={4} c={"#1C7ED6"}>99%</Title>
-                    </Group>
-                        <Text size="xs" c={"#5F6D7A"}>
-                            Recommended
-                        </Text>
-                    </Stack>
-                </div>
-                <Group>
+            <div className="container mx-auto p-4">
+      {/* Main container with image and details */}
+      <div className="flex flex-row gap-8 mb-6">
+        {/* Image section */}
+        <div className="w-1/3 md:w-1/4">
+          <Image
+            src={pageData.imageUrl}
+            className="rounded-md max-w-[250px] w-full"
+            alt={pageData.title}
+          />
+        </div>
+
+        {/* Details section */}
+        <div className="w-2/3 md:w-3/4">
+          <Stack>
+            {/* Doctor name and verification */}
+            <Flex gap="sm" align="center">
+              <Title c="#1C7ED6" className="font-semibold text-xl md:text-2xl">
+                {pageData.title}
+              </Title>
+              <IconRosetteDiscountCheckFilled color="#1C7ED6" size={24} />
+            </Flex>
+
+            {/* Credentials */}
+            <div>
+              <Text c="#5B6B7D">{pageData.speciality}</Text>
+              <Text c="#5B6B7D">{pageData.degrees}</Text>
+            </div>
+
+            {/* Stats */}
+            <div className="md:flex gap-8 p-4 bg-slate-100 rounded-md w-fit hidden">
+              <Stack gap="xs">
+                <Group gap="xs">
+                  <IconBriefcase color="#1C7ED6" size={20} />
+                  <Title order={4} c="#1C7ED6">
+                    {pageData.yearsOfExperience}
+                  </Title>
                 </Group>
+                <Text size="xs" c="#5F6D7A">
+                  Experience
+                </Text>
+              </Stack>
+              
+              <div className="w-px bg-slate-300" />
+              
+              <Stack gap="xs">
+                <Group gap="xs">
+                  <IconThumbUp color="#1C7ED6" size={20} />
+                  <Title order={4} c="#1C7ED6">
+                    99%
+                  </Title>
+                </Group>
+                <Text size="xs" c="#5F6D7A">
+                  Recommended
+                </Text>
+              </Stack>
+            </div>
+          </Stack>
+        </div>
+      </div>
 
-                <Group>
-                  <Flex gap={"md"} wrap={"wrap"}>
-                    <Button size="lg" variant="filled" >
-                      Book An Appointment
-                    </Button>
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      leftSection={<IconBrandWhatsapp size={20} />}
-                      rightSection={<IconArrowRight size={20} />}
-                    >
-                      Whatsapp Expert
-                    </Button>
-                  </Flex>
-                </Group> 
-
-            </Stack>
-            </Grid.Col>
-            </Grid>
+      {/* Buttons section - stacks on mobile */}
+      <div className="flex flex-col sm:flex-row gap-4 mt-4">
+        <Button size="lg" variant="filled" fullWidth className="sm:w-auto">
+          Book An Appointment
+        </Button>
+        <Button
+          size="lg"
+          variant="outline"
+          leftSection={<IconBrandWhatsapp size={20} />}
+          rightSection={<IconArrowRight size={20} />}
+          fullWidth
+          className="sm:w-auto"
+        >
+          Whatsapp Expert
+        </Button>
+      </div>
+    </div>
 
             {/* Description */}
             <Container py={"lg"} >
@@ -269,7 +290,7 @@ if (!pageData) return <div>No data found</div>
                     <Card.Section p={"lg"}>
                     <Carousel
       withIndicators
-      slideSize="33.333333%"
+      slideSize={{base:"90%",md:"33.3333%"}}
       slideGap="md"
       loop
       align="start"

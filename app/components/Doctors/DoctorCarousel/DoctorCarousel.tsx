@@ -77,7 +77,7 @@ const DoctorCarousel = ({ data }:{data:Doctor[]}) => {
         {extendedData.map((doctor, idx) => (
           <div
             key={idx}
-            className="w-[75%] flex-shrink-0"
+            className="w-[90%] md:w-[75%]  flex-shrink-0 grow"
           >
             <Link href={`/doctor/${doctor.slug}`}>
               <Card className="h-full">

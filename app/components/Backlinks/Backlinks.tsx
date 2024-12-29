@@ -15,7 +15,7 @@ interface ProcedureLinksProps {
 export default function BackLinks({ procedures, header }: ProcedureLinksProps) {
   return (
     <section className="flex flex-col gap-4">
-      <h3 className=" text-blue-600 font-semibold text-start">{header}</h3>
+      <h3 className=" text-blue-600 font-semibold text-start text-xl">{header}</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
         {procedures.map((procedure, index) => (
           <Link 

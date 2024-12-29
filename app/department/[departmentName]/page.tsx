@@ -39,7 +39,7 @@ import { Doctor } from "../../doctor/[doctorName]/page";
 import Link from "next/link";
 import BackLinks from '../../components/Backlinks/Backlinks';
 import DoctorCarousel from "../../components/Doctors/DoctorCarousel/DoctorCarousel";
-
+import BG from "../../../app/assets/departmentBg.png"
 
 const storiesData = [
   {
@@ -171,9 +171,17 @@ if (!pageData) return <div>No data found</div>
 
   return (
     <>
-      <Group grow p={"xl"} bg={"#F8F9FA"}>
+    <div className="absolute -z-10 -translate-y-6 hidden md:block w-screen">
+      <Image src="/assets/ads_bg.png" alt="background"></Image>
+
+    </div>
+    <div className="absolute -z-10 md:hidden block">
+      <Image src="/assets/department_mobile.png" alt="background"></Image>
+
+    </div>
+      <Group grow p={"xl"} className="relative z-0">
         <Grid gutter={"md"} >
-          <Grid.Col span={9} pos={"relative"}>
+          <Grid.Col span={{base:12,md:9}} pos={"relative"}>
             <Grid grow gutter={"sm"}>
               <Grid.Col span={8}>
                 <Group my={"lg"}>
@@ -186,44 +194,10 @@ if (!pageData) return <div>No data found</div>
                     {pageData.shortDescription}
                   </Text>
                 </Group>
-                <Group my={"md"} grow>
-                  <Grid gutter={"md"}>
-                    <Grid.Col span={4}>
-                      <Card style={{ background: "lightblue" }}>
-                        <Flex justify={"start"} align={"center"}>
-                          <IconHeartbeat
-                            style={{ color: "#FF990C",marginRight:"8px" }}
-                          ></IconHeartbeat>
-                          <Title order={4}>100%</Title>
-                        </Flex>
-                        <Text size="xs">Latest Procedures</Text>
-                      </Card>
-                    </Grid.Col>
-                    <Grid.Col span={4}>
-                      <Card style={{ background: "lightblue" }}>
-                        <Flex justify={"start"} align={"center"}>
-                          <IconStethoscope
-                            style={{ color: "#FF990C",marginRight:"8px" }}
-                          ></IconStethoscope>
-                          <Title order={4}>50+</Title>
-                        </Flex>
-                        <Text size="xs">Expert Surgeons</Text>
-                      </Card>
-                    </Grid.Col>
-                    <Grid.Col span={4}>
-                      <Card style={{ background: "lightblue" }}>
-                        <Flex justify={"start"} align={"center"}>
-                          <IconMessages
-                            style={{ color: "#FF990C",marginRight:"8px" }}
-                          ></IconMessages>
-                          <Title order={4}>1:1</Title>
-                        </Flex>
-                        <Text size="xs">Personal Support</Text>
-                      </Card>
-                    </Grid.Col>
-                  </Grid>
-                </Group>
+
+
                 <Group my={"xl"}>
+                <Text className=" font-bold">Schedule a Free Consultation with Our Expert Doctors in Your Area</Text>
                   <Flex gap={"md"} wrap={"wrap"}>
                     <Button size="lg" variant="filled" >
                       Book An Appointment
@@ -239,10 +213,6 @@ if (!pageData) return <div>No data found</div>
                   </Flex>
                 </Group>
                 
-              </Grid.Col>
-
-              <Grid.Col span={4}>
-                <Image src={pageData.imageUrl} maw={250} className="mix-blend-multiply"></Image>
               </Grid.Col>
 
               <Grid.Col span={8} className="hidden sm:flex ">
@@ -358,11 +328,15 @@ if (!pageData) return <div>No data found</div>
                 </div>
                 </Card>
                 }
+                        {
+          pageData.faqs &&
+        <FrequentlyAskedQuestions faqs={pageData.faqs} />
+        }
               </Grid.Col>
 
             </Grid>
           </Grid.Col>
-          <Grid.Col span={3} pos={"relative"}>
+          <Grid.Col span={{base:12,md:3}} pos={"relative"}>
             <Card shadow="sm" padding="lg" radius="md" withBorder pos={"sticky"} top={24}>
               <Title order={3}>Request a callback</Title>
               <Text c={"#5F6D7A"}>
@@ -380,10 +354,7 @@ if (!pageData) return <div>No data found</div>
       <Stories reviews={storiesData} />
                   }
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        {
-          pageData.faqs &&
-        <FrequentlyAskedQuestions faqs={pageData.faqs} />
-        }
+
         <BookConsultation />
       </div>
     </>
