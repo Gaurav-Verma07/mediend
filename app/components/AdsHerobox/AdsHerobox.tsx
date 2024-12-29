@@ -56,8 +56,6 @@ export const AdsHerobox = ({ data }: { data: Herobox }) => {
               {data?.list.map((el: string, index) => (
                 <List.Item key={index}>{el}</List.Item>
               ))}
-              <List.Item>Quick 30-Minute Procedure</List.Item>
-              <List.Item>Insurance Accepted</List.Item>
             </List>
             <Button size="lg" w={330} color="#F2AC4B" c="#000">
               Get Cost Estimation
