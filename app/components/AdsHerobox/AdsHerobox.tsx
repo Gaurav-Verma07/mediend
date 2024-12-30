@@ -7,16 +7,20 @@ import {
   Flex,
   Image,
   List,
+  Modal,
   Text,
   Title,
 } from "@mantine/core";
 import classes from "./AdsHerobox.module.css";
-import { useMediaQuery } from "@mantine/hooks";
+import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { Herobox } from "../../../lib/utils/adsDiseaseType";
 import { AdsConsultForm } from "../AboutAds/AboutAds";
 import { urlFor } from "../../../lib/sanity";
+import { AdsForm } from "../AdsForm/AdsForm";
 export const AdsHerobox = ({ data }: { data: Herobox }) => {
   const mobile = useMediaQuery(`(min-width: 600px)`);
+  const [opened, { open, close }] = useDisclosure(false);
+
   return (
     <BackgroundImage
       pos="relative"
@@ -33,15 +37,19 @@ export const AdsHerobox = ({ data }: { data: Herobox }) => {
       h={600}
       mb={{ base: 250, sm: 300, md: 100, lg: 100 }}
     >
-      <Image
-        pos="absolute"
-        style={{ zIndex: 0 }}
-        src={data?.image ? urlFor(data.image)?.url() : "/placeholder-image.png"}
-        fit="contain"
-        h={500}
-        alt="disease"
-        bottom={0}
-      />
+      {data?.image && (
+        <Image
+          pos="absolute"
+          style={{ zIndex: 0 }}
+          src={
+            data?.image ? urlFor(data.image)?.url() : "/placeholder-image.png"
+          }
+          fit="contain"
+          h={500}
+          alt="disease"
+          bottom={0}
+        />
+      )}{" "}
       <Container pos="relative" style={{ zIndex: 100 }} size="xl" h="inherit">
         <Flex
           justify={{ base: "center", md: "space-between" }}
@@ -68,7 +76,7 @@ export const AdsHerobox = ({ data }: { data: Herobox }) => {
                 <List.Item key={index}>{el}</List.Item>
               ))}
             </List>
-            <Button size="lg" w={330} color="#F2AC4B" c="#000">
+            <Button size="lg" onClick={open} w={330} color="#F2AC4B" c="#000">
               Get Cost Estimation
             </Button>
           </Box>
@@ -77,6 +85,9 @@ export const AdsHerobox = ({ data }: { data: Herobox }) => {
           </Box>
         </Flex>
       </Container>
+      <Modal opened={opened} onClose={close} title="Form">
+        <AdsForm />
+      </Modal>
     </BackgroundImage>
   );
 };

@@ -11,6 +11,7 @@ import {
   Button,
   Flex,
   Image,
+  Modal,
 } from "@mantine/core";
 import {
   IconBriefcase,
@@ -19,6 +20,8 @@ import {
 } from "@tabler/icons-react";
 import { Doctor } from "../../../lib/utils/adsDiseaseType";
 import { urlFor } from "../../../lib/sanity";
+import { AdsForm } from "../AdsForm/AdsForm";
+import { useDisclosure } from "@mantine/hooks";
 
 const doctors = [
   {
@@ -40,6 +43,8 @@ const doctors = [
 ];
 
 const DoctorCard = ({ data }: { data: Doctor }) => {
+  const [opened, { open, close }] = useDisclosure(false);
+
   return (
     <Card shadow="md" mx={5} my={30} w="max-content" p={30} radius={14}>
       <Card.Section>
@@ -93,6 +98,7 @@ const DoctorCard = ({ data }: { data: Doctor }) => {
       </Card.Section>
       <Card.Section>
         <Button
+          onClick={open}
           mt={10}
           radius="xl"
           fullWidth
@@ -103,6 +109,9 @@ const DoctorCard = ({ data }: { data: Doctor }) => {
           Book Appointment
         </Button>
       </Card.Section>
+      <Modal opened={opened} onClose={close} title="Form">
+        <AdsForm />
+      </Modal>
     </Card>
   );
 };
@@ -119,7 +128,7 @@ export const ExpertDoctors = ({ data }: { data: Doctor[] }) => {
             </Box>
           ))}
         </Flex>
-      </ScrollArea>
+      </ScrollArea>{" "}
     </Box>
   );
 };
