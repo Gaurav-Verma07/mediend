@@ -32,10 +32,11 @@ const Showcase = () => {
         {data.map((el, index: number) => (
           <Box className={classes.box} key={index}>
             <Image
+              mx="auto"
               fit="contain"
               src={el.img}
-              height={77}
-              width={77}
+              w="77px"
+              h="77px"
               alt="image"
               data-aos="zoom-out"
             />
