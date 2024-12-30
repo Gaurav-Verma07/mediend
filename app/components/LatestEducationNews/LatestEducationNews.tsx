@@ -20,7 +20,7 @@ import {
 import { useMediaQuery } from "@mantine/hooks";
 import { RootState } from "../../../lib/store/store";
 import { sanity, urlFor } from "../../../lib/sanity";
-import { convertDate } from "../../../lib/utils/capitalizeFirstLetter";
+import { convertDate } from "../../../lib/utils/helper";
 
 const LatestEducationNews = () => {
   const router = useRouter();
@@ -89,7 +89,7 @@ const LatestEducationNews = () => {
           // plugins={[autoplayRef.current]}
         >
           {blogs
-            .filter((el) => el.mainContent.isFeatured)
+            .filter((el) => el.mainContent.blogtype)
             .map((item, index) => (
               <Carousel.Slide style={{ display: "flex" }} key={index}>
                 <Flex

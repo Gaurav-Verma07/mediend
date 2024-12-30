@@ -1,60 +1,115 @@
 "use client";
-import { Anchor, Box, Button, Image, rem, Text, Title } from "@mantine/core";
+import {
+  Anchor,
+  Box,
+  Button,
+  Flex,
+  Image,
+  rem,
+  SimpleGrid,
+  Text,
+  Title,
+} from "@mantine/core";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 import classes from "./Blogs.module.css";
-const blogsData = [
-  {
-    img: "/assets/blogs.png",
-    title:
-      "Gynecomastia Surgery: Causes, Symptoms, and Treatment Optimal to use for good ",
-    info: "Lorem ipsum dolor sit amet conse ctetur adip iscing elit justo quis odio sit sit ac port titor sit males dolor sit.",
-    date: "Jan 24, 2024",
-    link: "https://mediend.com/blogs-wp/gynecomastia-causes-symptoms-treatment-and-cost/",
-  },
-  {
-    img: "/assets/blogs.png",
-    title: "What is Lasik Eye Surgery? Treatment and Benefits",
-    info: "Lorem ipsum dolor sit amet conse ctetur adip iscing elit justo quis odio sit sit ac port titor sit males dolor sit.",
-    date: "Jan 24, 2024",
-    link: "https://mediend.com/blogs-wp/what-is-lasik-surgery-treatment-and-benefits/",
-  },
-  {
-    img: "/assets/blogs.png",
-    title: "Lipoma Causes, Symptoms, And Effective Prevention Methods",
-    info: "Lorem ipsum dolor sit amet conse ctetur adip iscing elit justo quis odio sit sit ac port titor sit males dolor sit.",
-    date: "Jan 24, 2024",
-    link: "https://mediend.com/blogs-wp/lipoma-causes-symptoms-and-treatment/",
-  },
-];
+import { useEffect, useState } from "react";
+import { Blog } from "../../../lib/utils/blogType";
+import { useRouter } from "next/navigation";
+import { urlForBlogs } from "../../../lib/sanity";
+import { convertDate } from "../../../lib/utils/helper";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../lib/store/store";
+import { fetchBlogs } from "../../../lib/api/blogAPI";
+
 const Blogs = () => {
+  const [isMore, setIsMore] = useState<boolean>(false);
+  const [blogList, setBlogList] = useState<Blog[]>([]);
+  const router = useRouter();
+  const { blogs } = useSelector((state: RootState) => state.blogs);
+  const dispatch: AppDispatch = useDispatch();
+  useEffect(() => {
+    if (blogs.length === 0) {
+      dispatch(fetchBlogs());
+    }
+    setBlogList(blogs);
+  }, [blogs]);
+
+  console.log(blogList);
+
+  const isMoreThanThree = blogList.length > 3;
+  console.log({ blogList });
   return (
     <Box my={60}>
       <Title className={classes.main__title} data-aos="zoom-in-up">
         Latest Blogs
       </Title>
-      <Box className={classes.main__box}>
-        {blogsData.map((el, index: number) => (
-          <Box key={index} maw={353} className={classes.box}>
-            <Image src={el.img} height={200} fit="unset" alt={el.title} />
-            <Box className={classes.box__data}>
-              <Text className={classes.box__title} fw={600}>
-                {el.title}
-              </Text>
-              <Text c="#6D758F" my={10}>
-                {el.info}
-              </Text>
-              <Box className={classes.box__footer}>
-                <Text c="#6D758F" fw={600}>
-                  {el.date}
+      <SimpleGrid maw="fit-content" mx="auto" cols={{ base: 1, sm: 2, lg: 3 }}>
+        {(isMore ? blogList : blogList.slice(0, 3)).map((el, index: number) => (
+          <Flex
+            key={index}
+            maw={340}
+            direction="column"
+            className={classes.box}
+            bd="1px solid #e1e4ed"
+          >
+            <Image
+              src={
+                el.mainContent?.coverImage
+                  ? urlForBlogs(el.mainContent.coverImage)?.url()
+                  : "/assets/blogs.png"
+              }
+              h="200px"
+              fit="unset"
+              alt={el?.mainContent?.title}
+            />
+            <Flex flex={1} p={20} justify="space-between" direction="column">
+              <Box>
+                <Text
+                  fz={{ base: 16, sm: 20 }}
+                  lh="22.4px"
+                  c="#282828"
+                  fw={500}
+                  lineClamp={2}
+                >
+                  {el.mainContent?.title}
                 </Text>
-                <Anchor href={el.link} className={classes.btn} p={8}>
+                <Text c="#6D758F" my={10}>
+                  {el.mainContent.shortInfo}
+                </Text>
+              </Box>
+              <Flex align="center" justify="space-between" mt={20} pt={10}>
+                <Text c="#6D758F" fz={14} fw={400}>
+                  {convertDate(el?.mainContent?.publishDate)}
+                </Text>
+                <Anchor
+                  onClick={() =>
+                    router.push(
+                      `/blogs/${el.mainContent.title.trim().replace(/\s+/g, "-")}`
+                    )
+                  }
+                  className={classes.btn}
+                  p={8}
+                >
                   <IconArrowNarrowRight color="#fff" />
                 </Anchor>
-              </Box>
-            </Box>
-          </Box>
+              </Flex>
+            </Flex>
+          </Flex>
         ))}
-      </Box>
+      </SimpleGrid>
+      <Button
+        display={isMoreThanThree ? "block" : "none"}
+        onClick={() => setIsMore(!isMore)}
+        fw={500}
+        variant="transparent"
+        mx="auto"
+        ta="center"
+        c="#F24B04"
+        my={10}
+        style={{ cursor: "pointer" }}
+      >
+        {!isMore ? "Show More" : "Show Less"}
+      </Button>
     </Box>
   );
 };

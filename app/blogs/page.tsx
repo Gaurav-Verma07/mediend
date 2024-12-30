@@ -17,12 +17,9 @@ export default function HomePage() {
 
   return (
     <>
-      {/* <SearchHerobox /> */}
       <Container size="lg">
-        <LatestEducationNews />
-        <LatestNews />
-        {/* <FeaturedBlogs />
-        <LatestNews /> */}
+        <LatestNews blogtype="news_media" />
+        <LatestNews blogtype="latest_article" />
       </Container>
     </>
   );

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import {
+  Anchor,
   Box,
   Button,
   Divider,
@@ -18,37 +19,23 @@ import {
 import classes from "./LatestNews.module.css";
 import { Blog } from "../../../lib/utils/blogType";
 import { RootState } from "../../../lib/store/store";
-import { urlFor } from "../../../lib/sanity";
-import { convertDate } from "../../../lib/utils/capitalizeFirstLetter";
+import { urlFor, urlForBlogs } from "../../../lib/sanity";
+import { convertDate } from "../../../lib/utils/helper";
+import { IconArrowNarrowRight } from "@tabler/icons-react";
 
-const tabData = [
-  { label: "All", value: "all" },
-  { label: "Exam Updates", value: "exam_updates" },
-  { label: "Trending Topics", value: "trending_topics" },
-  { label: "College Guides", value: "college_guides" },
-  { label: "Tech in Education", value: "tech_in_education" },
-];
-
-const LatestNews = () => {
-  const [value, setValue] = useState<string>(tabData[0].value);
+const LatestNews = ({ blogtype }: { blogtype: string }) => {
   const [isMore, setIsMore] = useState<boolean>(false);
   const [blogList, setBlogList] = useState<Blog[]>([]);
   const { blogs } = useSelector((state: RootState) => state.blogs);
   const router = useRouter();
-  useEffect(() => {
-    setBlogList(blogs);
-  }, [blogs]);
 
   useEffect(() => {
-    let filteredList;
-    if (value === "all") {
-      filteredList = blogs;
-    } else {
-      filteredList = blogs.filter((el) => el.mainContent.category === value);
-    }
+    const filteredList = blogs.filter(
+      (el) => el?.mainContent?.blogtype === blogtype
+    );
     setBlogList(filteredList);
     setIsMore(false);
-  }, [value]);
+  }, [blogs]);
   const isMoreThanThree = blogList.length > 3;
 
   return (
@@ -60,24 +47,11 @@ const LatestNews = () => {
         justify={{ base: "center", lg: "space-between" }}
         my={50}
       >
-        <Title c="#191919" fz={{ base: 24, sm: 40 }} my={10}>
-          Latest News articles
+        <Title c="#191919" fz={{ base: 24, sm: 40 }} my={5}>
+          {blogtype === "news_media" ? "News/Media" : "Latest Articles"}
         </Title>
-        <ScrollArea maw="97%" scrollbarSize={7}>
-          <SegmentedControl
-            value={value}
-            onChange={setValue}
-            my={10}
-            fullWidth
-            withItemsBorders={false}
-            size="md"
-            color="#F24B04"
-            bg="#fff"
-            data={tabData}
-          />
-        </ScrollArea>
       </Flex>
-      <Divider my="md" />
+      <Divider my="sm" />
       <SimpleGrid maw="fit-content" mx="auto" cols={{ base: 1, sm: 2, lg: 3 }}>
         {(isMore ? blogList : blogList.slice(0, 3)).map((el, index: number) => (
           <Flex
@@ -90,13 +64,12 @@ const LatestNews = () => {
             <Image
               src={
                 el.mainContent?.coverImage
-                  ? urlFor(el.mainContent.coverImage)?.url()
-                  : "/assets/blogs/blog_1.png"
+                  ? urlForBlogs(el.mainContent.coverImage)?.url()
+                  : "/assets/blogs.png"
               }
-              fallbackSrc="/assets/blogs.png"
-              h={300}
-              fit="contain"
-              alt="blog image"
+              h="200px"
+              fit="unset"
+              alt={el?.mainContent?.title}
             />
             <Flex flex={1} p={20} justify="space-between" direction="column">
               <Box>
@@ -109,35 +82,26 @@ const LatestNews = () => {
                 >
                   {el.mainContent?.title}
                 </Text>
-                <Text c="#6D758F" my={10} lineClamp={3}>
+                <Text c="#6D758F" my={10}>
                   {el.mainContent.shortInfo}
                 </Text>
               </Box>
-              <Flex
-                style={{ borderTop: "1px solid #e1e4ed" }}
-                align="center"
-                justify="space-between"
-                mt={20}
-                pt={10}
-              >
-                <Button
-                  c="#F24B04"
-                  fw={500}
-                  p={0}
-                  fz={14}
+              <Flex align="center" justify="space-between" mt={20} pt={10}>
+                <Text c="#6D758F" fz={14} fw={400}>
+                  {convertDate(el?.mainContent?.publishDate)}
+                </Text>
+                <Anchor
                   onClick={() =>
                     router.push(
                       `/blogs/${el.mainContent.title.trim().replace(/\s+/g, "-")}`
                     )
                   }
-                  variant="transparent"
+                  className={classes.btn}
+                  p={8}
                 >
-                  Continue Reading
-                </Button>
-                <Text c="#6D758F" fz={14} fw={400}>
-                  {convertDate(el.mainContent.publishDate)}
-                </Text>
-              </Flex>
+                  <IconArrowNarrowRight color="#fff" />
+                </Anchor>
+              </Flex>{" "}
             </Flex>
           </Flex>
         ))}

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { setBlogs } from "../store/blogSlice";
 import { AppDispatch, RootState } from "../store/store";
-import { sanity } from "../sanity";
+import { sanityblogs } from "../sanity";
 
 export const fetchBlogs = createAsyncThunk<
   void,
@@ -9,8 +9,8 @@ export const fetchBlogs = createAsyncThunk<
   { dispatch: AppDispatch; state: RootState }
 >("blogs/fetch", async (_, { dispatch }) => {
   try {
-    const blogs = await sanity.fetch(`
-            *[_type == "blogs"] | order(priority asc)
+    const blogs = await sanityblogs.fetch(`
+            *[_type == "blogs"] | order(_createdAt desc)
             `);
     console.log({ blogs });
     dispatch(setBlogs(blogs));

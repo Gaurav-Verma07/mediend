@@ -23,7 +23,7 @@ import { ExpertDoctors } from "../../components/ExpertDoctors/ExpertDoctors";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { sanityAds, urlFor } from "../../../lib/sanity";
+import { sanityAds, urlForAds } from "../../../lib/sanity";
 import { AdsDisease, BenefitsType } from "../../../lib/utils/adsDiseaseType";
 import Link from "next/link";
 import { AdsForm } from "../../components/AdsForm/AdsForm";
@@ -209,7 +209,7 @@ export default function AboutUsPage() {
             }
             img={
               data?.disease?.diseaseImage
-                ? urlFor(data?.disease?.diseaseImage)?.url()
+                ? urlForAds(data?.disease?.diseaseImage)?.url()
                 : "/placeholder-image.png"
             }
             info={data?.disease?.diseaseans}

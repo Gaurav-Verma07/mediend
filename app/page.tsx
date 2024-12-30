@@ -14,31 +14,33 @@ import Specialities from "./components/Specialities/Specialities";
 import Stories from "./components/Stories/Stories";
 import WhyUs from "./components/WhyUs/WhyUs";
 
-
-
 const storiesData = [
   {
     imageUrl: "/assets/stories/stories_1.png",
     highlight: "“Strength to embrace my son and life again”",
-    review: "We feel like we can finally live a normal life!” I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!",
+    review:
+      "We feel like we can finally live a normal life!” I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!",
     name: "Vanamala Ramesh",
   },
   {
     imageUrl: "/assets/stories/stories_2.png",
     highlight: "“We feel like we can finally live a normal life!”",
-    review: "I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!.",
+    review:
+      "I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!.",
     name: "Stephanie Powell",
   },
   {
     imageUrl: "/assets/stories/stories_1.png",
     highlight: "“Strength to embrace my son and life again”",
-    review: "We feel like we can finally live a normal life!” I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!",
+    review:
+      "We feel like we can finally live a normal life!” I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!",
     name: "Vanamala Ramesh",
   },
   {
     imageUrl: "/assets/stories/stories_2.png",
     highlight: "“We feel like we can finally live a normal life!”",
-    review: "I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!.",
+    review:
+      "I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!.",
     name: "Stephanie Powell",
   },
 ];
@@ -64,7 +66,7 @@ export default function HomePage() {
       <div style={{ maxWidth: "1370px", margin: "0 auto" }}>
         <OurDoctors />
       </div>
-      <Stories reviews={storiesData}/>
+      <Stories reviews={storiesData} />
       <div style={{ maxWidth: "1300px", margin: "0 auto" }}>
         <Blogs />
       </div>
@@ -73,7 +75,6 @@ export default function HomePage() {
         <FrequentlyAskedQuestions faqs={faqs} />
         <BookConsultation />
       </div>
-
     </div>
   );
 }

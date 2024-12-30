@@ -19,9 +19,9 @@ import {
   IconThumbUp,
 } from "@tabler/icons-react";
 import { Doctor } from "../../../lib/utils/adsDiseaseType";
-import { urlFor } from "../../../lib/sanity";
 import { AdsForm } from "../AdsForm/AdsForm";
 import { useDisclosure } from "@mantine/hooks";
+import { urlForAds } from "../../../lib/sanity";
 
 const DoctorCard = ({ data }: { data: Doctor }) => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -32,7 +32,7 @@ const DoctorCard = ({ data }: { data: Doctor }) => {
         <Group>
           {data?.image ? (
             <Image
-              src={urlFor(data?.image).url()}
+              src={urlForAds(data?.image).url()}
               w={84}
               h={114}
               alt={data?.name}

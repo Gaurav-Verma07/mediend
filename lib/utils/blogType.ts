@@ -3,7 +3,7 @@ export type Blog = {
   _updatedAt: string;
   _id: string;
   _rev: string;
-  _type: 'blogs';
+  _type: "blogs";
   mainContent: {
     coverImage: {
       _type: string;
@@ -12,50 +12,53 @@ export type Blog = {
         _type: string;
       };
     };
-    isFeatured: boolean;
     title: string;
     shortInfo: string;
-    category: 'exam_updates' | 'trending_topics' | 'college_guides' | 'tech_in_education';
-    priority: number;
+    blogtype: "latest_article" | "news_media";
     publishDate: string;
   };
   content: ContentType[];
 };
 
-export type ContentType = HeadingType | TextType | ImageType | ListType | TableType;
+export type ContentType =
+  | HeadingType
+  | TextType
+  | ImageType
+  | ListType
+  | TableType;
 
 export type HeadingType = {
   _key: string;
-  _type: 'heading';
+  _type: "heading";
   info: string;
   level: number;
 };
 
 export type TextType = {
   _key: string;
-  _type: 'info';
+  _type: "info";
   body: string;
 };
 
 export type ImageType = {
   _key: string;
-  _type: 'image';
+  _type: "image";
   asset: {
     _ref: string;
-    _type: 'reference';
+    _type: "reference";
   };
 };
 
 export type ListType = {
   _key: string;
-  _type: 'list';
+  _type: "list";
   items: string[];
   ordered: boolean;
 };
 
 export type TableType = {
   _key: string;
-  _type: 'table';
+  _type: "table";
   rows: RowType[];
 };
 

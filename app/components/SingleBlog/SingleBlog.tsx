@@ -4,7 +4,7 @@ import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import { Anchor, Box, Breadcrumbs, Flex, Image } from "@mantine/core";
 import RecentNews from "../RecentNews";
-import { urlFor } from "../../../lib/sanity";
+import { urlFor, urlForBlogs } from "../../../lib/sanity";
 
 const items = [
   { title: "Home", href: "/" },
@@ -23,7 +23,7 @@ export const portableTextComponents: any = {
     }: {
       value: { asset: any; alt?: string; caption?: string };
     }) => {
-      const imageUrl = urlFor(value?.asset)?.url();
+      const imageUrl = urlForBlogs(value?.asset)?.url();
       const altText = value?.alt || "Blog Image";
 
       return (

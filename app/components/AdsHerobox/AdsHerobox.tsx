@@ -15,8 +15,8 @@ import classes from "./AdsHerobox.module.css";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { Herobox } from "../../../lib/utils/adsDiseaseType";
 import { AdsConsultForm } from "../AboutAds/AboutAds";
-import { urlFor } from "../../../lib/sanity";
 import { AdsForm } from "../AdsForm/AdsForm";
+import { urlForAds } from "../../../lib/sanity";
 export const AdsHerobox = ({ data }: { data: Herobox }) => {
   const mobile = useMediaQuery(`(min-width: 600px)`);
   const [opened, { open, close }] = useDisclosure(false);
@@ -42,7 +42,9 @@ export const AdsHerobox = ({ data }: { data: Herobox }) => {
           pos="absolute"
           style={{ zIndex: 0 }}
           src={
-            data?.image ? urlFor(data.image)?.url() : "/placeholder-image.png"
+            data?.image
+              ? urlForAds(data.image)?.url()
+              : "/placeholder-image.png"
           }
           fit="contain"
           h={500}
