@@ -11,6 +11,7 @@ export const metadata = {
 import "./global.css";
 import AOSContainer from "./components/AOS/AOS";
 import Footer from "./components/Footer/Footer";
+import GlobalPopup from "./components/GlobalPopup/globalPopup";
 
 export default function RootLayout({ children }: { children: any }) {
   return (
@@ -27,6 +28,11 @@ export default function RootLayout({ children }: { children: any }) {
           <MantineProvider defaultColorScheme="light" theme={theme}>
             <Header />
             {children}
+            <GlobalPopup 
+  scrollThreshold={500}  // Show after scrolling 500px
+  useInterval={true}     // Use interval-based triggers
+  intervalTime={60000}   // Show every minute
+/>
             <Footer/>
 
           </MantineProvider>
