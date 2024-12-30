@@ -11,32 +11,86 @@ import {
   Flex,
 } from "@mantine/core";
 import { About } from "../../../lib/utils/adsDiseaseType";
-const aboutData = [
-  {
-    que: "Why Consider Lipoma Treatment?",
-    ans: [
-      "Sudden increase in size or discomfort",
-      "Medication and steroids are ineffective",
-      "Surgical removal is the most reliable solution",
-    ],
-  },
-  {
-    que: "Benefits of the Procedure",
-    ans: [
-      "Hassle-free insurance with complete support",
-      "	No recurrence; return to work in 1-2 days",
-      "	Painless 30-minute process with same-day discharge",
-    ],
-  },
-  {
-    que: "Why Choose MediEND?",
-    ans: [
-      "Experienced surgeons with 15+ years of expertise",
-      "Over 10,000 successful procedures performed",
-      "	Flexible 0% EMI options for affordable care",
-    ],
-  },
-];
+
+import { Autocomplete, Divider } from "@mantine/core";
+import { useForm } from "@mantine/form";
+import { useState } from "react";
+import { diseases } from "../BookConsultation/consultList";
+import classes from "./AboutAds.module.css";
+
+export const AdsConsultForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const form = useForm({
+    initialValues: {
+      name: "",
+      phone: "",
+      disease: "",
+    },
+    validate: {
+      disease: (val: string) => (val.length !== 0 ? null : "Select a disease"),
+    },
+  });
+  const submitHandler = async () => {
+    try {
+      setIsLoading(true);
+      setIsSubmitted(false);
+      const formData = new FormData();
+    } catch (error: any) {
+      console.log(error.message);
+    } finally {
+      setIsLoading(false);
+      setIsSubmitted(true);
+    }
+  };
+  return (
+    <Box maw={390}>
+      <Text fz={24} fw={600}>
+        Book Free Consultation
+      </Text>
+      <Divider c="#D7DEDD" my={15} />
+      <form onSubmit={form.onSubmit(submitHandler)}>
+        <TextInput
+          label="Patient  Name"
+          placeholder="Your name"
+          key={form.key("name")}
+          {...form.getInputProps("name")}
+          value={form.values.name}
+          classNames={{ label: classes.label, input: classes.input__root }}
+          onChange={(event) =>
+            form.setFieldValue("name", event.currentTarget.value)
+          }
+          radius="md"
+          my={20}
+        />
+        <TextInput
+          classNames={{ label: classes.label, input: classes.input__root }}
+          label="Phone No."
+          placeholder="+91 111222333"
+          key={form.key("phone")}
+          {...form.getInputProps("phone")}
+          value={form.values.phone}
+          onChange={(event) =>
+            form.setFieldValue("phone", event.currentTarget.value)
+          }
+          radius="md"
+          my={20}
+        />
+        <Button
+          loading={isLoading}
+          type="submit"
+          radius="md"
+          mt={20}
+          mb={10}
+          bg="#FF990C"
+          fullWidth
+        >
+          Book
+        </Button>
+      </form>
+    </Box>
+  );
+};
 
 export const StickyForm = () => {
   return (
@@ -56,22 +110,30 @@ export const StickyForm = () => {
         Speak to one of our representatives by filling the form below
       </Text>
       <TextInput
-        size="md"
+        classNames={{ label: classes.label, input: classes.input__root }}
         label="Patient Name"
         placeholder="Enter your name"
         mb="sm"
       />
       <TextInput
-        size="md"
+        classNames={{ label: classes.label, input: classes.input__root }}
         label="Mobile Number"
         placeholder="Enter your number"
         mb="sm"
       />
-      <TextInput size="md" label="City" placeholder="Noida" mb="sm" />
-      <TextInput size="md" label="Condition" placeholder="Lipoma" mb="sm" />
-      <Button size="md" fullWidth>
-        Request a call back
-      </Button>
+      <TextInput
+        classNames={{ label: classes.label, input: classes.input__root }}
+        label="City"
+        placeholder="Noida"
+        mb="sm"
+      />
+      <TextInput
+        classNames={{ label: classes.label, input: classes.input__root }}
+        label="Condition"
+        placeholder="Lipoma"
+        mb="sm"
+      />
+      <Button fullWidth>Request a call back</Button>
     </Paper>
   );
 };

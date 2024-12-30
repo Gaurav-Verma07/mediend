@@ -5,19 +5,21 @@ import {
   Button,
   Container,
   Flex,
+  Image,
   List,
   Text,
   Title,
 } from "@mantine/core";
-import { ConsultForm } from "../ConsultForm/ConsultForm";
 import classes from "./AdsHerobox.module.css";
 import { useMediaQuery } from "@mantine/hooks";
 import { Herobox } from "../../../lib/utils/adsDiseaseType";
+import { AdsConsultForm } from "../AboutAds/AboutAds";
+import { urlFor } from "../../../lib/sanity";
 export const AdsHerobox = ({ data }: { data: Herobox }) => {
   const mobile = useMediaQuery(`(min-width: 600px)`);
-
   return (
     <BackgroundImage
+      pos="relative"
       src={
         mobile
           ? "/assets/adspage/ads_hero.png"
@@ -31,7 +33,16 @@ export const AdsHerobox = ({ data }: { data: Herobox }) => {
       h={600}
       mb={{ base: 250, sm: 300, md: 100, lg: 100 }}
     >
-      <Container size="xl" h="inherit">
+      <Image
+        pos="absolute"
+        style={{ zIndex: 0 }}
+        src={data?.image ? urlFor(data.image)?.url() : "/placeholder-image.png"}
+        fit="contain"
+        h={500}
+        alt="disease"
+        bottom={0}
+      />
+      <Container pos="relative" style={{ zIndex: 100 }} size="xl" h="inherit">
         <Flex
           justify={{ base: "center", md: "space-between" }}
           align="center"
@@ -62,7 +73,7 @@ export const AdsHerobox = ({ data }: { data: Herobox }) => {
             </Button>
           </Box>
           <Box className={classes.form}>
-            <ConsultForm />
+            <AdsConsultForm />
           </Box>
         </Flex>
       </Container>

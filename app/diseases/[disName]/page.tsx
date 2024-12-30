@@ -22,7 +22,7 @@ import { ExpertDoctors } from "../../components/ExpertDoctors/ExpertDoctors";
 import { useMediaQuery } from "@mantine/hooks";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { sanity } from "../../../lib/sanity";
+import { sanity, urlFor } from "../../../lib/sanity";
 import { AdsDisease, BenefitsType } from "../../../lib/utils/adsDiseaseType";
 import Link from "next/link";
 
@@ -125,28 +125,37 @@ export default function AboutUsPage() {
           style={{ display: "flex", justifyContent: "space-between" }}
           py={10}
         >
-          <Image src="/logo.png" h={70} fit="contain" alt="logo" />
+          <Image
+            src="/logo.png"
+            h={{ base: 50, sm: 70 }}
+            fit="contain"
+            alt="logo"
+          />
           <Group>
-            <Button
-              component={Link}
-              href={data?.header?.callLink || ""}
-              size="lg"
-              variant="outline"
-              color="#fff"
-            >
-              Schedule Call
-            </Button>
-            <Button
-              component={Link}
-              href={data?.header?.whatsappLink || ""}
-              size="lg"
-              leftSection={<IconBrandWhatsapp color="#34A853" />}
-              rightSection={<IconArrowNarrowRight color="#34A853" />}
-              c="#34A853"
-              color="#fff"
-            >
-              WhatsApp Expert
-            </Button>
+            {data?.header?.isCallLink && (
+              <Button
+                component={Link}
+                href={data?.header?.callLink || ""}
+                size={mobile ? "lg" : "xs"}
+                variant="outline"
+                color="#fff"
+              >
+                Schedule Call
+              </Button>
+            )}
+            {data?.header?.isWhatsapp && (
+              <Button
+                component={Link}
+                href={data?.header?.whatsappLink || ""}
+                size={mobile ? "lg" : "xs"}
+                leftSection={<IconBrandWhatsapp color="#34A853" />}
+                rightSection={<IconArrowNarrowRight color="#34A853" />}
+                c="#34A853"
+                color="#fff"
+              >
+                WhatsApp Expert
+              </Button>
+            )}
           </Group>
         </Container>
       </Box>
@@ -196,7 +205,11 @@ export default function AboutUsPage() {
                 {data?.disease?.diseaseQue}
               </Title>
             }
-            img="/assets/adspage/lipoma.png"
+            img={
+              data?.disease?.diseaseImage
+                ? urlFor(data?.disease?.diseaseImage)?.url()
+                : "/placeholder-image.png"
+            }
             info={data?.disease?.diseaseans}
             bg="#E9F1FF"
             pb={40}

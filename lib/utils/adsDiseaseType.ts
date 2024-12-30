@@ -4,10 +4,24 @@ export type Herobox = {
     cityName: string;
     mainTitle: string;
   };
+  image: {
+    asset: {
+      _ref: string;
+      _type: "reference";
+    };
+    _type: "image";
+  };
 };
 export type DiseaseContent = {
   diseaseQue: string;
   diseaseans: string;
+  diseaseImage: {
+    asset: {
+      _ref: string;
+      _type: "reference";
+    };
+    _type: "image";
+  };
 };
 export type Doctor = {
   specialities: string;
@@ -44,6 +58,8 @@ export type BenefitsType = {
 export type AdsHeader = {
   callLink: string;
   whatsappLink: string;
+  isCallLink: boolean;
+  isWhatsapp: boolean;
 };
 export type ProcedureType = {
   heading: string;

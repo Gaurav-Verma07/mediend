@@ -29,7 +29,7 @@ const FrequentlyAskedQuestions: React.FC<FrequentlyAskedQuestionsProps> = ({
 }) => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const pathname = usePathname();
-  const isAdsPage = pathname === "/ads";
+  const isDiseasesPage = pathname.startsWith("/diseases");
   console.log(pathname);
   // Handle empty state
   if (!faqs || faqs.length === 0) {
@@ -42,25 +42,24 @@ const FrequentlyAskedQuestions: React.FC<FrequentlyAskedQuestionsProps> = ({
       </Box>
     );
   }
-  console.log(faqs);
   return (
     <Box my={100} data-aos="zoom-in" className={className} id="FAQs">
       <Title
         my={20}
         c="#1d3557"
-        ta={isAdsPage ? "left" : "center"}
-        fz={{ base: 32, sm: isAdsPage ? 37 : 48 }}
+        ta={isDiseasesPage ? "left" : "center"}
+        fz={{ base: 32, sm: isDiseasesPage ? 37 : 48 }}
         className={classes.main__title}
         data-aos="zoom-in-up"
       >
         {title}
       </Title>
       <Box
-        mx={isAdsPage ? 0 : "auto"}
-        maw={isAdsPage ? 814 : 1100}
-        px={{ base: 15, sm: isAdsPage ? 0 : 50 }}
+        mx={isDiseasesPage ? 0 : "auto"}
+        maw={isDiseasesPage ? 814 : 1100}
+        px={{ base: 15, sm: isDiseasesPage ? 0 : 50 }}
         py={20}
-        className={`${classes.accordion__main} ${isAdsPage ? classes.ads : ""} `}
+        className={`${classes.accordion__main} ${isDiseasesPage ? classes.ads : ""} `}
       >
         <Accordion
           variant="separated"

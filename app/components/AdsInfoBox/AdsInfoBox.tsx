@@ -1,5 +1,6 @@
 import { Box, Flex, Image, Text } from "@mantine/core";
 import { ReactNode } from "react";
+import { urlFor } from "../../../lib/sanity";
 
 export const AdsInfoBox = ({
   title,
@@ -21,8 +22,11 @@ export const AdsInfoBox = ({
   type?: string;
 }) => {
   const isDisease = type === "disease";
+  console.log(img);
   return (
     <Flex
+      mih={{ base: "", sm: 300 }}
+      pos="relative"
       my={20}
       bg={bg}
       maw={823}
@@ -41,16 +45,24 @@ export const AdsInfoBox = ({
     >
       <Box maw={383}>
         {title}
-        <Text
-          ta={{ base: "center", md: "left" }}
-          fz={{ base: isDisease ? 16 : 7, xs: 16 }}
-          my={10}
-        >
+        <Text fz={{ base: isDisease ? 16 : 7, xs: 16 }} my={10}>
           {info}
         </Text>
         {button}
       </Box>
-      <Image alt={info} src={img} h={{ base: 100, sm: 274 }} />
+      {!isDisease && <Image alt={info} src={img} h={{ base: 100, sm: 274 }} />}
+      {isDisease && (
+        <Image
+          alt="disease"
+          src={img}
+          pos={{ base: "relative", sm: "absolute" }}
+          w="fit-content"
+          h={{ base: 100, sm: 274 }}
+          fit="contain"
+          top={0}
+          right="1%"
+        />
+      )}
     </Flex>
   );
 };
