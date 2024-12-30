@@ -5,7 +5,8 @@ export const sanity = createClient({
   projectId: "7rljkuk3",
   dataset: "production",
   apiVersion: "2023-05-03",
-  useCdn: false,
+  useCdn: true,
+  token: "",
 });
 
 const builder = imageUrlBuilder(sanity);

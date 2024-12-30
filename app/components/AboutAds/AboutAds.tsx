@@ -17,30 +17,30 @@ import { useForm } from "@mantine/form";
 import { useState } from "react";
 import { diseases } from "../BookConsultation/consultList";
 import classes from "./AboutAds.module.css";
+import { sanity } from "../../../lib/sanity";
 
 export const AdsConsultForm = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const form = useForm({
     initialValues: {
       name: "",
-      phone: "",
-      disease: "",
+      mobile: "",
     },
     validate: {
-      disease: (val: string) => (val.length !== 0 ? null : "Select a disease"),
+      mobile: (val: string) => (val.length === 10 ? null : "Invalid number"),
     },
   });
   const submitHandler = async () => {
     try {
       setIsLoading(true);
-      setIsSubmitted(false);
-      const formData = new FormData();
+      await sanity.create({
+        ...form.values,
+        _type: "consultForm",
+      });
     } catch (error: any) {
       console.log(error.message);
     } finally {
       setIsLoading(false);
-      setIsSubmitted(true);
     }
   };
   return (
@@ -65,13 +65,14 @@ export const AdsConsultForm = () => {
         />
         <TextInput
           classNames={{ label: classes.label, input: classes.input__root }}
-          label="Phone No."
-          placeholder="+91 111222333"
-          key={form.key("phone")}
-          {...form.getInputProps("phone")}
-          value={form.values.phone}
+          label="Mobile No."
+          leftSection={<Text>+91</Text>}
+          placeholder="111222333"
+          key={form.key("mobile")}
+          {...form.getInputProps("mobile")}
+          value={form.values.mobile}
           onChange={(event) =>
-            form.setFieldValue("phone", event.currentTarget.value)
+            form.setFieldValue("mobile", event.currentTarget.value)
           }
           radius="md"
           my={20}
@@ -93,47 +94,100 @@ export const AdsConsultForm = () => {
 };
 
 export const StickyForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const form = useForm({
+    initialValues: {
+      name: "",
+      mobile: " ",
+      city: " ",
+      condition: "",
+    },
+    validate: {
+      mobile: (val: string) => (val.length === 10 ? null : "Invalid number"),
+      condition: (val: string) =>
+        val.length !== 0 ? null : "Enter a condition",
+    },
+  });
+  const submitHandler = async () => {
+    try {
+      setIsLoading(true);
+      console.log(form.values);
+      await sanity.create({
+        ...form.values,
+        _type: "callBackForm",
+      });
+    } catch (error: any) {
+      console.log(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Paper
       visibleFrom="lg"
       h="fit-content"
       pos="sticky"
       top="20%"
-      shadow="sm"
+      shadow="lg"
       p="md"
       maw={390}
     >
-      <Text fz={24} fw={500}>
+      <Text fz={24} fw={600}>
         Get Rid for Lipoma
       </Text>
       <Text fz={12} c="dimmed" mb="md">
         Speak to one of our representatives by filling the form below
       </Text>
-      <TextInput
-        classNames={{ label: classes.label, input: classes.input__root }}
-        label="Patient Name"
-        placeholder="Enter your name"
-        mb="sm"
-      />
-      <TextInput
-        classNames={{ label: classes.label, input: classes.input__root }}
-        label="Mobile Number"
-        placeholder="Enter your number"
-        mb="sm"
-      />
-      <TextInput
-        classNames={{ label: classes.label, input: classes.input__root }}
-        label="City"
-        placeholder="Noida"
-        mb="sm"
-      />
-      <TextInput
-        classNames={{ label: classes.label, input: classes.input__root }}
-        label="Condition"
-        placeholder="Lipoma"
-        mb="sm"
-      />
-      <Button fullWidth>Request a call back</Button>
+      <form onSubmit={form.onSubmit(submitHandler)}>
+        <TextInput
+          classNames={{ label: classes.label, input: classes.input__root }}
+          label="Patient Name"
+          placeholder="Enter your name"
+          mb="sm"
+          key={form.key("name")}
+          {...form.getInputProps("name")}
+          onChange={(event) =>
+            form.setFieldValue("name", event.currentTarget.value)
+          }
+        />
+        <TextInput
+          classNames={{ label: classes.label, input: classes.input__root }}
+          label="Mobile Number"
+          placeholder="Enter your number"
+          leftSection={<Text>+91</Text>}
+          mb="sm"
+          key={form.key("mobile")}
+          {...form.getInputProps("mobile")}
+          onChange={(event) =>
+            form.setFieldValue("mobile", event.currentTarget.value)
+          }
+        />
+        <TextInput
+          classNames={{ label: classes.label, input: classes.input__root }}
+          label="City"
+          placeholder="Noida"
+          mb="sm"
+          key={form.key("city")}
+          {...form.getInputProps("city")}
+          onChange={(event) =>
+            form.setFieldValue("city", event.currentTarget.value)
+          }
+        />
+        <TextInput
+          classNames={{ label: classes.label, input: classes.input__root }}
+          label="Condition"
+          mb="sm"
+          key={form.key("condition")}
+          {...form.getInputProps("condition")}
+          onChange={(event) =>
+            form.setFieldValue("condition", event.currentTarget.value)
+          }
+        />
+        <Button loading={isLoading} fullWidth type="submit">
+          Request a call back
+        </Button>
+      </form>
     </Paper>
   );
 };
