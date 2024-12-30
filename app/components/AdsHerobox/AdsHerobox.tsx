@@ -85,7 +85,7 @@ export const AdsHerobox = ({ data }: { data: Herobox }) => {
           </Box>
         </Flex>
       </Container>
-      <Modal opened={opened} onClose={close} title="Form">
+      <Modal opened={opened} onClose={close} title="Check Surgery Cost">
         <AdsForm />
       </Modal>
     </BackgroundImage>

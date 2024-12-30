@@ -7,6 +7,7 @@ import {
   Flex,
   Group,
   Image,
+  Modal,
   Paper,
   Text,
   Title,
@@ -19,12 +20,13 @@ import FrequentlyAskedQuestions from "../../components/FAQs/FrequentlyAskedQuest
 import { faqs } from "../../components/FAQs/faqs";
 import { Procedure } from "../../components/Procedure/Procedure";
 import { ExpertDoctors } from "../../components/ExpertDoctors/ExpertDoctors";
-import { useMediaQuery } from "@mantine/hooks";
+import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { sanity, urlFor } from "../../../lib/sanity";
 import { AdsDisease, BenefitsType } from "../../../lib/utils/adsDiseaseType";
 import Link from "next/link";
+import { AdsForm } from "../../components/AdsForm/AdsForm";
 
 const benefits = (benefit1: string, benefit2: string, benefit3: string) => [
   {
@@ -95,6 +97,7 @@ export default function AboutUsPage() {
   const { disName } = params;
   const [isLoading, setIsLoading] = useState(false);
   const mobile = useMediaQuery(`(min-width: 600px)`);
+  const [opened, { open, close }] = useDisclosure(false);
   const [data, setData] = useState<AdsDisease>({} as AdsDisease);
   useEffect(() => {
     const fetchDisease = async () => {
@@ -115,7 +118,6 @@ export default function AboutUsPage() {
     };
     fetchDisease();
   }, []);
-  console.log(data);
 
   return (
     <>
@@ -230,8 +232,7 @@ export default function AboutUsPage() {
             bg="#EEF3FF"
             button={
               <Button
-                component={Link}
-                href={data?.insuranceLink || ""}
+                onClick={open}
                 w={{ base: "fit-content", sm: 300 }}
                 size={mobile ? "md" : "xs"}
                 fz={mobile ? 16 : 8}
@@ -241,6 +242,13 @@ export default function AboutUsPage() {
               </Button>
             }
           />
+          <Modal
+            opened={opened}
+            onClose={close}
+            title="Check Insurance Coverage"
+          >
+            <AdsForm />
+          </Modal>
           <Benefits data={data?.benefits} />
 
           <FrequentlyAskedQuestions faqs={data?.faqs} />

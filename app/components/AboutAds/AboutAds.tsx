@@ -9,6 +9,7 @@ import {
   List,
   Stack,
   Flex,
+  Image,
 } from "@mantine/core";
 import { About } from "../../../lib/utils/adsDiseaseType";
 
@@ -196,7 +197,6 @@ export const AboutAds = ({ data }: { data: About[] }) => {
   return (
     <Flex
       align="center"
-      wrap="wrap"
       justify={{ base: "center", lg: "space-between" }}
       my={50}
     >
@@ -205,7 +205,7 @@ export const AboutAds = ({ data }: { data: About[] }) => {
           ({ que, ans }: { que: string; ans: string[] }, index: number) => (
             <Paper
               key={index}
-              p="md"
+              p="lg"
               my={{ base: "md", sm: "xl" }}
               maw={529}
               bg="#E9F1FF"
@@ -225,6 +225,7 @@ export const AboutAds = ({ data }: { data: About[] }) => {
           )
         )}
       </Stack>
+      <Image visibleFrom="lg" src="/assets/adspage/lines_new.png" alt="lines" />
     </Flex>
   );
 };

@@ -23,25 +23,6 @@ import { urlFor } from "../../../lib/sanity";
 import { AdsForm } from "../AdsForm/AdsForm";
 import { useDisclosure } from "@mantine/hooks";
 
-const doctors = [
-  {
-    name: "Dr. Deepak Kumar Sinha",
-    image: "",
-    type: "General",
-    specialities: "Surgery, Proctology, Laproscopic Surgery, Proctoscopicnic",
-    experience: "19",
-    recommended: "99",
-  },
-  {
-    name: "Dr. Deepak Kumar Sinha",
-    image: "",
-    type: "General",
-    specialities: "Surgery, Proctology, Laproscopic Surgery, Proctoscopicnic",
-    experience: "19",
-    recommended: "99",
-  },
-];
-
 const DoctorCard = ({ data }: { data: Doctor }) => {
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -109,7 +90,7 @@ const DoctorCard = ({ data }: { data: Doctor }) => {
           Book Appointment
         </Button>
       </Card.Section>
-      <Modal opened={opened} onClose={close} title="Form">
+      <Modal opened={opened} onClose={close} title="Book Free Consultation">
         <AdsForm />
       </Modal>
     </Card>
