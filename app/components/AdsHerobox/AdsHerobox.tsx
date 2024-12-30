@@ -72,7 +72,7 @@ export const AdsHerobox = ({ data }: { data: Herobox }) => {
               my={20}
               listStyleType="disc"
             >
-              {data?.list.map((el: string, index) => (
+              {data?.list?.map((el: string, index) => (
                 <List.Item key={index}>{el}</List.Item>
               ))}
             </List>

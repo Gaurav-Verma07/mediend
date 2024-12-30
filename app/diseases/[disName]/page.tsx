@@ -23,7 +23,7 @@ import { ExpertDoctors } from "../../components/ExpertDoctors/ExpertDoctors";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { sanity, urlFor } from "../../../lib/sanity";
+import { sanityAds, urlFor } from "../../../lib/sanity";
 import { AdsDisease, BenefitsType } from "../../../lib/utils/adsDiseaseType";
 import Link from "next/link";
 import { AdsForm } from "../../components/AdsForm/AdsForm";
@@ -103,7 +103,7 @@ export default function AboutUsPage() {
     const fetchDisease = async () => {
       try {
         setIsLoading(true);
-        const response = await sanity.fetch(`*[_type == "ads"]`);
+        const response = await sanityAds.fetch(`*[_type == "ads"]`);
         const diseaseData = response.filter(
           (el: AdsDisease) =>
             el.diseaseName.toLowerCase().trim() ===

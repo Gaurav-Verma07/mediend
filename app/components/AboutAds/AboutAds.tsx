@@ -18,7 +18,7 @@ import { useForm } from "@mantine/form";
 import { useState } from "react";
 import { diseases } from "../BookConsultation/consultList";
 import classes from "./AboutAds.module.css";
-import { sanity } from "../../../lib/sanity";
+import { sanityAds } from "../../../lib/sanity";
 
 export const AdsConsultForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +34,7 @@ export const AdsConsultForm = () => {
   const submitHandler = async () => {
     try {
       setIsLoading(true);
-      await sanity.create({
+      await sanityAds.create({
         ...form.values,
         _type: "consultForm",
       });
@@ -113,7 +113,7 @@ export const StickyForm = () => {
     try {
       setIsLoading(true);
       console.log(form.values);
-      await sanity.create({
+      await sanityAds.create({
         ...form.values,
         _type: "callBackForm",
       });

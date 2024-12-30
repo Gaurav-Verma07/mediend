@@ -2,7 +2,7 @@
 import { Box, Button, Group, Radio, Text, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useState } from "react";
-import { sanity } from "../../../lib/sanity";
+import { sanityAds } from "../../../lib/sanity";
 import classes from "../AboutAds/AboutAds.module.css";
 export const AdsForm = () => {
   const form = useForm({
@@ -20,7 +20,7 @@ export const AdsForm = () => {
     try {
       setIsLoading(true);
       console.log(form.values);
-      await sanity.create({
+      await sanityAds.create({
         ...form.values,
         _type: "modalForm",
       });
