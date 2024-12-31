@@ -91,7 +91,7 @@ const TabbedDiseaseList = () => {
 
   return (
     <Box className='flex flex-col justify-center items-center w-full'>
-    <Card p={"sm"} className='w-[100%]'>
+    <Card p={"sm"} className='w-[100%] md:w-[85%]'>
       <Tabs defaultValue="Top Surgeries" variant="outline">
         <div style={{ position: 'relative' }} className='flex justify-center items-center flex-col'>
           <ScrollArea.Autosize type="scroll" scrollbarSize={1}  w={"100%"}>
