@@ -1,6 +1,4 @@
 "use client";
-
-
 import BookConsultation from "../../components/BookConsultation/BookConsultation";
 import FrequentlyAskedQuestions from "../../components/FAQs/FrequentlyAskedQuestions";
 import AppointmentForm from "../../components/AppointmentForm/AppointmentForm";
@@ -39,7 +37,10 @@ import { PortableText } from "@portabletext/react";
 import LoadingScreen from "../../components/Loading/loading";
 import { Doctor } from "../../doctor/[doctorName]/page";
 import Link from "next/link";
-
+import BackLinks from '../../components/Backlinks/Backlinks';
+import DoctorCarousel from "../../components/Doctors/DoctorCarousel/DoctorCarousel";
+import BG from "../../../app/assets/departmentBg.png"
+import Specialities from "../../components/Specialities/Specialities";
 
 const storiesData = [
   {
@@ -73,12 +74,12 @@ interface Department {
   header: string;
   imageUrl:string,
   shortDescription: string;
-  specialities: Specialities[];
+  specialities: SpecialitiesT[];
   doctors: Doctor[];
   content: ContentBlock[];
   infoCards: InfoCard[];
   additionalContent1?: ContentBlock[];
-  
+  backlinks: Backlinks;
   additionalContent2?: ContentBlock[];
 
   reviews?: Review[];
@@ -86,7 +87,19 @@ interface Department {
 
 }
 
-export interface Specialities{
+interface Backlink {
+  text: string;
+  _key: string;
+  url: string;
+  _type: 'backlink';
+}
+
+interface Backlinks {
+  links: Backlink[];
+  title: string;
+}
+
+export interface SpecialitiesT{
   title: string;
   iconUrl:string;
   description:string;
@@ -140,7 +153,7 @@ const [error, setError] = useState(null)
 
 useEffect(() => {
   setIsLoading(true)
-  fetch(`https://7rljkuk3.apicdn.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27department%27+%26%26+slug.current+%3D%3D+%22${departmentName}%22%5D%7B%0A++title%2C%0A++header%2C%0A++shortDescription%2C%0A++%22slug%22%3Aslug.current%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++%22specialities%22%3Aspecialities%5B%5D%7B%0A++++%22iconUrl%22%3A+icon.asset-%3Eurl%2C%0A++++title%2C%0A++++description%0A++%7D%2C%0A++doctors%5B%5D-%3E%7B%0A++++title%2C%0A++++%22imageUrl%22%3Aimage.asset-%3Eurl%2C%0A++++degrees%2C%0A++++speciality%2C%0A++++yearsOfExperience%2C%0A++++%22slug%22%3Aslug.current%0A++++%0A++%7D%2C%0A++content%2C%0A++infoCards%2C%0A++reviews%2C%0A++faqs%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D%0A`, {
+  fetch(`https://7rljkuk3.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27department%27+%26%26+slug.current+%3D%3D+%22${departmentName}%22%5D%7B%0A++title%2C%0A++header%2C%0A++shortDescription%2C%0A++backlinks%2C%0A++%22slug%22%3Aslug.current%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++%22specialities%22%3Aspecialities%5B%5D%7B%0A++++%22iconUrl%22%3A+icon.asset-%3Eurl%2C%0A++++title%2C%0A++++description%0A++%7D%2C%0A++doctors%5B%5D-%3E%7B%0A++++title%2C%0A++++%22imageUrl%22%3Aimage.asset-%3Eurl%2C%0A++++degrees%2C%0A++++speciality%2C%0A++++yearsOfExperience%2C%0A++++%22slug%22%3Aslug.current%0A++++%0A++%7D%2C%0A++content%2C%0A++infoCards%2C%0A++reviews%2C%0A++faqs%2C%0A++additionalContent1%2C%0A++additionalContent2%2C%0A++++backlinks%0A%7D%5B0%5D%0A`, {
     method: "GET",
     headers: {
       "Content-type": "application/json"
@@ -169,12 +182,19 @@ if (isLoading) return <LoadingScreen/>
 if (error) return <div>Error loading data</div>
 if (!pageData) return <div>No data found</div>
 
-
   return (
     <>
-      <Group grow p={"xl"} bg={"#F8F9FA"}>
+    <div className="absolute -z-10 -translate-y-6 hidden sm:block w-screen">
+      <Image src="/assets/ads_bg.png" alt="background"></Image>
+
+    </div>
+    <div className="absolute -z-10 sm:hidden block w-screen">
+      <Image src="/assets/department_mobile.png" alt="background"></Image>
+
+    </div>
+      <Group grow p={"xl"} className="relative z-0">
         <Grid gutter={"md"} >
-          <Grid.Col span={9} pos={"relative"}>
+          <Grid.Col span={{base:12,md:9}} pos={"relative"}>
             <Grid grow gutter={"sm"}>
               <Grid.Col span={8}>
                 <Group my={"lg"}>
@@ -187,44 +207,10 @@ if (!pageData) return <div>No data found</div>
                     {pageData.shortDescription}
                   </Text>
                 </Group>
-                <Group my={"md"} grow>
-                  <Grid gutter={"md"}>
-                    <Grid.Col span={4}>
-                      <Card style={{ background: "lightblue" }}>
-                        <Flex justify={"start"} align={"center"}>
-                          <IconHeartbeat
-                            style={{ color: "#FF990C",marginRight:"8px" }}
-                          ></IconHeartbeat>
-                          <Title order={4}>100%</Title>
-                        </Flex>
-                        <Text size="xs">Latest Procedures</Text>
-                      </Card>
-                    </Grid.Col>
-                    <Grid.Col span={4}>
-                      <Card style={{ background: "lightblue" }}>
-                        <Flex justify={"start"} align={"center"}>
-                          <IconStethoscope
-                            style={{ color: "#FF990C",marginRight:"8px" }}
-                          ></IconStethoscope>
-                          <Title order={4}>50+</Title>
-                        </Flex>
-                        <Text size="xs">Expert Surgeons</Text>
-                      </Card>
-                    </Grid.Col>
-                    <Grid.Col span={4}>
-                      <Card style={{ background: "lightblue" }}>
-                        <Flex justify={"start"} align={"center"}>
-                          <IconMessages
-                            style={{ color: "#FF990C",marginRight:"8px" }}
-                          ></IconMessages>
-                          <Title order={4}>1:1</Title>
-                        </Flex>
-                        <Text size="xs">Personal Support</Text>
-                      </Card>
-                    </Grid.Col>
-                  </Grid>
-                </Group>
+
+
                 <Group my={"xl"}>
+                <Text className=" font-bold">Schedule a Free Consultation with Our Expert Doctors in Your Area</Text>
                   <Flex gap={"md"} wrap={"wrap"}>
                     <Button size="lg" variant="filled" >
                       Book An Appointment
@@ -242,15 +228,11 @@ if (!pageData) return <div>No data found</div>
                 
               </Grid.Col>
 
-              <Grid.Col span={4}>
-                <Image src={pageData.imageUrl} maw={250} className="mix-blend-multiply"></Image>
-              </Grid.Col>
-
               <Grid.Col span={8} className="hidden sm:flex ">
               <Group >
-                  <Card w={"100%"}>
-                        <Image src={"https://s3-alpha-sig.figma.com/img/1ccd/0a20/2477415d64f1e10258a27b64a05499cc?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=M7vTDrmeMQWNZvKB07vWlMySKpX4CmeNHEkAa0SM6uqPLzeaKqCHHUJ4wqPCoNPO45OLnIYmVikXyIawoTUBqV0gNtIDtVQho3lv3oXVDWF2-16iDn1ATneAjTmcW6EH8oEqo-tyznL4Lt8gdomkUtHNPJIC~169BuOlrv588SXHmMUy0AhsBWWA6YkDJ2qql~OLJ7WSFornpViJk2qgPG4nYk0LVLkZSUj4PSDExWGaRZgAF-rpiOi8sxVsguylPvGGqxmoH~6P4REba3JUNTfyZVA7baDvpYRelMaN5OmiUmGCjcG6vj2hvnLqwlen~UGiMT6KQuO4mR~tWqCJ6A__"} className=" scale-125"></Image>
-                  </Card>
+                  <div className="w-full">
+                        <Image src="/assets/features2.png" className=" object-cover"></Image>
+                  </div>
                 </Group>
               </Grid.Col>
 
@@ -301,73 +283,19 @@ if (!pageData) return <div>No data found</div>
 
 
               <Grid.Col span={8} mt={"lg"}>
-                <Stack gap={"lg"}>
-                <Title order={2}>Our Specialities</Title>
-                <Grid>
+                <Stack>
+                  <Title order={3}> Our Specialities</Title>
                   {
-                    pageData.specialities.map((speciality,idx) => {
-                      return(
-                        <Grid.Col key={idx} span={6}>
-                      <Card padding={"xl"}  shadow="md" className="rounded-xl">
-                        <Grid grow gutter={"md"}>
-                          <Grid.Col span={3}>
-                            <Image src={speciality.iconUrl} className="rounded-md"></Image>
-                          </Grid.Col>
-                          <Grid.Col span={9}>
-                            <Stack>
-                              <Title order={4}>{speciality.title}</Title>
-                              <Text c={"gray.9"}>{speciality.description}</Text>
-                            </Stack>
-                          </Grid.Col>
-                        </Grid>
-                  </Card>
-                  </Grid.Col>
-                      )
-                    })
+                    pageData.specialities &&
+                    <Specialities specialitiesData={pageData.specialities}/>
                   }
-                  
-                </Grid>
                 </Stack>
               </Grid.Col>
 
               <Grid.Col span={8} mt={"lg"}>
                 <Stack gap={"lg"}>
                 <Title order={2}>Our Expert Doctors</Title>
-                <Carousel slideSize="60%" slideGap="md" loop={true} p={"md"}>
-                  {
-                    pageData.doctors.map((doctor,idx)=>{
-                          return                   <Carousel.Slide key={idx}>
-                            <Link href={`/doctor/${doctor.slug}`}>
-                          <Card shadow="lg">
-                            <Group gap={"md"}>
-                            <Image src={doctor.imageUrl} radius={"lg"} w={150}></Image>
-                            <Stack gap={"lg"} justify="space-between">
-                            <div>
-                            <Title order={4} c={"#3269DB"}>{doctor.title}</Title>
-                            <Text size="xs" c={"#5F6D7A"}>{doctor.degrees}</Text>
-                            <Text size="xs" c={"#5F6D7A"}>{doctor.speciality}</Text>
-                            </div>
-                            <Group>
-                              <div>
-                              <Group gap={"sm"}><IconBriefcase color="#3269DB" size={20}/><Title order={6} c={"#3269DB"}>{doctor.yearsOfExperience}</Title></Group>
-                              <Text size="xs" c={"#5F6D7A"}> Experience</Text>
-                              </div>
-                              <hr/>
-                              <div>
-                              <Group><IconThumbUp color="#3269DB" size={20}/> <Title order={6} c={"#3269DB"}>99%</Title></Group>
-                              <Text size="xs"c={"#5F6D7A"}> Recommended</Text>
-                              </div>
-                            </Group>
-                            </Stack>
-      
-                            <Button fullWidth variant="outline" size="md">Book Appointment</Button>
-                            </Group>
-                          </Card>
-                          </Link>
-                          </Carousel.Slide>
-                    })
-                  }
-                </Carousel>
+                <DoctorCarousel data={pageData.doctors}></DoctorCarousel>
                 </Stack>
               </Grid.Col>
               <Grid.Col span={8} mt={"lg"}>
@@ -393,11 +321,15 @@ if (!pageData) return <div>No data found</div>
                 </div>
                 </Card>
                 }
+                        {
+          pageData.faqs &&
+        <FrequentlyAskedQuestions faqs={pageData.faqs} />
+        }
               </Grid.Col>
 
             </Grid>
           </Grid.Col>
-          <Grid.Col span={3} pos={"relative"}>
+          <Grid.Col span={{base:12,md:3}} pos={"relative"}>
             <Card shadow="sm" padding="lg" radius="md" withBorder pos={"sticky"} top={24}>
               <Title order={3}>Request a callback</Title>
               <Text c={"#5F6D7A"}>
@@ -415,12 +347,14 @@ if (!pageData) return <div>No data found</div>
       <Stories reviews={storiesData} />
                   }
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        {
-          pageData.faqs &&
-        <FrequentlyAskedQuestions faqs={pageData.faqs} />
-        }
+
         <BookConsultation />
       </div>
+
+      {
+        pageData.backlinks &&
+         <BackLinks procedures={pageData.backlinks.links} header={pageData.backlinks.title}></BackLinks>
+       } 
     </>
   );
 }

@@ -1,5 +1,5 @@
-import { Box, Image, rem, Text, Title } from "@mantine/core";
-import classes from "./Showcase.module.css";
+import { Box, Text, Title } from '@mantine/core';
+import Image from 'next/image';
 const data = [
   {
     img: "/assets/showcase/heart.png",
@@ -22,34 +22,41 @@ const data = [
     name: "Awards & Accreditations",
   },
 ];
+
 const Showcase = () => {
   return (
-    <Box my={80} className={classes.main}>
-      <Title className={classes.heading} data-aos="zoom-in-up">
+    <div className="my-20">
+      <Title 
+        className="text-center mb-12 text-[#1D3557] text-2xl md:text-4xl lg:text-5xl font-bold"
+        data-aos="zoom-in-up"
+      >
         Numbers that showcase our success
       </Title>
-      <Box className={classes.mainBox}>
-        {data.map((el, index: number) => (
-          <Box className={classes.box} key={index}>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto px-4 my-8">
+        {data.map((item, index) => (
+          <div 
+            key={index}
+            className="flex flex-col items-center justify-center p-6 rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow border"
+          >
             <Image
-              mx="auto"
-              fit="contain"
-              src={el.img}
-              w="77px"
-              h="77px"
-              alt="image"
-              data-aos="zoom-out"
+              src={item.img}
+              alt={item.name}
+              width={64}
+              height={64}
+              className="mb-4"
             />
-            <Text c="#1D3557" fz={32} fw={600} my={10}>
-              {el.value} +
+            <Text className="text-[#1D3557] text-3xl font-semibold my-2">
+              {item.value}+
             </Text>
-            <Text c="#1D3557" fw={600}>
-              {el.name}
+            <Text className="text-[#1D3557] font-semibold text-center">
+              {item.name}
             </Text>
-          </Box>
+          </div>
         ))}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
+
 export default Showcase;

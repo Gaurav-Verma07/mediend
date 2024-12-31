@@ -1,6 +1,7 @@
 export const tabs = [
   {
     label: "Proctology",
+    departmentLink:"proctology",
     links: [
       { label: "Piles Treatment", link: "https://mediend.com/piles-surgery/" },
       { label: "Fistula Treatment", link: "" },
@@ -11,6 +12,7 @@ export const tabs = [
   },
   {
     label: "Laparoscopy",
+    departmentLink:"laproscopy",
     links: [
       { label: "Hernia Treatment", link: "" },
       { label: "Gallstone Treatment", link: "" },
@@ -21,6 +23,8 @@ export const tabs = [
   },
   {
     label: "Gynaecology",
+    departmentLink:"gynaecology",
+
     links: [
       { label: "MTP", link: "" },
       { label: "Uterus Removal", link: "" },
@@ -28,6 +32,8 @@ export const tabs = [
   },
   {
     label: "ENT",
+    departmentLink:"ent",
+
     links: [
       { label: "Tympanoplasty", link: "" },
       { label: "Adenoidectomy", link: "" },
@@ -42,6 +48,8 @@ export const tabs = [
   },
   {
     label: "Urology",
+    departmentLink:"urology",
+
     links: [
       { label: "Circumcision", link: "" },
       { label: "Stapler Circumcision", link: "" },
@@ -57,6 +65,8 @@ export const tabs = [
 
   {
     label: "Vascular",
+    departmentLink:"vascular",
+
     links: [
       { label: "Varicose Veins Treatment", link: "" },
       { label: "Varicocele Treatment", link: "" },
@@ -67,6 +77,8 @@ export const tabs = [
   },
   {
     label: "Aesthetics",
+    departmentLink:"aesthetics",
+
     links: [
       { label: "Gynecomastia", link: "" },
       { label: "Gynecomastia", link: "" },
@@ -90,6 +102,8 @@ export const tabs = [
 
   {
     label: "Orthopedics",
+    departmentLink:"orthopedics",
+
     links: [
       { label: "Knee Replacement", link: "" },
       { label: "Carpal Tunnel Syndrome", link: "" },
@@ -104,6 +118,8 @@ export const tabs = [
 
   {
     label: "Ophthalmology",
+    departmentLink:"opthamology",
+
     links: [
       { label: "Lasik Eye Surgery", link: "" },
       { label: "Cataract Surgery", link: "" },
@@ -122,6 +138,8 @@ export const tabs = [
   },
   {
     label: "Weight Loss",
+    departmentLink:"weight-loss",
+
     links: [
       { label: "Bariatric Surgery", link: "" },
       { label: "SPATZ intragastric balloon", link: "" },

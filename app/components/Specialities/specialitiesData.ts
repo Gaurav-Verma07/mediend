@@ -1,47 +1,56 @@
 export const specialitiesData = [
   {
     title: "Proctology",
-    info: "Specialised & advanced treatment for Anorectal Diseases ...",
-    img: "/assets/specialities/Proctology.png",
+    description: "Specialised & advanced treatment for Anorectal Diseases ...",
+    iconUrl: "/assets/specialities/Proctology.png",
+    url: "/department/proctology"
   },
   {
     title: "Laparoscopy",
-    info: "Keyhole surgery for abdominal and pelvic disorders ...",
-    img: "/assets/specialities/Laparoscopy.png",
+    description: "Keyhole surgery for abdominal and pelvic disorders ...",
+    iconUrl: "/assets/specialities/Laparoscopy.png",
+    url: "/department/laparoscopy"
   },
   {
     title: "Gynaecology",
-    info: "Treatment of diseases related to female reproductive organs ...",
-    img: "/assets/specialities/Gynaecology.png",
+    description: "Treatment of diseases related to female reproductive organs ...",
+    iconUrl: "/assets/specialities/Gynaecology.png",
+    url: "/department/gynaecology"
   },
   {
     title: "ENT (Ear, Nose, Throat)",
-    info: "Minimal access surgery (MIS) for ear, nose and throat (ENT) issues ...",
-    img: "/assets/specialities/ENT.jpg",
+    description: "Minimal access surgery (MIS) for ear, nose and throat (ENT) issues ...",
+    iconUrl: "/assets/specialities/ENT.jpg",
+    url: "/department/ent"
   },
   {
     title: "Urology",
-    info: "Surgical treatment for urogenital issues in men and women ...",
-    img: "/assets/specialities/Urology.png",
+    description: "Surgical treatment for urogenital issues in men and women ...",
+    iconUrl: "/assets/specialities/Urology.png",
+    url: "/department/urology"
   },
   {
     title: "Vascular",
-    info: "Surgical subspecialty that focuses on the vascular system- arteries, veins and lymphatic c ...",
-    img: "/assets/specialities/Vascular.png",
+    description: "Surgical subspecialty that focuses on the vascular system- arteries, veins and lymphatic c ...",
+    iconUrl: "/assets/specialities/Vascular.png",
+    url: "/department/vascular"
   },
   {
     title: "Aesthetics",
-    info: "Reconstruction or improvement of physical appearance ...",
-    img: "/assets/specialities/Aesthetic.jpg",
+    description: "Reconstruction or improvement of physical appearance ...",
+    iconUrl: "/assets/specialities/Aesthetic.jpg",
+    url: "/department/aesthetics"
   },
   {
     title: "Orthopedics (Bone and Joint)",
-    info: "Focuses on injuries and diseases of musculoskeletal system ...",
-    img: "/assets/specialities/Orthopedics.jpg",
+    description: "Focuses on injuries and diseases of musculoskeletal system ...",
+    iconUrl: "/assets/specialities/Orthopedics.jpg",
+    url: "/department/orthopedics"
   },
   {
     title: "Ophthalmology",
-    info: "Deals with the diagnosis and treatment of conditions related to the eyes ...",
-    img: "/assets/specialities/Ophthalmology.jpg",
+    description: "Deals with the diagnosis and treatment of conditions related to the eyes ...",
+    iconUrl: "/assets/specialities/Ophthalmology.jpg",
+    url: "/department/ophthalmology"
   },
 ];

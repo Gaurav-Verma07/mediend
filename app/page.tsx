@@ -1,3 +1,4 @@
+import { Title } from "@mantine/core";
 import Blogs from "./components/Blogs/Blogs";
 import BookConsultation from "./components/BookConsultation/BookConsultation";
 import ConsultationBox from "./components/ConsultationBox/ConsultationBox";
@@ -11,6 +12,7 @@ import Herobox from "./components/Herobox/Herobox";
 import OurDoctors from "./components/OurDoctors/OurDoctors";
 import Showcase from "./components/Showcase/Showcase";
 import Specialities from "./components/Specialities/Specialities";
+import { specialitiesData } from "./components/Specialities/specialitiesData";
 import Stories from "./components/Stories/Stories";
 import WhyUs from "./components/WhyUs/WhyUs";
 
@@ -60,7 +62,13 @@ export default function HomePage() {
       </div>
       <WhyUs />
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <Specialities />
+      <Title 
+        className="text-center mb-12 text-[#1D3557] text-2xl md:text-4xl lg:text-5xl my-8 font-bold"
+        data-aos="zoom-in-up"
+      >
+        Our Specialities
+      </Title>  
+        <Specialities specialitiesData={specialitiesData} />
       </div>
       <GetInTouch />
       <div style={{ maxWidth: "1370px", margin: "0 auto" }}>

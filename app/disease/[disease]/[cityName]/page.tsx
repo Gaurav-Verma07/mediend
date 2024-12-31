@@ -74,76 +74,76 @@ const storiesData = [
 
 const procedures = [
   {
-    title: "Sclerotherapy for Varicose Veins Cost in Pune",
-    link: "/procedures/sclerotherapy-varicose-veins",
+    text: "Sclerotherapy for Varicose Veins Cost in Pune",
+    url: "/procedures/sclerotherapy-varicose-veins",
   },
   {
-    title: "Open Circumcision Cost in Pune",
-    link: "/procedures/open-circumcision",
+    text: "Open Circumcision Cost in Pune",
+    url: "/procedures/open-circumcision",
   },
   {
-    title: "Inguinal Hernia Surgery Cost in Pune",
-    link: "/procedures/inguinal-hernia-surgery",
+    text: "Inguinal Hernia Surgery Cost in Pune",
+    url: "/procedures/inguinal-hernia-surgery",
   },
   {
-    title: "Inguinal Hernia Surgery Cost in Pune",
-    link: "/procedures/inguinal-hernia-surgery",
+    text: "Inguinal Hernia Surgery Cost in Pune",
+    url: "/procedures/inguinal-hernia-surgery",
   },
   {
-    title: "Inguinal Hernia Surgery Cost in Pune",
-    link: "/procedures/inguinal-hernia-surgery",
+    text: "Inguinal Hernia Surgery Cost in Pune",
+    url: "/procedures/inguinal-hernia-surgery",
   },
   {
-    title: "Inguinal Hernia Surgery Cost in Pune",
-    link: "/procedures/inguinal-hernia-surgery",
+    text: "Inguinal Hernia Surgery Cost in Pune",
+    url: "/procedures/inguinal-hernia-surgery",
   },
   {
-    title: "Inguinal Hernia Surgery Cost in Pune",
-    link: "/procedures/inguinal-hernia-surgery",
+    text: "Inguinal Hernia Surgery Cost in Pune",
+    url: "/procedures/inguinal-hernia-surgery",
   },
   {
-    title: "Inguinal Hernia Surgery Cost in Pune",
-    link: "/procedures/inguinal-hernia-surgery",
+    text: "Inguinal Hernia Surgery Cost in Pune",
+    url: "/procedures/inguinal-hernia-surgery",
   },
   {
-    title: "Inguinal Hernia Surgery Cost in Pune",
-    link: "/procedures/inguinal-hernia-surgery",
+    text: "Inguinal Hernia Surgery Cost in Pune",
+    url: "/procedures/inguinal-hernia-surgery",
   },
   {
-    title: "Inguinal Hernia Surgery Cost in Pune",
-    link: "/procedures/inguinal-hernia-surgery",
+    text: "Inguinal Hernia Surgery Cost in Pune",
+    url: "/procedures/inguinal-hernia-surgery",
   },
   {
-    title: "Inguinal Hernia Surgery Cost in Pune",
-    link: "/procedures/inguinal-hernia-surgery",
+    text: "Inguinal Hernia Surgery Cost in Pune",
+    url: "/procedures/inguinal-hernia-surgery",
   },
   {
-    title: "Inguinal Hernia Surgery Cost in Pune",
-    link: "/procedures/inguinal-hernia-surgery",
+    text: "Inguinal Hernia Surgery Cost in Pune",
+    url: "/procedures/inguinal-hernia-surgery",
   },
   {
-    title: "Inguinal Hernia Surgery Cost in Pune",
-    link: "/procedures/inguinal-hernia-surgery",
+    text: "Inguinal Hernia Surgery Cost in Pune",
+    url: "/procedures/inguinal-hernia-surgery",
   },
   {
-    title: "Inguinal Hernia Surgery Cost in Pune",
-    link: "/procedures/inguinal-hernia-surgery",
+    text: "Inguinal Hernia Surgery Cost in Pune",
+    url: "/procedures/inguinal-hernia-surgery",
   },
   {
-    title: "Inguinal Hernia Surgery Cost in Pune",
-    link: "/procedures/inguinal-hernia-surgery",
+    text: "Inguinal Hernia Surgery Cost in Pune",
+    url: "/procedures/inguinal-hernia-surgery",
   },
   {
-    title: "Inguinal Hernia Surgery Cost in Pune",
-    link: "/procedures/inguinal-hernia-surgery",
+    text: "Inguinal Hernia Surgery Cost in Pune",
+    url: "/procedures/inguinal-hernia-surgery",
   },
   {
-    title: "Inguinal Hernia Surgery Cost in Pune",
-    link: "/procedures/inguinal-hernia-surgery",
+    text: "Inguinal Hernia Surgery Cost in Pune",
+    url: "/procedures/inguinal-hernia-surgery",
   },
   {
-    title: "Inguinal Hernia Surgery Cost in Pune",
-    link: "/procedures/inguinal-hernia-surgery",
+    text: "Inguinal Hernia Surgery Cost in Pune",
+    url: "/procedures/inguinal-hernia-surgery",
   },
   // Add more procedures as needed
 ];

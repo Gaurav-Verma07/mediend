@@ -1,4 +1,9 @@
 "use client";
+
+
+import { useRef } from 'react';
+import Autoplay from 'embla-carousel-autoplay';
+
 import Appointment from "../../components/Appointment/Appointment";
 import AppointmentForm from "../../components/AppointmentForm/AppointmentForm";
 import BookConsultation from "../../components/BookConsultation/BookConsultation";
@@ -41,6 +46,12 @@ import { useParams, useRouter } from "next/navigation";
 import { PortableText } from "@portabletext/react";
 import Footer from "../../components/Footer/Footer";
 import LoadingScreen from "../../components/Loading/loading";
+import WhyUs from "../../components/WhyUs/WhyUs";
+import { Doctor } from '../../doctor/[doctorName]/page';
+import Link from 'next/link';
+import useEmblaCarousel, { EmblaPluginType } from 'embla-carousel-react';
+import DoctorCarousel from '../../components/Doctors/DoctorCarousel/DoctorCarousel';
+import BackLinks from '../../components/Backlinks/Backlinks';
 
 const elements = [
   { property: "Incision Size", traditional: "5-7cm", minimallyInvasive: "1-2cm"},
@@ -77,6 +88,94 @@ const storiesData = [
   },
 ];
 
+interface Backlink {
+  text: string;
+  _key: string;
+  url: string;
+  _type: 'backlink';
+}
+
+interface Backlinks {
+  links: Backlink[];
+  title: string;
+}
+
+const procedures = [
+  {
+    title: "Sclerotherapy for Varicose Veins Cost in Pune",
+    link: "/procedures/sclerotherapy-varicose-veins"
+  },
+  {
+    title: "Open Circumcision Cost in Pune",
+    link: "/procedures/open-circumcision"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  {
+    title: "Inguinal Hernia Surgery Cost in Pune",
+    link: "/procedures/inguinal-hernia-surgery"
+  },
+  // Add more procedures as needed
+]
+
 interface LipomaSanityDocument {
   title: string;
   header: string;
@@ -85,10 +184,13 @@ interface LipomaSanityDocument {
   featuredTreatments: string[];
   content: ContentBlock[];
   infoCards: InfoCard[];
+  doctors: Doctor[];
   additionalContent1?: ContentBlock[];
   
   additionalContent2?: ContentBlock[];
-
+  backlinkLocation: Backlinks;
+  backlinkCosting: Backlinks;
+  backlinkOther: Backlinks;
   reviews?: Review[];
   faqs?: FAQ[];
 
@@ -142,7 +244,7 @@ const [error, setError] = useState(null)
 
 useEffect(() => {
   setIsLoading(true)
-  fetch(`https://7rljkuk3.apicdn.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27disease%27%26%26slug.current%3D%3D%27${disease}%27%5D%7B%0A++++title%2C%0A++header%2C%0A++%22slug%22%3Aslug.current%2C%0A++shortDescription%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++featuredTreatments%2C%0A++content%2C%0A++infoCards%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D%0A%0A`, {
+  fetch(`https://7rljkuk3.apicdn.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27disease%27+%26%26+slug.current+%3D%3D+%22${disease}%22%5D%7B%0A++title%2C%0A++header%2C%0A++shortDescription%2C%0A++%22slug%22%3Aslug.current%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++backlinksLocation%2C%0A++backlinksCosting%2C%0A++backlinksOther%2C%0A++doctors%5B%5D-%3E%7B%0A++++title%2C%0A++++%22image%22%3Aimage.asset-%3Eurl%2C%0A++++degrees%2C%0A++++speciality%2C%0A++++yearsOfExperience%2C%0A++++%22slug%22%3Aslug.current%0A++++%0A++%7D%2C%0A++featuredTreatments%2C%0A++content%2C%0A++infoCards%2C%0A++reviews%2C%0A++faqs%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D`, {
     method: "GET",
     headers: {
       "Content-type": "application/json"
@@ -182,9 +284,9 @@ if (!pageData) return <div>No data found</div>
 
   return (
     <>
-      <Group grow p={"xl"} bg={"#F8F9FA"}>
-        <Grid grow gutter={"xl"} className="relative">
-          <Grid.Col span={8}>
+      <Group grow p={{base:"sm",md:"md",lg:"xl"}}>
+        <Grid gutter={"xl"} className="relative" >
+          <Grid.Col span={{base:12,md:8,lg:8}}>
             <Grid grow gutter={"sm"}>
               <Grid.Col span={6}>
                 <Group my={"lg"}>
@@ -253,19 +355,19 @@ if (!pageData) return <div>No data found</div>
               </Grid.Col>
 
               <Grid.Col span={{ base: 0, md: 2, lg: 2 }}>
-                <Image src={pageData.imageUrl} maw={250}></Image>
+                <Image src={pageData.imageUrl} maw={250} ></Image>
               </Grid.Col>
 
               <Grid.Col span={8} className="hidden sm:flex ">
               <Group >
-                  <Card w={"100%"}>
-                        <Image src={"https://s3-alpha-sig.figma.com/img/1ccd/0a20/2477415d64f1e10258a27b64a05499cc?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=M7vTDrmeMQWNZvKB07vWlMySKpX4CmeNHEkAa0SM6uqPLzeaKqCHHUJ4wqPCoNPO45OLnIYmVikXyIawoTUBqV0gNtIDtVQho3lv3oXVDWF2-16iDn1ATneAjTmcW6EH8oEqo-tyznL4Lt8gdomkUtHNPJIC~169BuOlrv588SXHmMUy0AhsBWWA6YkDJ2qql~OLJ7WSFornpViJk2qgPG4nYk0LVLkZSUj4PSDExWGaRZgAF-rpiOi8sxVsguylPvGGqxmoH~6P4REba3JUNTfyZVA7baDvpYRelMaN5OmiUmGCjcG6vj2hvnLqwlen~UGiMT6KQuO4mR~tWqCJ6A__"} className=" scale-125"></Image>
-                  </Card>
+              <div className="w-full">
+                        <Image src="/assets/features2.png" className=" object-cover"></Image>
+                  </div>
                 </Group>
               </Grid.Col>
 
           {     pageData.infoCards &&
-                            <Card radius={"lg"} shadow="lg" my={"lg"}>
+                            <Card radius={"lg"} shadow="lg" my={"lg"} className='border'>
 
                             <Grid.Col span={6} mt={"lg"}>
                               {/* <hr style={{ margin: "2rem 0" }} /> */}
@@ -329,7 +431,7 @@ if (!pageData) return <div>No data found</div>
             }
 
 
-              <Card radius={"lg"} shadow="lg" my={"lg"} w={"100%"}> 
+              <Card radius={"lg"} shadow="lg" my={"lg"} w={"100%"} className='border'> 
               <Grid.Col span={8} mt={"lg"}>
                 <Stack  gap={"lg"}>
                 <Title order={2}>Why opt for Minimally Invasive Lipoma Procedure?</Title>
@@ -349,102 +451,18 @@ if (!pageData) return <div>No data found</div>
               <Grid.Col span={8} mt={"lg"}>
                 <Stack gap={"lg"}>
                 <Title order={2}>Our Expert Doctors</Title>
-                <Carousel slideSize="60%" slideGap="md" loop p={"md"}>
-                  
-                  <Carousel.Slide>
-                    <Card shadow="lg">
-                      <Group gap={"md"}>
-                      <Image src="https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-young-afro-professional-doctor-png-image_10148632.png" radius={"lg"} w={150}></Image>
-                      <Stack gap={"lg"} justify="space-between">
-                      <div>
-                      <Title order={4} c={"#3269DB"}>Dr. Deepak Kumar Sinha</Title>
-                      <Text size="xs" c={"#5F6D7A"}>General</Text>
-                      <Text size="xs" c={"#5F6D7A"}>Surgery, Proctology, Laproscopic Surg...</Text>
-                      </div>
-                      <Group>
-                        <div>
-                        <Group gap={"sm"}><IconBriefcase color="#3269DB" size={20}/><Title order={6} c={"#3269DB"}>19+ Years</Title></Group>
-                        <Text size="xs" c={"#5F6D7A"}> Experience</Text>
-                        </div>
-                        <hr/>
-                        <div>
-                        <Group><IconThumbUp color="#3269DB" size={20}/> <Title order={6} c={"#3269DB"}>99%</Title></Group>
-                        <Text size="xs"c={"#5F6D7A"}> Recommended</Text>
-                        </div>
-                      </Group>
-                      </Stack>
-
-                      <Button fullWidth variant="outline" size="md">Book Appointment</Button>
-                      </Group>
-                    </Card>
-                    </Carousel.Slide>
-                  <Carousel.Slide>
-                    <Card shadow="lg">
-                      <Group gap={"md"}>
-                      <Image src="https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-young-afro-professional-doctor-png-image_10148632.png" radius={"lg"} w={150}></Image>
-                      <Stack gap={"lg"} justify="space-between">
-                      <div>
-                      <Title order={4} c={"#3269DB"}>Dr. Deepak Kumar Sinha</Title>
-                      <Text size="xs" c={"#5F6D7A"}>General</Text>
-                      <Text size="xs" c={"#5F6D7A"}>Surgery, Proctology, Laproscopic Surg...</Text>
-                      </div>
-                      <Group>
-                        <div>
-                        <Group gap={"sm"}><IconBriefcase color="#3269DB" size={20}/><Title order={6} c={"#3269DB"}>19+ Years</Title></Group>
-                        <Text size="xs" c={"#5F6D7A"}> Experience</Text>
-                        </div>
-                        <hr/>
-                        <div>
-                        <Group><IconThumbUp color="#3269DB" size={20}/> <Title order={6} c={"#3269DB"}>99%</Title></Group>
-                        <Text size="xs"c={"#5F6D7A"}> Recommended</Text>
-                        </div>
-                      </Group>
-                      </Stack>
-
-                      <Button fullWidth variant="outline" size="md">Book Appointment</Button>
-                      </Group>
-                    </Card>
-                    </Carousel.Slide>
-                  <Carousel.Slide>
-                    <Card shadow="lg">
-                      <Group gap={"md"}>
-                      <Image src="https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-young-afro-professional-doctor-png-image_10148632.png" radius={"lg"} w={150}></Image>
-                      <Stack gap={"lg"} justify="space-between">
-                      <div>
-                      <Title order={4} c={"#3269DB"}>Dr. Deepak Kumar Sinha</Title>
-                      <Text size="xs" c={"#5F6D7A"}>General</Text>
-                      <Text size="xs" c={"#5F6D7A"}>Surgery, Proctology, Laproscopic Surg...</Text>
-                      </div>
-                      <Group>
-                        <div>
-                        <Group gap={"sm"}><IconBriefcase color="#3269DB" size={20}/><Title order={6} c={"#3269DB"}>19+ Years</Title></Group>
-                        <Text size="xs" c={"#5F6D7A"}> Experience</Text>
-                        </div>
-                        <hr/>
-                        <div>
-                        <Group><IconThumbUp color="#3269DB" size={20}/> <Title order={6} c={"#3269DB"}>99%</Title></Group>
-                        <Text size="xs"c={"#5F6D7A"}> Recommended</Text>
-                        </div>
-                      </Group>
-                      </Stack>
-
-                      <Button fullWidth variant="outline" size="md">Book Appointment</Button>
-                      </Group>
-                    </Card>
-                    </Carousel.Slide>
-                  
-                </Carousel>
+                  <DoctorCarousel data={pageData.doctors}></DoctorCarousel>
                 </Stack>
               </Grid.Col>
               <Grid.Col span={8} mt={"lg"}>
-              <Card radius={"lg"} shadow="lg">
+              <Card radius={"lg"} shadow="lg" className='border'>
                 <div className="prose max-w-full ">
                 <PortableText value={pageData.content}/>
                 </div>
                 </Card>
                 {
                   pageData.additionalContent1 && 
-                  <Card shadow="sm" mt={"md"} radius={"lg"}>
+                  <Card shadow="sm" mt={"md"} radius={"lg"} className='border'>
                   <div className="prose max-w-full ">
                 <PortableText value={pageData.additionalContent1}/>
                 </div>
@@ -452,7 +470,7 @@ if (!pageData) return <div>No data found</div>
                 }
                 {
                   pageData.additionalContent2 && 
-                  <Card shadow="sm" mt={"md"} radius={"lg"}>
+                  <Card shadow="sm" mt={"md"} radius={"lg"} className='border'>
 
                   <div className="prose max-w-full ">
                 <PortableText value={pageData.additionalContent2}/>
@@ -463,7 +481,7 @@ if (!pageData) return <div>No data found</div>
 
             </Grid>
           </Grid.Col>
-          <Grid.Col span={3} pos={"relative"}>
+          <Grid.Col span={{base:12,md:4,lg:4}} pos={"relative"}>
             <Card shadow="sm" padding="lg" radius="md" withBorder pos={"sticky"} top={24}>
               <Title order={3}>Request a callback</Title>
               <Text c={"#5F6D7A"}>
@@ -476,6 +494,8 @@ if (!pageData) return <div>No data found</div>
           </Grid.Col>
         </Grid>
       </Group>
+
+      <WhyUs></WhyUs>
                   { pageData.reviews &&
 
       <Stories reviews={pageData.reviews} />
@@ -486,6 +506,18 @@ if (!pageData) return <div>No data found</div>
         <FrequentlyAskedQuestions faqs={pageData.faqs} />
         }
         <BookConsultation />
+       {
+        pageData.backlinkLocation &&
+         <BackLinks procedures={pageData.backlinkLocation.links} header={pageData.backlinkLocation.title}></BackLinks>
+       } 
+       {
+        pageData.backlinkCosting &&
+         <BackLinks procedures={pageData.backlinkCosting.links} header={pageData.backlinkCosting.title}></BackLinks>
+       } 
+       {
+        pageData.backlinkLocation &&
+         <BackLinks procedures={pageData.backlinkOther.links} header={pageData.backlinkOther.title}></BackLinks>
+       } 
       </div>
     </>
   );
