@@ -40,7 +40,7 @@ const GlobalPopup = ({
       // Small delay to ensure smooth transition
       const timeoutId = setTimeout(() => {
         open();
-      }, 500);
+      }, 10000);
 
       return () => clearTimeout(timeoutId);
     
