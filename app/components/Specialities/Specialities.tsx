@@ -19,16 +19,18 @@ const Specialities = ({specialitiesData}: {specialitiesData: {title: string, des
         {specialitiesData.map((el, index: number) => (
       <Link href={(typeof(el.url)!=="string")?" ":el.url} key={index}>
           <Box  className={classes.box}>
-            {/* <Image
+            <Image
               src={el.iconUrl}
               width={mobile ? 100 : 130}
               height={mobile ? 100 : 130}
-              bg="#D5E9FF"
-              fit="contain"
+              miw={100}
+              mih={100}
+              
+             fit="contain"
               style={{ borderRadius: 8 }}
               alt={el.title}
               data-aos="flip-right"
-            /> */}
+            />
             <Box className={classes.textbox}>
               <Text fw={700} c="#6D758F">
                 {el.title}

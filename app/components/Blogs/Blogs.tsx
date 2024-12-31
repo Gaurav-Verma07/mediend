@@ -104,7 +104,6 @@ const Blogs = () => {
         variant="transparent"
         mx="auto"
         ta="center"
-        c="#F24B04"
         my={10}
         style={{ cursor: "pointer" }}
       >
