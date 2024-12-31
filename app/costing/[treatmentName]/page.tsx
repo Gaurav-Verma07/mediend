@@ -322,7 +322,7 @@ const CostingPage = () => {
                   factors, including:
                 </p>
                 <ul className="list-disc pl-6 text-gray-600 space-y-2 ">
-                  <li>Severity of the patient's condition</li>
+                  <li>Severity of the patient&apos;s condition</li>
                   <li>Type of treatment or procedure required</li>
                   <li>Duration and complexity of the treatment</li>
                   <li>Use of advanced medical equipment or technology</li>
@@ -343,7 +343,7 @@ const CostingPage = () => {
                 </h1>
                 <p className="mt-6 mb-1">Benefits of Lipoma Removal Surgery</p>
                 <ul className="list-disc pl-6 text-gray-600 space-y-2 ">
-                  <li>Severity of the patient's condition</li>
+                  <li>Severity of the patient&apos;s condition</li>
                   <li>Type of treatment or procedure required</li>
                   <li>Duration and complexity of the treatment</li>
                   <li>Use of advanced medical equipment or technology</li>
@@ -359,10 +359,10 @@ const CostingPage = () => {
                 </h1>
                 <p className="mt-6 mb-1">
                   At MediEND, we prioritize patient care and convenience at
-                  every step of the treatment journey. Here’s what we offer:
+                  every step of the treatment journey. Here&apos;s what we offer:
                 </p>
                 <ul className="list-disc pl-6 text-gray-600 space-y-2 ">
-                  <li>Severity of the patient's condition</li>
+                  <li>Severity of the patient&apos;s condition</li>
                   <li>Type of treatment or procedure required</li>
                   <li>Duration and complexity of the treatment</li>
                   <li>Use of advanced medical equipment or technology</li>

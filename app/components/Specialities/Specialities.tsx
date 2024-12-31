@@ -17,8 +17,8 @@ const Specialities = ({specialitiesData}: {specialitiesData: {title: string, des
         verticalSpacing={{ base: "md", sm: "xl" }}
       >
         {specialitiesData.map((el, index: number) => (
-      <Link href={(typeof(el.url)!=="string")?" ":el.url}>
-          <Box key={index} className={classes.box}>
+      <Link href={(typeof(el.url)!=="string")?" ":el.url} key={index}>
+          <Box  className={classes.box}>
             {/* <Image
               src={el.iconUrl}
               width={mobile ? 100 : 130}
