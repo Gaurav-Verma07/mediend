@@ -13,7 +13,8 @@ import Showcase from "./components/Showcase/Showcase";
 import Specialities from "./components/Specialities/Specialities";
 import Stories from "./components/Stories/Stories";
 import WhyUs from "./components/WhyUs/WhyUs";
-
+import { specialitiesData } from "./components/Specialities/specialitiesData";
+import { Title } from "@mantine/core";
 
 
 const storiesData = [
@@ -58,7 +59,13 @@ export default function HomePage() {
       </div>
       <WhyUs />
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <Specialities />
+      <Title 
+        className="text-center mb-12 text-[#1D3557] text-2xl md:text-4xl lg:text-5xl my-8 font-bold"
+        data-aos="zoom-in-up"
+      >
+        Our Specialities
+      </Title>  
+        <Specialities specialitiesData={specialitiesData} />
       </div>
       <GetInTouch />
       <div style={{ maxWidth: "1370px", margin: "0 auto" }}>

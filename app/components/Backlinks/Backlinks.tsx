@@ -3,8 +3,8 @@ import Link from "next/link"
     
 
 interface Procedure {
-  title: string
-  link: string
+  text: string
+  url: string
 }
 
 interface ProcedureLinksProps {
@@ -20,14 +20,14 @@ export default function BackLinks({ procedures, header }: ProcedureLinksProps) {
         {procedures.map((procedure, index) => (
           <Link 
             key={index} 
-            href={procedure.link}
+            href={procedure.url}
             className="block transition-transform hover:-translate-y-1"
           >
             <Card className="relative overflow-hidden group h-fit" shadow="md">
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue-500" />
               <div className="">
                 <p className="text-blue-600 hover:text-blue-700 text-sm">
-                  {procedure.title}
+                  {procedure.text}
                 </p>
               </div>
             </Card>

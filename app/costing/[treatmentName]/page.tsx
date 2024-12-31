@@ -33,201 +33,17 @@ import {
     IconUserCircle,
   } from "@tabler/icons-react";
 
-export const treatments = [
-    {
-      name: "Lipoma Removal",
-      costRange: "₹500 - ₹800",
-      imageUrl: "https://via.placeholder.com/400x300?text=Lipoma+Removal",
-    },
-    {
-      name: "Knee Replacement",
-      costRange: "₹7,000 - ₹12,000",
-      imageUrl: "https://via.placeholder.com/400x300?text=Knee+Replacement",
-    },
-    {
-      name: "Hair Transplant",
-      costRange: "₹1,000 - ₹4,000",
-      imageUrl: "https://via.placeholder.com/400x300?text=Hair+Transplant",
-    },
-    {
-      name: "Cosmetic Surgery",
-      costRange: "₹3,000 - ₹10,000",
-      imageUrl: "https://via.placeholder.com/400x300?text=Cosmetic+Surgery",
-    },
-  ];
-  
-  export const doctorsData = [
-    {
-      imgUrl: "https://example.com/doctor1.jpg",
-      name: "Dr. Deepak Kumar Sinha",
-      specialty: "General Surgery",
-      additionalInfo: "Surgery, Proctology, Laparoscopic Surgery...",
-      experience: 19,
-      recommended: 99,
-    },
-    {
-      imgUrl: "https://example.com/doctor2.jpg",
-      name: "Dr. Suman Sharma",
-      specialty: "Pediatrics",
-      additionalInfo: "Neonatal care, Child health...",
-      experience: 15,
-      recommended: 98,
-    },
-    {
-      imgUrl: "https://example.com/doctor3.jpg",
-      name: "Dr. Rajesh Gupta",
-      specialty: "Orthopedics",
-      additionalInfo: "Joint replacement, Spine Surgery, Trauma...",
-      experience: 20,
-      recommended: 97,
-    },
-    {
-      imgUrl: "https://example.com/doctor4.jpg",
-      name: "Dr. Asha Patel",
-      specialty: "Dermatology",
-      additionalInfo: "Acne treatment, Laser surgery, Skin care...",
-      experience: 18,
-      recommended: 95,
-    },
-    {
-      imgUrl: "https://example.com/doctor5.jpg",
-      name: "Dr. Ravi Mehta",
-      specialty: "Cardiology",
-      additionalInfo: "Heart disease management, Hypertension...",
-      experience: 22,
-      recommended: 100,
-    },
-    {
-      imgUrl: "https://example.com/doctor6.jpg",
-      name: "Dr. Priya Iyer",
-      specialty: "Gynecology",
-      additionalInfo: "Pregnancy care, Women’s health...",
-      experience: 17,
-      recommended: 96,
-    },
-    {
-      imgUrl: "https://example.com/doctor7.jpg",
-      name: "Dr. Vinod Kumar",
-      specialty: "Neurology",
-      additionalInfo: "Epilepsy, Stroke rehabilitation, Headache management...",
-      experience: 21,
-      recommended: 99,
-    },
-    {
-      imgUrl: "https://example.com/doctor8.jpg",
-      name: "Dr. Neha Verma",
-      specialty: "Psychiatry",
-      additionalInfo: "Mental health, Anxiety disorders, Depression...",
-      experience: 14,
-      recommended: 94,
-    },
-  ];
-  
-  export const treatmentCards = [
-    {
-      title: "Heart Treatment",
-      description: "Advanced treatment for heart diseases.",
-      icon: <IconHeartbeat size={40} />,
-    },
-    {
-      title: "Brain Surgery",
-      description: "Cutting-edge procedures for brain surgeries.",
-      icon: <IconBrain size={40} />,
-    },
-    {
-      title: "Orthopedic Care",
-      description: "Comprehensive care for bone and joint problems.",
-      icon: <IconBone size={40} />,
-    },
-    {
-      title: "Dental Services",
-      description: "Expert dental treatments for a healthy smile.",
-      icon: <IconDental size={40} />,
-    },
-  ];
-  
-  export const pageData = {
-    faqs: [
-      {
-        question: "What services do you offer?",
-        answer:
-          "We offer a range of services including consultations, workshops, and training in various areas of expertise.",
-      },
-      {
-        question: "How can I book a consultation?",
-        answer:
-          "You can book a consultation through our online booking system or by contacting us directly via email or phone.",
-      },
-      {
-        question: "What are the working hours?",
-        answer: "Our office is open from Monday to Friday, 9 AM to 5 PM.",
-      },
-      {
-        question: "Do you offer online consultations?",
-        answer:
-          "Yes, we provide online consultations via video call or phone for your convenience.",
-      },
-    ],
-  };
-  
 
-  export const statsData = [
-    {
-      title: "40,500",
-      description: "Lowest Approx",
-      icon: <IconHeart size={20} />,
-      bgColor: "#F4F7FB",
-      color:"#0069f6",
-    },
-    {
-      title: "62000",
-      description: "Avg. Approx",
-      icon: <IconClock size={20} />,
-      bgColor: "#fff8f0",
-      color:"#ff8a04",
-    },
-    {
-      title: "84000",
-      description: "Highest Approx",
-      icon: <IconTarget size={20} />,
-      bgColor: "#dcffe5",
-      color:"#49b365",
-    },
-  ];
-
-
-  export const storiesData = [
-    {
-      imageUrl: "/assets/stories/stories_1.png",
-      highlight: "“Strength to embrace my son and life again”",
-      review: "We feel like we can finally live a normal life!” I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!",
-      name: "Vanamala Ramesh",
-    },
-    {
-      imageUrl: "/assets/stories/stories_2.png",
-      highlight: "“We feel like we can finally live a normal life!”",
-      review: "I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!.",
-      name: "Stephanie Powell",
-    },
-    {
-      imageUrl: "/assets/stories/stories_1.png",
-      highlight: "“Strength to embrace my son and life again”",
-      review: "We feel like we can finally live a normal life!” I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!",
-      name: "Vanamala Ramesh",
-    },
-    {
-      imageUrl: "/assets/stories/stories_2.png",
-      highlight: "“We feel like we can finally live a normal life!”",
-      review: "I can honestly say my son’s autism related symptoms have reduced tenfold since we started treatment... We feel like we can finally live a normal life!.",
-      name: "Stephanie Powell",
-    },
-  ];
 
 type Slug = {
   _type: "slug";
   current: string;
 };
-
+export interface Specialities{
+  title: string;
+  iconUrl:string;
+  description:string;
+}
 export interface Treatment {
   _id: string;
   _type: "treatment";
@@ -249,7 +65,7 @@ export interface Treatment {
   doctors?: Doctor[];
   additionalContent1?: Block[];
   additionalContent2?: Block[];
-  specialties?: Specialty[];
+  specialties?: [];
   reviews?: Review[];
   faqs?: FAQ[];
 }
@@ -264,12 +80,6 @@ export interface Doctor {
   recommended?: number;
 }
 
-export interface Specialty {
-  _type: "specialty";
-  title: string;
-  description?: string;
-  image?: Image;
-}
 
 export interface Review {
   _type: "review";
@@ -311,20 +121,71 @@ const CostingPage = () => {
   const params = useParams<{ treatmentName: string | undefined }>();
   const { treatmentName } = params;
 
-  console.log(treatmentName);
-
   const [pageData, setPageData] = useState<Treatment | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null)
+
+
+
+  useEffect(() => {
+    setIsLoading(true)
+    fetch('https://7rljkuk3.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%22costing%22+%26%26+slug.current+%3D%3D+%22lasik%22+%26%26+location+%3D%3D+%22Hyderabad%22%5D%5B0%5D%7B%0A++++++++++_id%2C%0A++++++++++_type%2C%0A++++++++++title%2C%0A++++++++++slug%2C%0A++++++++++location%2C%0A++++++++++startingCost%2C%0A++++++++++cost%2C%0A++++++++++procedureType%2C%0A++++++++++anaesthetiaType%2C%0A++++++++++hospitalDays%2C%0A++++++++++procedureDuration%2C%0A++++++++++risk%2C%0A++++++++++aboutTreatment%2C%0A++++++++++additionalContent1%2C%0A++++++++++additionalContent2%2C%0A++++++++++additionalContent3%2C%0A++++++++++additionalContent4%2C%0A++++++++++doctors%5B%5D-%3E%7B%0A++++title%2C%0A++++%22image%22%3Aimage.asset-%3Eurl%2C%0A++++degrees%2C%0A++++speciality%2C%0A++++yearsOfExperience%2C%0A++++%22slug%22%3Aslug.current%0A++++%0A++%7D%2C%0A++++++++++specialties%2C%0A++++++++++reviews%2C%0A++++++++++faqs%0A++++++++%7D', {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json"
+      }
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json()
+    })
+    .then((data) => {
+      console.log('Fetched data:', data);
+      setPageData(data.result);
+      setIsLoading(false);
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+      setError(error);
+      setIsLoading(false);
+    });
+  }, [treatmentName])
+
+  const getStatsData = (costData: Treatment['cost']) => [
+    {
+      title: `₹${costData.leastCost}`,
+      description: "Lowest Approx",
+      icon: <IconHeart size={20} />,
+      bgColor: "#F4F7FB",
+      color: "#0069f6",
+    },
+    {
+      title: `₹${costData.averageCost}`,
+      description: "Avg. Approx",
+      icon: <IconClock size={20} />,
+      bgColor: "#fff8f0",
+      color: "#ff8a04",
+    },
+    {
+      title: `₹${costData.highestCost}`,
+      description: "Highest Approx",
+      icon: <IconTarget size={20} />,
+      bgColor: "#dcffe5",
+      color: "#49b365",
+    },
+  ];
 
 
 
   if (isLoading) return <LoadingScreen />;
-  if (!pageData) return <div>No data found</div>;
+  if (!pageData) return <div>Please check your connection</div>;
 
   return (
     <>
       <div className="grid grid-cols-10 bg-zinc-100">
-        <div className="col-span-7">
+        <div className="col-span-10 md:col-span-7">
           {/* Hero Section */}
           <div className="bg-zinc-100 w-full ">
             <Container
@@ -344,16 +205,14 @@ const CostingPage = () => {
                 </Text>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-                  {statsData.map(
-                    (value,index) => {
-                        return <StatCard
-                        key={index}
-                        icon={<IconTarget size={20} />}
-                        title={value.title}
-                        description={value.description}
-                      />
-                    }
-                  )}
+                {getStatsData(pageData.cost).map((value, index) => (
+  <StatCard
+    key={index}
+    icon={value.icon}
+    title={value.title}
+    description={value.description}
+  />
+))}
                 </div>
               </div>
             </Container>
@@ -450,73 +309,7 @@ const CostingPage = () => {
                 <h3 className="text-3xl font-bold">Our Expert Doctors</h3>
 
                 <Stack className="space-y-6">
-                  <Carousel
-                    className="p-4"
-                    slideSize="45%"
-                    slideGap="xs"
-                    loop
-                    align="start"
-                  >
-                    {doctorsData.map((doctor, index) => (
-                      <Carousel.Slide key={index}>
-                        <div className="bg-white shadow-lg rounded-lg">
-                          <div className="flex gap-4">
-                            <img
-                              src="https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-young-afro-professional-doctor-png-image_10148632.png"
-                              alt={doctor.name}
-                              className="rounded-lg w-36 h-36 object-cover"
-                            />
-                            <div className="flex flex-col justify-between">
-                              <div>
-                                <h4 className="text-xl text-blue-600">
-                                  {doctor.name}
-                                </h4>
-                                <p className="text-sm text-gray-600">
-                                  {doctor.specialty}
-                                </p>
-                                <p className="text-xs text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap">
-                                  {doctor.additionalInfo}
-                                </p>
-                              </div>
-                              <div className="flex gap-4 flex-col mt-4">
-                                <div className="flex items-center">
-                                  <div className="flex gap-2 items-center">
-                                    <IconBriefcase
-                                      className="text-blue-600"
-                                      size={15}
-                                    />
-                                    <h6 className="text-blue-600 text-sm">
-                                      {doctor.experience}+
-                                    </h6>
-                                  </div>
-                                  <p className="text-xs text-gray-500 ml-2">
-                                    Experience
-                                  </p>
-                                </div>
-                                <div className="flex items-center">
-                                  <div className="flex gap-x-2 items-center">
-                                    <IconThumbUp
-                                      className="text-blue-600"
-                                      size={15}
-                                    />
-                                    <h6 className="text-blue-600">
-                                      {doctor.recommended}%
-                                    </h6>
-                                  </div>
-                                  <p className="text-xs text-gray-500 ml-2">
-                                    Recommended
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <button className="w-full mt-4 py-2 px-4 bg-transparent border-2 border-blue-600 text-blue-600 rounded-lg">
-                            Book Appointment
-                          </button>
-                        </div>
-                      </Carousel.Slide>
-                    ))}
-                  </Carousel>
+                 
                 </Stack>
               </div>
 
@@ -593,7 +386,7 @@ const CostingPage = () => {
             </Tabs.Panel>
           </Tabs>
         </div>
-        <div className="col-span-3 p-6 ">
+        <div className="col-span-10 md:col-span-3 p-6 ">
           <div className="p-6 rounded-md border sticky top-6 bg-white">
             <h3 className="text-2xl font-semibold mb-4">
               Calculate Cost for Lasik Surgery
@@ -605,10 +398,15 @@ const CostingPage = () => {
           </div>
         </div>
       </div>
-      <Stories reviews={storiesData} />
+      {/* {
+        pageData.reviews &&
+      <Stories reviews={pageData.reviews} />
+      } */}
       <div className=""></div>
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        <Specialities />
+        { pageData.specialties &&
+        <Specialities specialitiesData={pageData.specialties}/>
+}
         {pageData.faqs && <FrequentlyAskedQuestions faqs={pageData.faqs} />}
         <BookConsultation />
       </div>

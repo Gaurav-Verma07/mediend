@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Card, Group, Stack, Title, Text, Button } from '@mantine/core';
+import { Card, Group, Stack, Title, Text, Button, Flex } from '@mantine/core';
 import { IconChevronLeft, IconChevronRight, IconBriefcase, IconThumbUp } from '@tabler/icons-react';
 import Link from 'next/link';
 import { Doctor } from '../../../doctor/[doctorName]/page';
@@ -77,11 +77,11 @@ const DoctorCarousel = ({ data }:{data:Doctor[]}) => {
         {extendedData.map((doctor, idx) => (
           <div
             key={idx}
-            className="w-[90%] md:w-[75%]  flex-shrink-0 grow"
+            className="w-[90%] md:w-[50%]  flex-shrink-0 grow"
           >
             <Link href={`/doctor/${doctor.slug}`}>
-              <Card className="h-full">
-                <Group className="gap-4">
+              <Card className="h-full border">
+                <div className="gap-4 flex flex-wrap flex-col sm:flex-row">
                   <div className="h-32 w-32 relative overflow-hidden rounded-lg">
                     <img
                       src={doctor.imageUrl}
@@ -89,9 +89,9 @@ const DoctorCarousel = ({ data }:{data:Doctor[]}) => {
                       className="absolute inset-0 h-full w-full object-cover"
                     />
                   </div>
-                  <Stack className="flex-1 gap-4">
+                  <Stack className="flex-1 gap-4 ">
                     <div>
-                      <Title className="text-lg font-semibold text-blue-600">
+                      <Title order={3} className="text-lg font-semibold text-blue-600">
                         {doctor.title}
                       </Title>
                       <Text className="text-sm text-gray-500">
@@ -127,7 +127,7 @@ const DoctorCarousel = ({ data }:{data:Doctor[]}) => {
                       </div>
                     </Group>
                   </Stack>
-                </Group>
+                </div>
                 <Button className="mt-4 w-full" variant="outline">
                   Book Appointment
                 </Button>

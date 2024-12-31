@@ -135,12 +135,15 @@ const MedicalServicesNavigation = () => {
                 onMouseEnter={() => setActiveTab(index)}
                 onMouseLeave={() => setActiveTab(null)}
               >
-                <button className="p-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600 flex items-center text-sm">
+                <Link href={`/department/${tab.departmentLink}`}>
+                <button className="p-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600 flex items-center text-sm group">
                   {tab.label}
+
                   {tab.links.length > 0 && (
-                    <IconChevronDown className="ml-2 h-4 w-4" />
+                    <IconChevronDown className="ml-2 h-4 w-4 group-hover:rotate-180 transition-all" />
                   )}
                 </button>
+                </Link>
 
                 {tab.links.length > 0 && activeTab === index && (
                   <div className="absolute z-50 left-1/2 -translate-x-1/2 mt-0 bg-white shadow-lg border rounded-md min-w-[250px] max-w-[calc(100vw-2rem)]">

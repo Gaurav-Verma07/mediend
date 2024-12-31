@@ -88,6 +88,18 @@ const storiesData = [
   },
 ];
 
+interface Backlink {
+  text: string;
+  _key: string;
+  url: string;
+  _type: 'backlink';
+}
+
+interface Backlinks {
+  links: Backlink[];
+  title: string;
+}
+
 const procedures = [
   {
     title: "Sclerotherapy for Varicose Veins Cost in Pune",
@@ -176,7 +188,9 @@ interface LipomaSanityDocument {
   additionalContent1?: ContentBlock[];
   
   additionalContent2?: ContentBlock[];
-
+  backlinkLocation: Backlinks;
+  backlinkCosting: Backlinks;
+  backlinkOther: Backlinks;
   reviews?: Review[];
   faqs?: FAQ[];
 
@@ -230,7 +244,7 @@ const [error, setError] = useState(null)
 
 useEffect(() => {
   setIsLoading(true)
-  fetch(`https://7rljkuk3.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27disease%27+%26%26+slug.current+%3D%3D+%22${disease}%22%5D%7B%0A++title%2C%0A++header%2C%0A++shortDescription%2C%0A++%22slug%22%3Aslug.current%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++doctors%5B%5D-%3E%7B%0A++++title%2C%0A++++%22imageUrl%22%3Aimage.asset-%3Eurl%2C%0A++++degrees%2C%0A++++speciality%2C%0A++++yearsOfExperience%2C%0A++++%22slug%22%3Aslug.current%0A++++%0A++%7D%2C%0A++featuredTreatments%2C%0A++content%2C%0A++infoCards%2C%0A++reviews%2C%0A++faqs%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D%0A`, {
+  fetch(`https://7rljkuk3.apicdn.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27disease%27+%26%26+slug.current+%3D%3D+%22${disease}%22%5D%7B%0A++title%2C%0A++header%2C%0A++shortDescription%2C%0A++%22slug%22%3Aslug.current%2C%0A++%22imageUrl%22%3A+headerImage.asset-%3Eurl%2C%0A++backlinksLocation%2C%0A++backlinksCosting%2C%0A++backlinksOther%2C%0A++doctors%5B%5D-%3E%7B%0A++++title%2C%0A++++%22image%22%3Aimage.asset-%3Eurl%2C%0A++++degrees%2C%0A++++speciality%2C%0A++++yearsOfExperience%2C%0A++++%22slug%22%3Aslug.current%0A++++%0A++%7D%2C%0A++featuredTreatments%2C%0A++content%2C%0A++infoCards%2C%0A++reviews%2C%0A++faqs%2C%0A++additionalContent1%2C%0A++additionalContent2%0A%7D%5B0%5D`, {
     method: "GET",
     headers: {
       "Content-type": "application/json"
@@ -346,9 +360,9 @@ if (!pageData) return <div>No data found</div>
 
               <Grid.Col span={8} className="hidden sm:flex ">
               <Group >
-                  <Card w={"100%"} className='border'>
-                        <Image src={"https://s3-alpha-sig.figma.com/img/1ccd/0a20/2477415d64f1e10258a27b64a05499cc?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=M7vTDrmeMQWNZvKB07vWlMySKpX4CmeNHEkAa0SM6uqPLzeaKqCHHUJ4wqPCoNPO45OLnIYmVikXyIawoTUBqV0gNtIDtVQho3lv3oXVDWF2-16iDn1ATneAjTmcW6EH8oEqo-tyznL4Lt8gdomkUtHNPJIC~169BuOlrv588SXHmMUy0AhsBWWA6YkDJ2qql~OLJ7WSFornpViJk2qgPG4nYk0LVLkZSUj4PSDExWGaRZgAF-rpiOi8sxVsguylPvGGqxmoH~6P4REba3JUNTfyZVA7baDvpYRelMaN5OmiUmGCjcG6vj2hvnLqwlen~UGiMT6KQuO4mR~tWqCJ6A__"} className=" scale-125"></Image>
-                  </Card>
+              <div className="w-full">
+                        <Image src="/assets/features2.png" className=" object-cover"></Image>
+                  </div>
                 </Group>
               </Grid.Col>
 
@@ -493,8 +507,16 @@ if (!pageData) return <div>No data found</div>
         }
         <BookConsultation />
        {
-        procedures &&
-         <BackLinks procedures={procedures} header="Procedures in Top Cities"></BackLinks>
+        pageData.backlinkLocation &&
+         <BackLinks procedures={pageData.backlinkLocation.links} header={pageData.backlinkLocation.title}></BackLinks>
+       } 
+       {
+        pageData.backlinkCosting &&
+         <BackLinks procedures={pageData.backlinkCosting.links} header={pageData.backlinkCosting.title}></BackLinks>
+       } 
+       {
+        pageData.backlinkLocation &&
+         <BackLinks procedures={pageData.backlinkOther.links} header={pageData.backlinkOther.title}></BackLinks>
        } 
       </div>
     </>

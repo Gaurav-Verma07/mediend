@@ -27,13 +27,13 @@ const Showcase = () => {
   return (
     <div className="my-20">
       <Title 
-        className="text-center mb-12 text-[#1D3557] text-2xl md:text-4xl lg:text-5xl my-8 font-bold"
+        className="text-center mb-12 text-[#1D3557] text-2xl md:text-4xl lg:text-5xl font-bold"
         data-aos="zoom-in-up"
       >
         Numbers that showcase our success
       </Title>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto px-4 my-8">
         {data.map((item, index) => (
           <div 
             key={index}

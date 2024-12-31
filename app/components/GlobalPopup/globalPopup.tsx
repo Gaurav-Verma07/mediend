@@ -1,57 +1,50 @@
 "use client"
-
-
-// components/GlobalPopup/GlobalPopup.tsx
 import { Box, Center, Modal, Stack, Text } from "@mantine/core";
-import { useDisclosure, useMediaQuery } from "@mantine/hooks";
+import { useDisclosure, useInterval, useMediaQuery } from "@mantine/hooks";
 import { IconX } from "@tabler/icons-react";
-
 import { useEffect, useState } from "react";
 import classes from "../Header/Header.module.css";
 import Appointment from "../Appointment/Appointment";
+import { usePathname } from "next/navigation";
 
 interface GlobalPopupProps {
   scrollThreshold?: number;
   intervalTime?: number;
-  useInterval?: boolean;
 }
 
-const GlobalPopup = ({ 
+const GlobalPopup = ({
   scrollThreshold = 300,
-  intervalTime = 30000,
-  useInterval = false 
+  intervalTime = 120000, // 2 mins
 }: GlobalPopupProps) => {
   const isMobile8 = useMediaQuery(`(min-width: 800px)`);
   const [opened, { open, close }] = useDisclosure(false);
-  const [hasShown, setHasShown] = useState(false);
+  const path = usePathname();
+
+  // Use interval hook for periodic popup
+  const interval = useInterval(() => {
+    open();
+  }, intervalTime);
 
   useEffect(() => {
-    // Check if popup was recently closed
+    // Start the interval
+    interval.start();
+    return interval.stop;
+  }, []);
+
+  // Effect for page change popup
+  useEffect(() => {
     const lastClosed = localStorage.getItem('popupLastClosed');
     const cooldownPeriod = 24 * 60 * 60 * 1000; // 24 hours
-    
-    if (lastClosed && Date.now() - parseInt(lastClosed) < cooldownPeriod) {
-      return;
-    }
 
-    if (useInterval) {
-      const intervalId = setInterval(() => {
+
+      // Small delay to ensure smooth transition
+      const timeoutId = setTimeout(() => {
         open();
-      }, intervalTime);
+      }, 500);
 
-      return () => clearInterval(intervalId);
-    } else {
-      const handleScroll = () => {
-        if (!hasShown && window.scrollY > scrollThreshold) {
-          open();
-          setHasShown(true);
-        }
-      };
-
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
-    }
-  }, [useInterval, intervalTime, scrollThreshold, hasShown, open]);
+      return () => clearTimeout(timeoutId);
+    
+  }, [path]); // Trigger on path change
 
   const handleClose = () => {
     close();

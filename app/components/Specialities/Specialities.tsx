@@ -3,29 +3,24 @@ import { Box, Button, Image, SimpleGrid, Text, Title } from "@mantine/core";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 import classes from "./Specialities.module.css";
 import { useMediaQuery } from "@mantine/hooks";
-import { specialitiesData } from "./specialitiesData";
-const Specialities = () => {
+import Link from "next/link";
+
+const Specialities = ({specialitiesData}: {specialitiesData: {title: string, description: string, iconUrl: string,url?:string}[]}) => {
   const mobile = useMediaQuery(`(min-width: 800px)`);
 
   return (
-    <Box my={50} mx={10}>
-      <Title
-        ta="center"
-        my={20}
-        className={classes.main__title}
-        data-aos="zoom-in-up"
-      >
-        Our Specialities
-      </Title>
+    <Box my={40} mx={10}>
+      
       <SimpleGrid
         cols={{ base: 1, sm: 2, lg: 3 }}
         spacing={{ base: 10, sm: "xl" }}
         verticalSpacing={{ base: "md", sm: "xl" }}
       >
         {specialitiesData.map((el, index: number) => (
+      <Link href={(typeof(el.url)!=="string")?" ":el.url}>
           <Box key={index} className={classes.box}>
-            <Image
-              src={el.img}
+            {/* <Image
+              src={el.iconUrl}
               width={mobile ? 100 : 130}
               height={mobile ? 100 : 130}
               bg="#D5E9FF"
@@ -33,13 +28,13 @@ const Specialities = () => {
               style={{ borderRadius: 8 }}
               alt={el.title}
               data-aos="flip-right"
-            />
+            /> */}
             <Box className={classes.textbox}>
               <Text fw={700} c="#6D758F">
                 {el.title}
               </Text>
               <Text c="#6D758F" className={classes.box__info}>
-                {el.info}
+                {el.description}
               </Text>
               <Box className={classes.btnBox}>
                 <Button mt={5} p={0} w={40} bg="#023E8A">
@@ -48,6 +43,8 @@ const Specialities = () => {
               </Box>
             </Box>
           </Box>
+          </Link>
+
         ))}
       </SimpleGrid>
     </Box>

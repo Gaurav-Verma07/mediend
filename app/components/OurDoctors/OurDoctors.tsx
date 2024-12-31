@@ -2,58 +2,49 @@
 import { Carousel } from "@mantine/carousel";
 import { Box, Image, rem, Text, Title, useMantineTheme } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import classes from "./OurDoctors.module.css";
-const doctorsData = [
-  {
-    img: "/assets/doctors/doctor_1.png",
-    name: "Dr. Prof. A Murali ",
-    domain: "MBBS, MD-General Medicine Gastroenterologist ",
-    experience: 41,
-  },
-  {
-    img: "/assets/doctors/doctor_2.png",
-    name: "Dr. R. Deepak",
-    domain: "MBBS, MS - General Surgery Urologist",
-    experience: 16,
-  },
-  {
-    img: "/assets/doctors/doctor_3.png",
-    name: "Dr. Ramesh Benguluri",
-    domain: "MS- Orthopaedics Orthopedic surgeon",
-    experience: 11,
-  },
-  {
-    img: "/assets/doctors/doctor_4.png",
-    name: "Dr. Murali Krishna Menon",
-    domain: "MBBS, MD - General Medicine Neurologist",
-    experience: 31,
-  },
-  {
-    img: "/assets/doctors/doctor_1.png",
-    name: "Dr. Prof. A Murali ",
-    domain: "MBBS, MD-General Medicine Gastroenterologist ",
-    experience: 41,
-  },
-  {
-    img: "/assets/doctors/doctor_2.png",
-    name: "Dr. R. Deepak",
-    domain: "MBBS, MS - General Surgery Urologist",
-    experience: 16,
-  },
-  {
-    img: "/assets/doctors/doctor_3.png",
-    name: "Dr. Ramesh Benguluri",
-    domain: "MS- Orthopaedics Orthopedic surgeon",
-    experience: 11,
-  },
-  {
-    img: "/assets/doctors/doctor_4.png",
-    name: "Dr. Murali Krishna Menon",
-    domain: "MBBS, MD - General Medicine Neurologist",
-    experience: 31,
-  },
-];
+
+import { useEffect, useState } from "react";
+import { Doctor } from "../../doctor/[doctorName]/page";
+
+import classes from './OurDoctors.module.css'
+
+
+
+
 const OurDoctors = () => {
+
+  const [pageData, setPageData] = useState<Doctor[] | null >(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
+  
+  useEffect(() => {
+    setIsLoading(true)
+    fetch('https://7rljkuk3.apicdn.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27doctor%27%5D+%7C+order%28_createdAt+desc%29%7B%0A++title%2C%0A++speciality%2C%0A++%22slug%22%3Aslug.current%2C%0A++degrees%2C%0A++%22imageUrl%22%3A+image.asset-%3Eurl%2C%0A++yearsOfExperience%2C%0A++aboutDoctor%2C%0A++treatments%2C%0A++%22reviews%22%3A+reviews%5B%5D%7B%0A++++name%2C%0A++++%22imageUrl%22%3A+image.asset-%3Eurl%2C%0A++++review%2C%0A++++highlight%0A++%7D%2C%0A++faqs%0A%7D', {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json"
+      }
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json()
+    })
+    .then((data) => {
+      console.log('Fetched data:', data);
+      setPageData(data.result);
+      setIsLoading(false);
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+      setError(error);
+      setIsLoading(false);
+    });
+  }, [])
+
+
+
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
   return (
@@ -73,33 +64,27 @@ const OurDoctors = () => {
           loop={true}
           classNames={{ root: classes.carousel__root }}
         >
-          {doctorsData.map(
+          {pageData&& pageData.map(
             (
-              el: {
-                img: string;
-                name: string;
-                domain: string;
-                experience: number;
-              },
-              index: number
+              doctor,index
             ) => (
               <Carousel.Slide key={index} className={classes.box}>
                 <Image
-                  src={el.img}
+                  src={doctor.imageUrl}
                   height={236}
                   fit="contain"
-                  alt={el.name}
+                  alt={doctor.title}
                   data-aos={index % 2 ? "zoom-in-up" : "zoom-in-down"}
                 />
                 <Box my={20}>
                   <Text c="#023E8A" px={10} fz={rem(20)}>
-                    {el.name}
+                    {doctor.title}
                   </Text>
                   <Text c="#999999" my={10} px={10} className={classes.domain}>
-                    {el.domain}
+                    {doctor.speciality}
                   </Text>
                   <Text c="#999999" px={10}>
-                    {el.experience}+ Years experience
+                    {doctor.yearsOfExperience}+ Years experience
                   </Text>
                 </Box>
               </Carousel.Slide>

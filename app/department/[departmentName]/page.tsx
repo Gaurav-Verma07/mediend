@@ -40,6 +40,7 @@ import Link from "next/link";
 import BackLinks from '../../components/Backlinks/Backlinks';
 import DoctorCarousel from "../../components/Doctors/DoctorCarousel/DoctorCarousel";
 import BG from "../../../app/assets/departmentBg.png"
+import Specialities from "../../components/Specialities/Specialities";
 
 const storiesData = [
   {
@@ -73,12 +74,12 @@ interface Department {
   header: string;
   imageUrl:string,
   shortDescription: string;
-  specialities: Specialities[];
+  specialities: SpecialitiesT[];
   doctors: Doctor[];
   content: ContentBlock[];
   infoCards: InfoCard[];
   additionalContent1?: ContentBlock[];
-  
+  backlinks: Backlinks;
   additionalContent2?: ContentBlock[];
 
   reviews?: Review[];
@@ -86,7 +87,19 @@ interface Department {
 
 }
 
-export interface Specialities{
+interface Backlink {
+  text: string;
+  _key: string;
+  url: string;
+  _type: 'backlink';
+}
+
+interface Backlinks {
+  links: Backlink[];
+  title: string;
+}
+
+export interface SpecialitiesT{
   title: string;
   iconUrl:string;
   description:string;
@@ -171,11 +184,11 @@ if (!pageData) return <div>No data found</div>
 
   return (
     <>
-    <div className="absolute -z-10 -translate-y-6 hidden md:block w-screen">
+    <div className="absolute -z-10 -translate-y-6 hidden sm:block w-screen">
       <Image src="/assets/ads_bg.png" alt="background"></Image>
 
     </div>
-    <div className="absolute -z-10 md:hidden block">
+    <div className="absolute -z-10 sm:hidden block w-screen">
       <Image src="/assets/department_mobile.png" alt="background"></Image>
 
     </div>
@@ -217,9 +230,9 @@ if (!pageData) return <div>No data found</div>
 
               <Grid.Col span={8} className="hidden sm:flex ">
               <Group >
-                  <Card w={"100%"}>
-                        <Image src={"https://s3-alpha-sig.figma.com/img/1ccd/0a20/2477415d64f1e10258a27b64a05499cc?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=M7vTDrmeMQWNZvKB07vWlMySKpX4CmeNHEkAa0SM6uqPLzeaKqCHHUJ4wqPCoNPO45OLnIYmVikXyIawoTUBqV0gNtIDtVQho3lv3oXVDWF2-16iDn1ATneAjTmcW6EH8oEqo-tyznL4Lt8gdomkUtHNPJIC~169BuOlrv588SXHmMUy0AhsBWWA6YkDJ2qql~OLJ7WSFornpViJk2qgPG4nYk0LVLkZSUj4PSDExWGaRZgAF-rpiOi8sxVsguylPvGGqxmoH~6P4REba3JUNTfyZVA7baDvpYRelMaN5OmiUmGCjcG6vj2hvnLqwlen~UGiMT6KQuO4mR~tWqCJ6A__"} className=" scale-125"></Image>
-                  </Card>
+                  <div className="w-full">
+                        <Image src="/assets/features2.png" className=" object-cover"></Image>
+                  </div>
                 </Group>
               </Grid.Col>
 
@@ -270,32 +283,12 @@ if (!pageData) return <div>No data found</div>
 
 
               <Grid.Col span={8} mt={"lg"}>
-                <Stack gap={"lg"}>
-                <Title order={2}>Our Specialities</Title>
-                <Grid>
+                <Stack>
+                  <Title order={3}> Our Specialities</Title>
                   {
-                    pageData.specialities.map((speciality,idx) => {
-                      return(
-                        <Grid.Col key={idx} span={6}>
-                      <Card padding={"xl"}  shadow="md" className="rounded-xl">
-                        <Grid grow gutter={"md"}>
-                          <Grid.Col span={3}>
-                            <Image src={speciality.iconUrl} className="rounded-md"></Image>
-                          </Grid.Col>
-                          <Grid.Col span={9}>
-                            <Stack>
-                              <Title order={4}>{speciality.title}</Title>
-                              <Text c={"gray.9"}>{speciality.description}</Text>
-                            </Stack>
-                          </Grid.Col>
-                        </Grid>
-                  </Card>
-                  </Grid.Col>
-                      )
-                    })
+                    pageData.specialities &&
+                    <Specialities specialitiesData={pageData.specialities}/>
                   }
-                  
-                </Grid>
                 </Stack>
               </Grid.Col>
 
@@ -357,6 +350,11 @@ if (!pageData) return <div>No data found</div>
 
         <BookConsultation />
       </div>
+
+      {
+        pageData.backlinks &&
+         <BackLinks procedures={pageData.backlinks.links} header={pageData.backlinks.title}></BackLinks>
+       } 
     </>
   );
 }

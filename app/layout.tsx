@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: any }) {
             {children}
             <GlobalPopup 
   scrollThreshold={500}  // Show after scrolling 500px
-  useInterval={true}     // Use interval-based triggers
+   // Use interval-based triggers
   intervalTime={60000}   // Show every minute
 />
             <Footer/>
