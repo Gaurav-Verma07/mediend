@@ -21,7 +21,6 @@ const ConsultationBox = () => {
             component="a"
             href="https://api.whatsapp.com/send/?phone=918750300099&text=%20Hi%20mediEND,%20I%20want%20to%20connect%20with%20mediEND%20Health%20Care%20Expert"
             target="_blank"
-            bg="#FF990C"
             leftSection={<IconBrandWhatsapp />}
             rightSection={<IconArrowNarrowRight />}
             size="xl"
