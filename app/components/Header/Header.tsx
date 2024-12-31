@@ -14,12 +14,15 @@ import { Box, Button, Modal, TextInput } from "@mantine/core";
 import Appointment from "../Appointment/Appointment";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./Header.module.css";
+import { usePathname } from "next/navigation";
 
 const MedicalServicesNavigation = () => {
   const [activeTab, setActiveTab] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [modalOpened, { open: modalOpen, close: modalClose }] =
     useDisclosure(false);
+  const pathname = usePathname();
+  const isDiseasesPage = pathname.startsWith("/diseases");
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -32,16 +35,16 @@ const MedicalServicesNavigation = () => {
   };
 
   return (
-    <>
+    <Box style={{ display: isDiseasesPage ? "none" : "block" }}>
       <nav className="w-full bg-white shadow-md py-2">
         {/* Mobile Header */}
         <div className="lg:hidden flex justify-between items-center px-4 py-2">
-          <Image src={Logo} alt='logo' height={40} width={100} />
+          <Image src={Logo} alt="logo" height={40} width={100} />
           <div className="flex items-center gap-3">
-            <TextInput 
-              placeholder="Search..." 
-              variant="filled" 
-              leftSection={<IconSearch/>} 
+            <TextInput
+              placeholder="Search..."
+              variant="filled"
+              leftSection={<IconSearch />}
               className="w-full max-w-[200px] hidden lg:flex"
             />
             <button onClick={toggleMobileMenu} className="p-2">
@@ -181,7 +184,7 @@ const MedicalServicesNavigation = () => {
       >
         <Appointment />
       </Modal>
-    </>
+    </Box>
   );
 };
 

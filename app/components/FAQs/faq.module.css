@@ -1,29 +1,16 @@
 .accordion__main {
-  max-width: 1100px !important;
   background-image: url("/assets/overlay.png") !important;
   background-position: bottom !important;
   background-repeat: no-repeat !important;
   background-color: #f8faff !important;
-  margin: 0 auto !important;
-  padding: 20px 15px !important;
   border-radius: 10px !important;
   border: 1px solid #d4d8e2 !important;
-  @media (min-width: 500px) {
-    padding: 50px !important;
-  }
-  @media (min-width: 800px) {
-    padding: 50px !important;
-  }
 }
 
-.main__title {
-  text-align: center !important;
-  color: #1d3557 !important;
-  font-size: 32px !important;
-  margin: 40px 0 !important;
-  @media (min-width: 800px) {
-    font-size: 48px !important;
-  }
+.ads {
+  background-image: none !important;
+  background-color: #fff !important;
+  border: none !important;
 }
 
 .item {

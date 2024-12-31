@@ -9,6 +9,7 @@ import {
 import classes from "./Footer.module.css";
 import { useMediaQuery } from "@mantine/hooks";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const surgeryItems = [
   "Gynecomastia",
@@ -30,7 +31,7 @@ const surgeryItems = [
 const quickLinks = [
   { label: "About Us", link: "/about-us" },
   { label: "Our Experts", link: "https://mediend.com/our-expert.php" },
-  { label: "Blogs", link: "https://mediend.com/blogs-wp/" },
+  { label: "Blogs", link: "/blogs" },
   { label: "Careers", link: "https://mediend.com/career.php" },
   { label: "Contact Us", link: "https://mediend.com/contact.php" },
   { label: "Privacy & Policy", link: "/privacy-policy" },
@@ -43,8 +44,10 @@ const quickLinks = [
 ];
 const Footer = () => {
   const mobile = useMediaQuery(`(min-width: 700px)`);
+  const pathname = usePathname();
+  const isDiseasesPage = pathname.startsWith("/diseases");
   return (
-    <Box>
+    <Box style={{ display: isDiseasesPage ? "none" : "block" }}>
       <Box className={classes.main}>
         <Box className={classes.main__box}>
           <Box className={classes.top}>

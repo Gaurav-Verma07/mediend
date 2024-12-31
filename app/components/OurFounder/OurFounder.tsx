@@ -7,15 +7,22 @@ import {
 
 const OurFounder = () => {
   return (
-    <Flex justify="space-around" align="center" wrap="wrap" my={20} mx={10}>
+    <Flex
+      justify={{ base: "center", lg: "space-between" }}
+      //   align={{ base: "center", sm: "flex-start" }}
+      //   align="center"
+      wrap="wrap"
+      my={40}
+      mx={10}
+    >
       <Box maw={545} my={20}>
         <Badge size="xl" color="rgba(26, 91, 238, 0.1)" c="#2967B0">
           Our Founder
         </Badge>
-        <Title fz={{ base: 24, sm: 48 }} c="#2967B0">
+        <Title fz={{ base: 24, sm: 48 }} my={20} c="#2967B0">
           Dr. Amit Jain
         </Title>
-        <Text>
+        <Text fz={{ base: 16, sm: 18 }}>
           At Landing Page Doctor, we are dedicated to delivering exceptional
           medical care and improving the health and well-being of our patients.
           Our mission is to provide comprehensive and personalized healthcare
@@ -26,10 +33,13 @@ const OurFounder = () => {
       </Box>
       <Box>
         <Box
-          w={{ base: 300, sm: 530 }}
-          h={{ base: 300, sm: 530 }}
+          w={{ base: "90vw", sm: 530 }}
+          h={{ base: 350, sm: 530 }}
           style={{
             backgroundImage: "url(/assets/getintouch.png)",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
             position: "relative",
             borderRadius: 25,
           }}

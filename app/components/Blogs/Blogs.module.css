@@ -4,7 +4,9 @@
   border-radius: 8px !important;
   box-shadow: 0px 1px 4px 0px #19213d14 !important;
   margin: 20px 10px !important;
+  overflow: hidden !important;
 }
+
 .main__title {
   color: #1d3557 !important;
   font-size: 32px !important;

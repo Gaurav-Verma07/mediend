@@ -1,5 +1,5 @@
 "use client";
-import { Anchor, Box, Container, List, Text } from "@mantine/core";
+import { Box, Text } from "@mantine/core";
 
 const Disclaimer = () => {
   return (
