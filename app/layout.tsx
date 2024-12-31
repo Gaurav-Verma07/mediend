@@ -1,6 +1,7 @@
 import "@mantine/core/styles.css";
 import React from "react";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
+import { Providers } from "./Providers";
 import { theme } from "../theme";
 import Header from "./components/Header/Header";
 import "@mantine/carousel/styles.css";
@@ -11,11 +12,7 @@ export const metadata = {
 import "./global.css";
 import AOSContainer from "./components/AOS/AOS";
 import Footer from "./components/Footer/Footer";
-<<<<<<< HEAD
 import GlobalPopup from "./components/GlobalPopup/globalPopup";
-=======
-import { Providers } from "./Providers";
->>>>>>> 432a64de866dc6cba52a25a20b6c56697ca07d78
 
 export default function RootLayout({ children }: { children: any }) {
   return (
@@ -38,7 +35,7 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body>
-<<<<<<< HEAD
+        <Providers>
         <AOSContainer>
           <MantineProvider defaultColorScheme="light" theme={theme}>
             <Header />
@@ -52,18 +49,7 @@ export default function RootLayout({ children }: { children: any }) {
 
           </MantineProvider>
         </AOSContainer>
-
-=======
-        <Providers>
-          <AOSContainer>
-            <MantineProvider defaultColorScheme="light" theme={theme}>
-              <Header />
-              {children}
-              <Footer />
-            </MantineProvider>
-          </AOSContainer>
         </Providers>
->>>>>>> 432a64de866dc6cba52a25a20b6c56697ca07d78
       </body>
     </html>
   );

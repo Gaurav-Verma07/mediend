@@ -40,21 +40,11 @@ const Showcase = () => {
             className="flex flex-col items-center justify-center p-6 rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow border"
           >
             <Image
-<<<<<<< HEAD
               src={item.img}
               alt={item.name}
               width={64}
               height={64}
               className="mb-4"
-=======
-              mx="auto"
-              fit="contain"
-              src={el.img}
-              w="77px"
-              h="77px"
-              alt="image"
-              data-aos="zoom-out"
->>>>>>> 432a64de866dc6cba52a25a20b6c56697ca07d78
             />
             <Text className="text-[#1D3557] text-3xl font-semibold my-2">
               {item.value}+
