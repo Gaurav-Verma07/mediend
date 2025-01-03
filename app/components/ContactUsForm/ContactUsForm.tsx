@@ -47,7 +47,7 @@ const ContactUsForm = () => {
             my={20}
             label="Message"
           />
-          <Button color="#f24b04" my={20}>
+          <Button my={20}>
             Submit
           </Button>
         </form>

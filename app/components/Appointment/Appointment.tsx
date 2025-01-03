@@ -217,7 +217,6 @@ const Appointment = () => {
             radius="md"
             mt={20}
             mb={10}
-            bg="#FF990C"
             fullWidth
           >
             Book

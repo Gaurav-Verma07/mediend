@@ -12,20 +12,20 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const surgeryItems = [
-  "Gynecomastia",
-  "Lipoma",
-  "Lasik ",
-  "Cataract",
-  "Vericose veins",
-  "Piles",
-  "Fissure",
-  "Fistula",
-  "Gallstone",
-  "Circumcision",
-  "Cyst",
-  "Kidney stone",
-  "Knee replacement",
-  "Liposuction",
+  { text: "Gynecomastia", slug: "gynecomastia" },
+  { text: "Lipoma", slug: "lipoma" },
+  { text: "Lasik", slug: "lasik" },
+  { text: "Cataract", slug: "cataract" },
+  { text: "Vericose veins", slug: "vericose-veins" },
+  { text: "Piles", slug: "piles" },
+  { text: "Fissure", slug: "fissure" },
+  { text: "Fistula", slug: "fistula" },
+  { text: "Gallstone", slug: "gallstone" },
+  { text: "Circumcision", slug: "circumcision" },
+  { text: "Cyst", slug: "cyst" },
+  { text: "Kidney stone", slug: "kidney-stone" },
+  { text: "Knee replacement", slug: "knee-replacement" },
+  { text: "Liposuction", slug: "liposuction" },
 ];
 
 const quickLinks = [
@@ -52,7 +52,7 @@ const Footer = () => {
         <Box className={classes.main__box}>
           <Box className={classes.top}>
             <Box my={10}>
-              <Button bg="#FF990C" mr={10} my={5}>
+              <Button mr={10} my={5}>
                 Get a Consultation
               </Button>
               <Button my={5} variant="outline" className={classes.order__btn}>
@@ -142,7 +142,8 @@ const Footer = () => {
               <>
                 <Box className={classes.box_company}>
                   <Box className={classes.middle__box_upper}>
-                    <IconCircle size="15px" color="#FF990C" />{" "}
+                    <IconCircle size="15px" color="#1ec8bb" />
+{" "}
                     <Text tt="uppercase" c="#fff" ml={4} fz={10}>
                       Our Company
                     </Text>
@@ -154,19 +155,23 @@ const Footer = () => {
                 </Box>
                 <Box className={classes.box__surgery}>
                   <Box className={classes.middle__box_upper}>
-                    <IconCircle size="15px" color="#FF990C" />
+                    <IconCircle size="15px" color="#1ec8bb" />
+
                     <Text tt="uppercase" c="#fff" ml={4} fz={10}>
                       {" "}
                       Surgery
                     </Text>
                   </Box>
-                  {surgeryItems.map((el: string, index: number) => (
-                    <Text key={index}>{el}</Text>
+                  {surgeryItems.map((el, index: number) => (
+                    <Link href={`/disease/${el.slug}`} key={index}>
+                    <Text >{el.text}</Text>
+                    </Link>
                   ))}
                 </Box>
                 <Box className={classes.box__surgery}>
                   <Box className={classes.middle__box_upper}>
-                    <IconCircle size="15px" color="#FF990C" />
+                    <IconCircle size="15px" color="#1ec8bb" />
+
                     <Text tt="uppercase" c="#fff" ml={4} fz={10}>
                       {" "}
                       Quick Links
@@ -187,7 +192,7 @@ const Footer = () => {
                 </Box>
                 <Box className={classes.patients}>
                   <Box className={classes.middle__box_upper}>
-                    <IconCircle size="15px" color="#FF990C" />
+                    <IconCircle size="15px" color="#1ec8bb" />
                     <Text tt="uppercase" c="#fff" ml={4} fz={10}>
                       {" "}
                       For Patients
@@ -204,7 +209,7 @@ const Footer = () => {
                   <Box className={classes.mobile__links_inner}>
                     <Box className={classes.box__surgery}>
                       <Box className={classes.middle__box_upper}>
-                        <IconCircle size="15px" color="#FF990C" />
+                    <IconCircle size="15px" color="#1ec8bb" />
                         <Text tt="uppercase" c="#fff" ml={4} fz={10}>
                           {" "}
                           Quick Links
@@ -229,14 +234,17 @@ const Footer = () => {
                   </Box>
                   <Box className={classes.box__surgery}>
                     <Box className={classes.middle__box_upper}>
-                      <IconCircle size="15px" color="#FF990C" />
+                      <IconCircle size="15px" color="#1ec8bb" />
+
                       <Text tt="uppercase" c="#fff" ml={4} fz={10}>
                         {" "}
                         Surgery
                       </Text>
                     </Box>
-                    {surgeryItems.map((el: string, index: number) => (
-                      <Text key={index}>{el}</Text>
+                    {surgeryItems.map((el, index: number) => (
+                      <Link href={`/disease/${el.slug}`} key={index}>
+                      <Text >{el.text}</Text>
+                      </Link>
                     ))}
                   </Box>
                 </Box>
@@ -246,7 +254,8 @@ const Footer = () => {
               {!mobile && (
                 <Box className={classes.box_company}>
                   <Box className={classes.middle__box_upper}>
-                    <IconCircle size="15px" color="#FF990C" />{" "}
+                    <IconCircle size="15px" color="#1ec8bb" />
+{" "}
                     <Text tt="uppercase" c="#fff" ml={4} fz={10}>
                       Our Company
                     </Text>
@@ -260,7 +269,8 @@ const Footer = () => {
               {!mobile && (
                 <Box className={classes.patients} style={{ textAlign: "left" }}>
                   <Box className={classes.middle__box_upper}>
-                    <IconCircle size="15px" color="#FF990C" />
+                    <IconCircle size="15px" color="#1ec8bb" />
+
                     <Text tt="uppercase" c="#fff" ml={4} fz={10}>
                       {" "}
                       For Patients
